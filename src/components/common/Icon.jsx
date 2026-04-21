@@ -66,6 +66,27 @@ export function Dots({ size = 20 }) {
   )
 }
 
+export function EmojiAdd({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17.5 10a7.5 7.5 0 1 1-7.5-7.5"/>
+      <path d="M6.5 11.5s1.5 2 3.5 2 3.5-2 3.5-2"/>
+      <circle cx="7.5" cy="7.5" r=".75" fill="currentColor" stroke="none"/>
+      <circle cx="12.5" cy="7.5" r=".75" fill="currentColor" stroke="none"/>
+      <path d="M15 3v3M13.5 4.5h3"/>
+    </svg>
+  )
+}
+
+export function Edit({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11.5 2.5l2 2L5 13H3v-2z"/>
+      <path d="M10.5 3.5l2 2"/>
+    </svg>
+  )
+}
+
 export function Lock({ size = 12 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">

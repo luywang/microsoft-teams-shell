@@ -92,7 +92,7 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
               className={`chat-list-item ${contact.id === activeChatId ? 'selected' : ''}`}
               onClick={() => onSelectChat(contact.id)}
             >
-              <Avatar contact={contact} size={24} />
+              <Avatar contact={contact} size={20} />
               <span className={`chat-item-name ${unread ? 'chat-item-bold' : ''}`}>{contact.name}</span>
               {unread && <span className="unread-dot" />}
             </div>
@@ -116,7 +116,7 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
               className={`chat-list-item ${contact.id === activeChatId ? 'selected' : ''}`}
               onClick={() => onSelectChat(contact.id)}
             >
-              <Avatar contact={contact} size={24} />
+              <Avatar contact={contact} size={20} />
               <span className={`chat-item-name ${unread ? 'chat-item-bold' : ''}`}>{contact.name}</span>
               {unread && <span className="unread-dot" />}
               {/* Jira demo arrow removed — `.demo-hint-arrow` remains in CSS if needed. */}

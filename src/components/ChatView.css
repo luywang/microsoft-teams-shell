@@ -30,8 +30,8 @@
 /* Chat header avatar styles now come from the common Avatar component. */
 
 .chat-header-name {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: #242424;
   white-space: nowrap;
   flex-shrink: 0;
@@ -41,19 +41,24 @@
 .chat-header-tabs {
   display: flex;
   align-items: center;
-  gap: 0;
+  gap: 6px;
   margin-left: 4px;
 }
 
 .chat-view-tab {
   background: none;
   border: none;
-  border-bottom: 2px solid transparent;
-  padding: 14px 12px;
-  font-size: 13px;
+  padding: 14px 6px;
+  position: relative;
+  font-size: 14px;
   font-weight: 400;
-  color: #616161;
+  color: #424242;
   cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   line-height: 20px;
   white-space: nowrap;
 }
@@ -65,7 +70,18 @@
 .chat-view-tab.active {
   color: #242424;
   font-weight: 600;
-  border-bottom-color: #6264A7;
+}
+
+/* Underline spans only the tab label (content box), not the full button width. */
+.chat-view-tab.active::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: 0;
+  height: 3px;
+  background: #6264A7;
+  border-radius: 2px;
 }
 
 .chat-view-tab.tab-add {
@@ -246,6 +262,7 @@
 }
 
 .message-bubble {
+  position: relative;
   font-size: 14px;
   line-height: 20px;
   color: #242424;
@@ -349,6 +366,55 @@
    inside message bubbles we add a little breathing room below. */
 .message-bubble .private-disclaimer {
   margin-bottom: 4px;
+}
+
+/* ── Reaction pills (under bubble) ──
+   Parent alignment from .message-content-wrap handles left/right: the flex
+   column on `.message-mine` right-aligns children; for others' messages the
+   content-wrap is block so the bar left-aligns with the bubble. */
+.message-reactions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.reaction-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: #424242;
+  height: 22px;
+}
+
+.reaction-pill:hover {
+  background: #F5F5F5;
+}
+
+.reaction-pill-mine {
+  border-color: #6264A7;
+}
+
+.reaction-pill-mine:hover {
+  background: rgba(98, 100, 167, 0.08);
+}
+
+.reaction-pill-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: #424242;
+}
+
+.reaction-pill-mine .reaction-pill-count {
+  color: #6264A7;
 }
 
 /* ── Thread reply indicator (under anchor bubble) ── */

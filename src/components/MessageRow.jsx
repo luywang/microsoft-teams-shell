@@ -1,6 +1,26 @@
+import { useState } from 'react'
 import { agentLogos } from '../shared/agentLogos'
 import { contacts, currentUser } from '../data/contacts'
 import { Avatar, LinkCard, PrivateDisclaimer } from './common'
+import MessageActions from './MessageActions'
+
+// Combine seeded-in-data reactions with the current user's reactions into an
+// ordered list of pills. `byMe: true` → purple outline in the UI.
+function buildReactionList(baseReactions, myEmojis) {
+  const map = new Map()
+  for (const r of baseReactions || []) {
+    map.set(r.emoji, { emoji: r.emoji, count: r.count, byMe: false })
+  }
+  for (const emoji of myEmojis) {
+    const existing = map.get(emoji)
+    if (existing) {
+      map.set(emoji, { ...existing, count: existing.count + 1, byMe: true })
+    } else {
+      map.set(emoji, { emoji, count: 1, byMe: true })
+    }
+  }
+  return [...map.values()]
+}
 
 function ThreadReplyBadge({ reply, onClick }) {
   const ids = reply.participantIds || (reply.agentId ? [reply.agentId] : [])
@@ -41,6 +61,17 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
       ? contacts.find(c => c.id === message.senderId)
       : activeContact
 
+  const [myReactions, setMyReactions] = useState(() => new Set())
+  const toggleReaction = (emoji) => {
+    setMyReactions(prev => {
+      const next = new Set(prev)
+      if (next.has(emoji)) next.delete(emoji)
+      else next.add(emoji)
+      return next
+    })
+  }
+  const reactions = buildReactionList(message.reactions, myReactions)
+
   return (
     <div className={`message-row ${isMe ? 'message-mine' : ''}`}>
       {!isMe && (
@@ -54,6 +85,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
           <span className="message-timestamp">{message.time}</span>
         </div>
         <div className={`message-bubble ${message.isPrivate ? 'message-bubble-private' : ''}`}>
+          <MessageActions onReact={toggleReaction} />
           {message.isPrivate && <PrivateDisclaimer />}
           {message.forwardedFrom && (
             <div className="forwarded-message">
@@ -91,6 +123,22 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
             </div>
           )}
         </div>
+        {reactions.length > 0 && (
+          <div className="message-reactions-bar">
+            {reactions.map((r) => (
+              <button
+                key={r.emoji}
+                type="button"
+                className={`reaction-pill ${r.byMe ? 'reaction-pill-mine' : ''}`}
+                onClick={() => toggleReaction(r.emoji)}
+                aria-label={`${r.byMe ? 'Remove' : 'Add'} reaction ${r.emoji}`}
+              >
+                <span aria-hidden="true">{r.emoji}</span>
+                {r.count > 1 && <span className="reaction-pill-count">{r.count}</span>}
+              </button>
+            ))}
+          </div>
+        )}
         {message.threadReply && (
           <ThreadReplyBadge
             reply={message.threadReply}

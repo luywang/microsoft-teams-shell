@@ -27,6 +27,58 @@
 | Active tab text | `#242424` | Bold, no background fill |
 | Inactive tab text | `#616161` | Regular weight, no background fill |
 
+## Typography
+
+Sourced from live Teams (dev-tools inspection).
+
+### Font Stack
+
+```css
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui,
+             'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Web', sans-serif;
+```
+
+Set globally on `body` in `src/index.css`. All components should inherit — avoid overriding `font-family` in component CSS.
+
+### Base Body Text
+
+- **Size:** `14px` (Teams expresses this as `1.4rem` on a `10px` root; we use px directly)
+- **Line height:** `1.4286` (unitless, inherited; produces 20px for 14px text)
+
+### Chat List Item Names
+
+- Size: 14px
+- Weight: `400` regular, `600` when the chat is bold/unread
+
+### Chat Header Name
+
+- Size: 18px
+- Weight: `700`
+- Line height: inherits the body `1.4286` (≈25.7px at 18px)
+
+### Chat Header Tabs
+
+- Size: 14px
+- Weight: `400` inactive, `600` active
+- Color: `#424242` inactive, `#242424` active
+- Spacing: `6px` gap between tabs
+- Truncation: `max-width: 150px` with `text-overflow: ellipsis` and `white-space: nowrap` — keeps long chat names from breaking the header layout
+- Active tab marker: 3px underline in Teams purple (`#6264A7`), `2px` border-radius, spans the tab label width only (not the full button click area — rendered via `::after` on the content box)
+
+## Avatar Sizing
+
+Pass `size` to the common `Avatar` component. Established sizes:
+
+| Surface | Size |
+|---|---|
+| Chat list item | `20` |
+| Title bar (current user) | `28` |
+| Chat view header | `28` |
+| Message row | `32` |
+| Agents rail list + detail header | `24` |
+
+The status dot scales automatically (~28% of avatar size, min 6px) — no need to tune it per surface. Matches real Teams: 20px avatar → 6px dot, 28px → 8px, 32px → 9px, 36px → 10px.
+
 ## Dividers
 
 Standard divider used throughout the app (chat list header rows, chat view tab bar, section separators):

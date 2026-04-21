@@ -17,10 +17,10 @@
 
 .status-dot {
   position: absolute;
-  bottom: -1px;
-  right: -1px;
+  bottom: -3px;
+  right: -3px;
   border-radius: 50%;
-  border: 2px solid var(--avatar-status-ring, #FFFFFF);
+  border: 2.5px solid var(--avatar-status-ring, #FFFFFF);
   box-sizing: content-box;
 }
 

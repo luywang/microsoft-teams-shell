@@ -6,7 +6,7 @@ import './Avatar.css'
 // Groups and agents typically have no `contact.status` — no dot is drawn.
 export default function Avatar({ contact, size = 36 }) {
   const logoSize = size * 0.4
-  const dotSize = Math.max(8, Math.round(size * 0.33))
+  const dotSize = Math.max(6, Math.round(size * 0.28))
   return (
     <div
       className="avatar"

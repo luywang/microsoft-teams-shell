@@ -6,7 +6,7 @@ export const messagesByContact = {
     { id: 4, senderId: 'me', text: 'That could work well. We\'d need to make sure it doesn\'t feel cluttered on smaller screens though. Maybe we collapse it behind a toggle?', time: '10:22 AM' },
     { id: 5, senderId: 1, text: 'Good call. I\'ll update the responsive breakpoints in the spec. Also, the PM wants us to present the prototype at Thursday\'s review.', time: '10:30 AM' },
     { id: 6, senderId: 'me', text: 'Thursday works. I should have the interactive prototype ready by Wednesday evening. Can you send over the final design specs so I can start building?', time: '10:35 AM' },
-    { id: 7, senderId: 1, text: 'Sounds good! I\'ll send over the design specs shortly.', time: '10:42 AM' },
+    { id: 7, senderId: 1, text: 'Sounds good! I\'ll send over the design specs shortly.', time: '10:42 AM', reactions: [{ emoji: '👍', count: 1 }] },
   ],
   2: [
     { id: 1, senderId: 2, text: 'Hello! I\'m Claude, an AI assistant made by Anthropic. How can I help you today?', time: '9:00 AM' },
@@ -54,7 +54,7 @@ export const messagesByContact = {
     { id: 4, senderId: 12, text: 'Agreed. I\'ll add it to our Q3 tech debt backlog so we don\'t forget.', time: 'Yesterday 10:45 AM' },
   ],
   9: [
-    { id: 1, senderId: 9, text: 'The test suite is green again! The flaky integration test was caused by a race condition in the event bus mock.', time: '4/10 4:30 PM' },
+    { id: 1, senderId: 9, text: 'The test suite is green again! The flaky integration test was caused by a race condition in the event bus mock.', time: '4/10 4:30 PM', reactions: [{ emoji: '🎉', count: 3 }, { emoji: '👍', count: 1 }] },
     { id: 2, senderId: 'me', text: 'Oh nice catch! That\'s been failing intermittently for weeks. What was the fix?', time: '4/10 4:35 PM' },
     { id: 3, senderId: 9, text: 'Added a proper async barrier instead of relying on setTimeout. Classic issue.', time: '4/10 4:37 PM' },
     { id: 4, senderId: 'me', text: 'Love it. Simple and correct. Thanks Olivia!', time: '4/10 4:40 PM' },
@@ -64,10 +64,14 @@ export const messagesByContact = {
     { id: 1, senderId: 10, text: 'Great meeting today. I think the API versioning strategy is solid.', time: '4/9 5:00 PM' },
     { id: 2, senderId: 'me', text: 'Thanks David. I\'ll write up the ADR and circulate it tomorrow.', time: '4/9 5:05 PM' },
     { id: 3, senderId: 10, text: 'Sounds good. I\'ll review it and add the backwards compatibility section.', time: '4/9 5:08 PM' },
+    { id: 4, senderId: 'me', text: 'One open question — how long do we keep a deprecated version live before sunset? 12 months?', time: '4/9 5:12 PM' },
+    { id: 5, senderId: 10, text: 'I\'d say 9 months minimum, 12 if a major partner flags migration risk. We should also require deprecation warnings in the response headers for the last 3 months.', time: '4/9 5:15 PM' },
+    { id: 6, senderId: 'me', text: 'Good framing. I\'ll add a "partner notification" step to the checklist — we give the top 10 consumers a heads-up 6 months out.', time: '4/9 5:18 PM' },
+    { id: 7, senderId: 10, text: 'Perfect. Ping me when the doc is ready for review.', time: '4/9 5:20 PM' },
   ],
   11: [
     { id: 1, senderId: 12, text: 'Hey team — just a reminder that we\'re shipping the agent handoff feature on April 25. That\'s 8 days out. How\'s everyone feeling about the timeline?', time: 'Today 9:30 AM' },
-    { id: 2, senderId: 'me', text: 'Feeling good on my end. The delegation flow is code-complete, just needs a final round of testing.', time: 'Today 9:33 AM' },
+    { id: 2, senderId: 'me', text: 'Feeling good on my end. The delegation flow is code-complete, just needs a final round of testing.', time: 'Today 9:33 AM', reactions: [{ emoji: '👍', count: 2 }] },
     { id: 3, senderId: 12, text: 'Great. Are there any blockers we should be worried about?', time: 'Today 9:35 AM' },
     { id: 4, senderId: 15, text: ['I have one. Let me pull it up. ', { type: 'mention', name: 'Jira' }, ' show my open blockers for the April 25 milestone.'], time: 'Today 9:37 AM' },
     {
@@ -107,6 +111,10 @@ export const messagesByContact = {
     { id: 1, senderId: 10, text: 'The Copilot extensibility SDK v2 is almost ready for preview. We need to finalize the plugin lifecycle hooks.', time: '4/13 11:00 AM' },
     { id: 2, senderId: 'me', text: 'I reviewed the PR. The onActivate/onDeactivate hooks look good. One thing — should we add an onConfigChange hook for when users update plugin settings?', time: '4/13 11:10 AM' },
     { id: 3, senderId: 10, text: 'That\'s a great call. I\'ll add it to the interface. It can fire after settings are persisted.', time: '4/13 11:15 AM' },
+    { id: 4, senderId: 'me', text: 'What\'s the story for the docs? The v1 reference page is pretty thin and partners already complain.', time: '4/13 11:20 AM' },
+    { id: 5, senderId: 10, text: 'Fair. For v2 I want to ship a getting-started guide, a reference, and two worked examples — a slash command plugin and a message-action plugin. Writing the guide myself, samples are the gap.', time: '4/13 11:23 AM' },
+    { id: 6, senderId: 'me', text: 'I can own the two samples. Let me sketch them against the preview API and send you a branch by Friday.', time: '4/13 11:25 AM' },
+    { id: 7, senderId: 10, text: 'Appreciate it. Keep the slash-command sample under 150 lines if you can — the v1 version was 400 and nobody finished it.', time: '4/13 11:27 AM' },
   ],
   15: [
     { id: 1, senderId: 15, text: 'Hey, are you going to the platform offsite next month?', time: '4/12 3:00 PM' },
@@ -130,6 +138,10 @@ export const messagesByContact = {
     { id: 1, senderId: 10, text: 'We need to decide on the DW support approach for BizChat by Friday.', time: '4/9 2:00 PM' },
     { id: 2, senderId: 'me', text: 'I think we should go with the adapter pattern. That way each data warehouse connector is pluggable without touching the core query engine.', time: '4/9 2:10 PM' },
     { id: 3, senderId: 15, text: 'Agreed. We already have the Snowflake adapter as a reference implementation. Shouldn\'t be too hard to generalize.', time: '4/9 2:15 PM' },
+    { id: 4, senderId: 10, text: 'The piece I\'m nervous about is credential management. Each DW has its own auth story — PATs, OAuth, workload identity. We can\'t leak that into the query engine either.', time: '4/9 2:20 PM' },
+    { id: 5, senderId: 'me', text: 'Agreed. Each adapter owns its auth flow and hands the engine a short-lived session token. Long-term creds live in the secret store, behind the same interface we use for other connectors.', time: '4/9 2:24 PM' },
+    { id: 6, senderId: 15, text: 'That maps cleanly onto how the Snowflake adapter already works, so the migration cost is mostly the other three DWs. I can put together a sizing doc by EOD tomorrow.', time: '4/9 2:28 PM' },
+    { id: 7, senderId: 10, text: 'Great. Let\'s pencil in 30 min Thursday to lock the interface — I\'ll send the invite.', time: '4/9 2:31 PM' },
   ],
   19: [
     { id: 1, senderId: 12, text: 'Sharing the latest targeted messages framework proposal. Please review and leave comments by Wednesday.', time: '4/8 4:00 PM' },
