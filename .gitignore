@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code config (personal permissions, hooks, agents — not needed by forkers)
+.claude/
