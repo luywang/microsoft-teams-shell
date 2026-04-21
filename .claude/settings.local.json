@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npx vite *)",
+      "WebFetch(domain:localhost)",
+      "Bash(wc *)",
+      "Bash(curl -s http://localhost:5173/src/components/ChatList.css)",
+      "WebFetch(domain:cdn.simpleicons.org)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/women/44.jpg\" -o sarah-chen.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/women/68.jpg\" -o priya-patel.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/women/45.jpg\" -o emily-watson.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/women/50.jpg\" -o rachel-thompson.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/women/33.jpg\" -o olivia-martinez.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/men/32.jpg\" -o alex-rivera.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/men/75.jpg\" -o james-kim.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/men/46.jpg\" -o david-nguyen.jpg)",
+      "Bash(curl -sL \"https://randomuser.me/api/portraits/men/22.jpg\" -o kevin-park.jpg)",
+      "WebFetch(domain:adaptivecards.io)",
+      "Bash(npx gh-pages *)",
+      "Bash(gh api *)",
+      "Bash(git fetch *)",
+      "Bash(git ls-tree *)",
+      "Bash(git *)",
+      "Bash(grep -E \"\\\\.\\(js|jsx|css\\)$\")",
+      "Bash(grep -E \";\\\\s*$|:\\\\s+\" /c/Users/ginobuzz/Projects/Teams/teams-chat/src/components/*.css)",
+      "Bash(grep -o \"'\" /c/Users/ginobuzz/Projects/Teams/teams-chat/src/**/*.jsx)",
+      "Bash(grep -o '\"' /c/Users/ginobuzz/Projects/Teams/teams-chat/src/**/*.jsx)",
+      "Bash(grep -E \"^[^/]*[;,\\)]$\" /c/Users/ginobuzz/Projects/Teams/teams-chat/src/App.jsx)",
+      "Bash(grep -n \"function\\\\|const.*=.*=>\" /c/Users/ginobuzz/Projects/Teams/teams-chat/src/components/*.jsx)",
+      "Bash(curl *)",
+      "Bash(npm run *)",
+      "Bash(npm --prefix teams-chat run build)",
+      "Bash(npm --prefix teams-chat run lint)"
+    ]
+  }
+}
