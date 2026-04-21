@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { messagesByContact, contacts, currentUser, favorites, chatList } from '../data'
 import { sessionMessages } from '../data/sessionMessages'
-import { agentLogos } from '../shared/agentLogos'
 import { copilotLogo } from '../shared/assets'
 import { copilotAgent, designerAgent, pollyAgent, breakthuAgent } from '../data/agents'
+import { Avatar } from './common'
 import MessageRow from './MessageRow'
 import SessionsRail from './SessionsRail'
 import AgentsRail from './AgentsRail'
@@ -361,12 +361,7 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
         {/* Header */}
         <div className="chat-view-header">
           <div className="chat-header-row">
-            <div className="chat-header-avatar" style={{ background: activeContact.avatar ? 'transparent' : activeContact.color }}>
-              {activeContact.avatar ? (
-                <img src={activeContact.avatar} alt="" className="header-avatar-img" />
-              ) : activeContact.isAgent ? agentLogos[activeContact.logo]() : activeContact.initials}
-              {activeContact.status && <span className={`header-status-dot status-${activeContact.status}`} />}
-            </div>
+            <Avatar contact={activeContact} size={28} />
             <span className="chat-header-name">{activeContact.name}</span>
             <div className="chat-header-tabs">
               <button className="chat-view-tab active">Chat</button>

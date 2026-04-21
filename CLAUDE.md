@@ -13,7 +13,7 @@ teams-shell/            ← repo root
 ├── CLAUDE.md
 ├── DESIGN_GUIDE.md
 ├── README.md
-├── images/             Reference screenshots for pixel-accuracy tuning
+├── images/avatars/     Agent logo/avatar sources (Copilot, Designer, Jira, Claude)
 ├── public/             Static assets (avatars, favicon, icons)
 └── src/                App code
 ```
@@ -86,7 +86,7 @@ Component-scoped CSS: each `Foo.jsx` has a sibling `Foo.css`. No CSS-in-JS, no T
 - In 1:1 chats the current user's avatar is **not** rendered on their own messages. In group chats it is.
 - My own messages don't show a sender-name label — only a timestamp. Sender names elsewhere are regular weight, not bold.
 - Agents vs people vs groups are all in `contacts` — distinguished by `isAgent` / `isGroup` flags. An agent has either an `avatar` URL or a `logo` key that resolves via `shared/agentLogos.jsx`.
-- The prototype should look indistinguishable from real Microsoft Teams. When in doubt, reference the screenshots in `images/`.
+- The prototype should look indistinguishable from real Microsoft Teams. When in doubt, reference the design tokens in `DESIGN_GUIDE.md`.
 - `currentUser` is a generic placeholder by design — don't hardcode a specific name/photo into it.
 - There is a disabled scripted demo flow in `ChatView.jsx` (the `jiraScript` array + `isJiraInvocation` branch, gated by `JIRA_FLOW_ENABLED`). Leave it alone unless a task specifically asks about scripted/demo flows — it's kept as a reference pattern.
 

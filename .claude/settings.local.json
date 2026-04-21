@@ -44,7 +44,12 @@
       "Bash(mv teams-chat/public .)",
       "Bash(mv teams-chat/src .)",
       "Bash(cmd //c \"rd /s /q C:\\\\Users\\\\ginobuzz\\\\Projects\\\\teams-shell\\\\teams-chat\")",
-      "Bash(grep -iB1 \"teams-shell\\\\|teams-chat\")"
+      "Bash(grep -iB1 \"teams-shell\\\\|teams-chat\")",
+      "Bash(mkdir -p avatars)",
+      "Bash(mv Copilot.png avatars/copilot.png)",
+      "Bash(mv Designer.jpg avatars/designer.jpg)",
+      "Bash(mv Jira.png avatars/jira.png)",
+      "Bash(mv claude.png avatars/claude.png)"
     ]
   }
 }

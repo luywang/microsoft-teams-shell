@@ -1,4 +1,5 @@
 import { currentUser } from '../data/contacts'
+import { Avatar } from './common'
 import './TitleBar.css'
 
 export default function TitleBar() {
@@ -34,8 +35,8 @@ export default function TitleBar() {
             <path d="M4 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm5 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
           </svg>
         </button>
-        <div className="title-user-avatar">
-          <img src={currentUser.avatar} alt={currentUser.name} className="title-user-img" />
+        <div className="title-user-avatar" aria-label={currentUser.name}>
+          <Avatar contact={currentUser} size={28} />
         </div>
       </div>
     </div>

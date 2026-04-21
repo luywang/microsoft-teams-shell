@@ -36,6 +36,8 @@ Standard divider used throughout the app (chat list header rows, chat view tab b
 
 ## Iconography
 
+When you need a new icon, start your search at [fluenticons.co](https://fluenticons.co/) — it's the Fluent UI icon set that matches Teams' visual language.
+
 ### App Bar (Nav Rail) Icons
 
 - **Inactive state:** Outlined icons, default icon color (`#616161`)

@@ -19,10 +19,9 @@
   position: absolute;
   bottom: -1px;
   right: -1px;
-  width: 12px;
-  height: 12px;
   border-radius: 50%;
   border: 2px solid var(--avatar-status-ring, #FFFFFF);
+  box-sizing: content-box;
 }
 
 .status-available { background: #92C353; }

@@ -1,6 +1,6 @@
 import { agentLogos } from '../shared/agentLogos'
 import { contacts, currentUser } from '../data/contacts'
-import { LinkCard, PrivateDisclaimer } from './common'
+import { Avatar, LinkCard, PrivateDisclaimer } from './common'
 
 function ThreadReplyBadge({ reply, onClick }) {
   const ids = reply.participantIds || (reply.agentId ? [reply.agentId] : [])
@@ -45,11 +45,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
     <div className={`message-row ${isMe ? 'message-mine' : ''}`}>
       {!isMe && (
         <div className="message-avatar-col">
-          <div className="message-avatar" style={{ background: sender.avatar ? 'transparent' : sender.color }}>
-            {sender.avatar ? (
-              <img src={sender.avatar} alt="" className="msg-avatar-img" />
-            ) : sender.isAgent ? agentLogos[sender.logo]() : sender.initials}
-          </div>
+          <Avatar contact={sender} size={32} />
         </div>
       )}
       <div className="message-content-wrap">
@@ -104,11 +100,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
       </div>
       {isMe && activeContact.isGroup && (
         <div className="message-avatar-col">
-          <div className="message-avatar" style={{ background: currentUser.avatar ? 'transparent' : '#6264A7' }}>
-            {currentUser.avatar ? (
-              <img src={currentUser.avatar} alt="" className="msg-avatar-img" />
-            ) : currentUser.initials}
-          </div>
+          <Avatar contact={currentUser} size={32} />
         </div>
       )}
     </div>

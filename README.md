@@ -8,7 +8,7 @@ A high-fidelity static shell of the Microsoft Teams Chat UI, meant as a starting
 - **Realistic mock data** — contacts, conversations, agents, sessions — populated so the shell looks lived-in out of the box
 - **Component-scoped styling** — each `.jsx` has a sibling `.css`, no Tailwind or CSS-in-JS
 - **Design guide** — color tokens, spacing, and layout decisions in [`DESIGN_GUIDE.md`](DESIGN_GUIDE.md)
-- **Reference screenshots** — [`images/`](images/) for diffing against real Teams when tuning pixel accuracy
+- **Reference assets** — [`images/avatars/`](images/avatars/) holds agent logo/avatar sources used to build the UI (Copilot, Designer, Jira, Claude)
 
 Nothing is wired to a backend. The shell is static on purpose — prototypes stay small, fast, and easy to hand off.
 
@@ -39,7 +39,8 @@ teams-shell/
 ├── CLAUDE.md             Guidance for AI coding assistants working in this repo
 ├── DESIGN_GUIDE.md       Color tokens, spacing, icons, typography
 ├── README.md
-├── images/               Reference screenshots for pixel-accuracy tuning
+├── images/               Reference assets
+│   └── avatars/          Agent logo/avatar sources (Copilot, Designer, Jira, Claude)
 ├── public/avatars/       Static avatar images
 └── src/
     ├── App.jsx           Four-panel layout root
@@ -53,7 +54,7 @@ teams-shell/
 1. **Set up the scenario** — edit the mock data in `src/data/` to add a chat, agent, message thread, or session that fits your feature
 2. **Make the current user yours** — update `currentUser` in `src/data/contacts.js` (name, initials, avatar). The default avatar is a generic placeholder at `public/avatars/user.jpg`
 3. **Build or extend a component** in `src/components/` — every component has a scoped `.css` sibling
-4. **Match the visual language** — reference [`DESIGN_GUIDE.md`](DESIGN_GUIDE.md) for colors and spacing, and diff against the screenshots in `images/` when a surface needs to look indistinguishable from real Teams
+4. **Match the visual language** — reference [`DESIGN_GUIDE.md`](DESIGN_GUIDE.md) for colors and spacing
 5. **Ship it** — `npm run build` produces a static bundle you can host anywhere
 
 ## Stack

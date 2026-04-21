@@ -27,29 +27,7 @@
   height: 56px;
 }
 
-.chat-header-avatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 11px;
-  font-weight: 600;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.header-status-dot {
-  position: absolute;
-  bottom: -1px;
-  right: -1px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-}
+/* Chat header avatar styles now come from the common Avatar component. */
 
 .chat-header-name {
   font-size: 16px;
@@ -232,32 +210,7 @@
   padding-top: 18px;
 }
 
-.message-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  overflow: hidden;
-}
-
-.msg-avatar-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.header-avatar-img {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+/* Message avatar styles now come from the common Avatar component. */
 
 .message-content-wrap {
   max-width: 65%;
