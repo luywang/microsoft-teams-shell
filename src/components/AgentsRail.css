@@ -41,12 +41,13 @@
   color: #242424;
 }
 
-.agents-rail-icon-btn-active {
+/* Override the neutral IconButton active state with the rail's purple accent. */
+.agents-rail-icon-btn.icon-button-active {
   background: rgba(98, 100, 167, 0.08);
   color: #6264A7;
 }
 
-.agents-rail-icon-btn-active:hover {
+.agents-rail-icon-btn.icon-button-active:hover {
   background: rgba(98, 100, 167, 0.12);
   color: #6264A7;
 }

@@ -283,7 +283,7 @@
 
 .message-sender-name {
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
   color: #242424;
 }
 
@@ -392,17 +392,10 @@
   border: 1px solid #BDBDBD;
 }
 
-.message-private-disclaimer {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  color: #616161;
+/* PrivateDisclaimer base styles live in components/common/PrivateDisclaimer.css;
+   inside message bubbles we add a little breathing room below. */
+.message-bubble .private-disclaimer {
   margin-bottom: 4px;
-}
-
-.message-private-disclaimer svg {
-  flex-shrink: 0;
 }
 
 /* ── Thread reply indicator (under anchor bubble) ── */
@@ -688,29 +681,4 @@
   color: #6264A7;
 }
 
-/* ── Shared status dots ── */
-.status-dot {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-}
-
-.status-available {
-  background: #92C353;
-}
-
-.status-busy {
-  background: #C4314B;
-}
-
-.status-away {
-  background: #FFC300;
-}
-
-.status-offline {
-  background: #B4B4B4;
-}
+/* .status-dot / .status-* now live in components/common/Avatar.css */

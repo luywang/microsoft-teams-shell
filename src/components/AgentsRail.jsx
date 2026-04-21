@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import Avatar from './Avatar'
-import LinkCard from './LinkCard'
+import { Avatar, LinkCard, IconButton, PrivateDisclaimer, Close, Clock, ChevronLeft, Send } from './common'
 import './AgentsRail.css'
 
 function AgentItem({ agent, onClick }) {
@@ -66,10 +65,7 @@ function AgentChat({ agent, messages, onSendMessage, composeHint, isTyping }) {
   return (
     <div className="agent-chat">
       <div className="agent-chat-context">
-        <svg width="12" height="12" viewBox="0 0 16 16" fill="#616161">
-          <path d="M4 7V5a4 4 0 1 1 8 0v2h.5A1.5 1.5 0 0 1 14 8.5v5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5v-5A1.5 1.5 0 0 1 3.5 7H4zm1 0h6V5a3 3 0 1 0-6 0v2z"/>
-        </svg>
-        <span>Only you can see this conversation</span>
+        <PrivateDisclaimer />
       </div>
       <div className="agent-chat-messages">
         {messages.map((m) => (
@@ -110,11 +106,9 @@ function AgentChat({ agent, messages, onSendMessage, composeHint, isTyping }) {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKeyDown}
           />
-          <button className="agent-chat-send" aria-label="Send" onClick={send}>
-            <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2.18412 2.11244C2.33657 1.98818 2.54771 1.96483 2.72363 2.05279L17.7236 9.55279C17.893 9.63749 18 9.81062 18 10C18 10.1894 17.893 10.3625 17.7236 10.4472L2.72363 17.9472C2.54771 18.0352 2.33657 18.0118 2.18412 17.8876C2.03167 17.7633 1.96623 17.5612 2.0169 17.3712L3.98255 10L2.0169 2.62884C1.96623 2.4388 2.03167 2.2367 2.18412 2.11244ZM4.88416 10.5L3.26911 16.5564L16.382 10L3.26911 3.44357L4.88416 9.5H11.5C11.7762 9.5 12 9.72386 12 10C12 10.2761 11.7762 10.5 11.5 10.5H4.88416Z"/>
-            </svg>
-          </button>
+          <IconButton label="Send" className="agent-chat-send" onClick={send}>
+            <Send />
+          </IconButton>
         </div>
       </div>
     </div>
@@ -146,30 +140,22 @@ function AgentDetailView({ agent, messages, onSendMessage, composeHint, isTyping
     <div className="agents-rail">
       <div className="agents-rail-header">
         <div className="agents-rail-header-left">
-          <button
-            className="agents-rail-icon-btn"
-            aria-label="Back"
-            onClick={onBack}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M10.35 2.65a.5.5 0 0 1 0 .7L5.71 8l4.64 4.65a.5.5 0 0 1-.7.7l-5-5a.5.5 0 0 1 0-.7l5-5a.5.5 0 0 1 .7 0z"/>
-            </svg>
-          </button>
+          <IconButton label="Back" className="agents-rail-icon-btn" onClick={onBack}>
+            <ChevronLeft />
+          </IconButton>
           <Avatar contact={agent} size={24} />
           <span className="agents-rail-title">{agent.name}</span>
         </div>
         <div className="agents-rail-header-actions">
           <div className="agents-rail-sessions-wrap" ref={sessionsWrapRef}>
-            <button
-              className={`agents-rail-icon-btn ${showSessionMenu ? 'agents-rail-icon-btn-active' : ''}`}
-              aria-label="Sessions"
+            <IconButton
+              label="Sessions"
+              className="agents-rail-icon-btn"
+              active={showSessionMenu}
               onClick={() => setShowSessionMenu((v) => !v)}
             >
-              <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="10" cy="10" r="8"/>
-                <path d="M10 5.5V10l3 2"/>
-              </svg>
-            </button>
+              <Clock size={16} />
+            </IconButton>
             {showSessionMenu && (
               <div className="agents-rail-session-menu">
                 {sessions.map((s) => (
@@ -188,11 +174,9 @@ function AgentDetailView({ agent, messages, onSendMessage, composeHint, isTyping
               </div>
             )}
           </div>
-          <button className="agents-rail-icon-btn" aria-label="Close" onClick={onClose}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M3.15 3.15a.5.5 0 0 1 .7 0L8 7.29l4.15-4.14a.5.5 0 0 1 .7.7L8.71 8l4.14 4.15a.5.5 0 0 1-.7.7L8 8.71l-4.15 4.14a.5.5 0 0 1-.7-.7L7.29 8 3.15 3.85a.5.5 0 0 1 0-.7z"/>
-            </svg>
-          </button>
+          <IconButton label="Close" className="agents-rail-icon-btn" onClick={onClose}>
+            <Close />
+          </IconButton>
         </div>
       </div>
       <AgentChat
@@ -239,11 +223,9 @@ export default function AgentsRail({
     <div className="agents-rail">
       <div className="agents-rail-header">
         <span className="agents-rail-title">Agents</span>
-        <button className="agents-rail-icon-btn" aria-label="Close" onClick={onClose}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M3.15 3.15a.5.5 0 0 1 .7 0L8 7.29l4.15-4.14a.5.5 0 0 1 .7.7L8.71 8l4.14 4.15a.5.5 0 0 1-.7.7L8 8.71l-4.15 4.14a.5.5 0 0 1-.7-.7L7.29 8 3.15 3.85a.5.5 0 0 1 0-.7z"/>
-          </svg>
-        </button>
+        <IconButton label="Close" className="agents-rail-icon-btn" onClick={onClose}>
+          <Close />
+        </IconButton>
       </div>
       <div className="agents-rail-body">
         {!hasAgents && !hasRecommended && (

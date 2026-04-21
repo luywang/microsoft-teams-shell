@@ -1,4 +1,5 @@
-import { agentLogos } from '../shared/agentLogos'
+import { agentLogos } from '../../shared/agentLogos'
+import './Avatar.css'
 
 function StatusDot({ status }) {
   if (!status) return null

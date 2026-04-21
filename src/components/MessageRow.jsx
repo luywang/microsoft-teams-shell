@@ -1,17 +1,6 @@
 import { agentLogos } from '../shared/agentLogos'
 import { contacts, currentUser } from '../data/contacts'
-import LinkCard from './LinkCard'
-
-function PrivateDisclaimer() {
-  return (
-    <div className="message-private-disclaimer">
-      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-        <path d="M4 7V5a4 4 0 1 1 8 0v2h.5A1.5 1.5 0 0 1 14 8.5v5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5v-5A1.5 1.5 0 0 1 3.5 7H4zm1 0h6V5a3 3 0 1 0-6 0v2z"/>
-      </svg>
-      <span>Only you can see this conversation</span>
-    </div>
-  )
-}
+import { LinkCard, PrivateDisclaimer } from './common'
 
 function ThreadReplyBadge({ reply, onClick }) {
   const ids = reply.participantIds || (reply.agentId ? [reply.agentId] : [])
@@ -65,7 +54,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
       )}
       <div className="message-content-wrap">
         <div className="message-meta">
-          <span className="message-sender-name">{isMe ? 'You' : sender.name}</span>
+          {!isMe && <span className="message-sender-name">{sender.name}</span>}
           <span className="message-timestamp">{message.time}</span>
         </div>
         <div className={`message-bubble ${message.isPrivate ? 'message-bubble-private' : ''}`}>
@@ -113,7 +102,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
           />
         )}
       </div>
-      {isMe && (
+      {isMe && activeContact.isGroup && (
         <div className="message-avatar-col">
           <div className="message-avatar" style={{ background: currentUser.avatar ? 'transparent' : '#6264A7' }}>
             {currentUser.avatar ? (

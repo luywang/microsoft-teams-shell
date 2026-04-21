@@ -32,7 +32,19 @@
       "Bash(curl *)",
       "Bash(npm run *)",
       "Bash(npm --prefix teams-chat run build)",
-      "Bash(npm --prefix teams-chat run lint)"
+      "Bash(npm --prefix teams-chat run lint)",
+      "Bash(mv teams-chat/dist teams-chat/eslint.config.js teams-chat/index.html teams-chat/node_modules teams-chat/package-lock.json teams-chat/package.json teams-chat/public teams-chat/src teams-chat/vite.config.js .)",
+      "Bash(rmdir teams-chat *)",
+      "Read(//c/c/Users/ginobuzz/Projects/**)",
+      "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
+      "Bash(mv teams-chat/public teams-chat/src .)",
+      "Bash(wmic process *)",
+      "Bash(taskkill //PID 13308 //F)",
+      "Bash(taskkill //PID 31336 //F)",
+      "Bash(mv teams-chat/public .)",
+      "Bash(mv teams-chat/src .)",
+      "Bash(cmd //c \"rd /s /q C:\\\\Users\\\\ginobuzz\\\\Projects\\\\teams-shell\\\\teams-chat\")",
+      "Bash(grep -iB1 \"teams-shell\\\\|teams-chat\")"
     ]
   }
 }

@@ -1,6 +1,6 @@
 import { favorites, chatList, contacts } from '../data'
 import { copilotLogo } from '../shared/assets'
-import Avatar from './Avatar'
+import { Avatar } from './common'
 import './ChatList.css'
 
 export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {

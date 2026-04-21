@@ -11,7 +11,7 @@ export const currentUser = {
 export const contacts = [
   { id: 1, name: 'Sarah Chen', initials: 'SC', color: '#6264A7', status: 'available', avatar: `${base}avatars/sarah-chen.jpg` },
   { id: 2, name: 'Claude', initials: null, color: '#D97757', status: null, isAgent: true, logo: 'claude', avatar: `${base}avatars/claude.png`, description: 'AI assistant by Anthropic' },
-  { id: 3, name: 'Priya Patel', initials: 'PP', color: '#E74856', status: 'away', avatar: `${base}avatars/priya-patel.jpg` },
+  { id: 3, name: 'Emma Larsen', initials: 'EL', color: '#E74856', status: 'away', avatar: `${base}avatars/emma-larsen.jpg` },
   { id: 4, name: 'Jira', initials: null, color: '#0052CC', status: null, isAgent: true, logo: 'jira', avatar: `${base}avatars/jira.png`, description: 'Issue tracking and project management' },
   { id: 5, name: 'Emily Watson', initials: 'EW', color: '#00B294', status: 'offline', avatar: `${base}avatars/emily-watson.jpg` },
   { id: 6, name: 'Design Sprint Team', initials: 'DS', color: '#8764B8', status: null, isGroup: true },
