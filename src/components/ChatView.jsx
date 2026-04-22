@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
-import { messagesByContact, contacts, currentUser, favorites, chatList } from '../data'
+import { messagesByContact, contacts, currentUser, favorites, projectNorthwind, chatList } from '../data'
 import { sessionMessages } from '../data/sessionMessages'
+import { promptSuggestions } from '../data/promptSuggestions'
 import { copilotLogo } from '../shared/assets'
 import { copilotAgent, designerAgent, pollyAgent, breakthuAgent } from '../data/agents'
 import { Avatar } from './common'
 import MessageRow from './MessageRow'
 import SessionsRail from './SessionsRail'
 import AgentsRail from './AgentsRail'
+import PromptSuggestions from './PromptSuggestions'
 import './ChatView.css'
 
 // Flip to true to re-enable the scripted Jira demo flow (draft → private thread → reply → seeded compose).
@@ -35,13 +37,13 @@ const jiraScript = [
   },
 ]
 
-export default function ChatView({ activeChatId, onSelectChat, sessions, addSession, updateSessionMessages, dynamicSessionMessages, navIntent, clearNavIntent }) {
+export default function ChatView({ activeChatId, onSelectChat, sessions, addSession, updateSession, updateSessionMessages, dynamicSessionMessages, navIntent, clearNavIntent }) {
   const activeContact = contacts.find(c => c.id === activeChatId)
   const baseMessages = messagesByContact[activeChatId] || []
   const participantCount = activeContact.isGroup
     ? activeContact.memberCount ?? new Set(baseMessages.map(m => m.senderId)).size
     : 2
-  const allChats = [...favorites, ...chatList]
+  const allChats = [...favorites, ...projectNorthwind, ...chatList]
   const chatEntry = allChats.find(c => c.contactId === activeChatId)
   const draft = chatEntry?.draft || ''
 
@@ -69,6 +71,7 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
   const [jiraGroupSessionId, setJiraGroupSessionId] = useState(null)
   const [activeSessionId, setActiveSessionId] = useState(null)
   const [jiraThreadAnchorId, setJiraThreadAnchorId] = useState(null)
+  const [mainTypingAgentId, setMainTypingAgentId] = useState(null)
   const messagesEndRef = useRef(null)
 
   useEffect(() => {
@@ -95,7 +98,7 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [extraMessages, activeChatId])
+  }, [extraMessages, activeChatId, activeSessionId, mainTypingAgentId])
 
   useEffect(() => {
     if (!jiraGroupSessionId) return
@@ -114,7 +117,11 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
 
   const sessionMsgs = activeSessionId && (dynamicSessionMessages[activeSessionId] || sessionMessages[activeSessionId])
   const displayBaseMessages = sessionMsgs || baseMessages
-  const messages = [...displayBaseMessages, ...(extraMessages[activeChatId] || [])]
+  // Per-session bucket for in-canvas messages so switching to a new pending
+  // session starts with a blank canvas instead of inheriting the previous
+  // session's messages. Non-session chats fall back to the chat id.
+  const canvasKey = activeSessionId || activeChatId
+  const messages = [...displayBaseMessages, ...(extraMessages[canvasKey] || [])]
 
   const activeSession = hasSessions && sessions[activeChatId]?.find(s => s.id === activeSessionId)
   const sourceChat = activeSession?.sourceChatId ? contacts.find(c => c.id === activeSession.sourceChatId) : null
@@ -146,6 +153,14 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
   })()
 
   const handleNewSession = () => {
+    // Only one pending "New conversation" per agent — if one already exists,
+    // just switch to it instead of creating another. It becomes a real session
+    // once the user sends their first message (see finalizePendingSession).
+    const existingPending = (sessions[activeChatId] || []).find(s => s.isPending)
+    if (existingPending) {
+      setActiveSessionId(existingPending.id)
+      return
+    }
     const now = new Date()
     const sessionId = `s-new-${Date.now()}`
     const newSession = {
@@ -153,9 +168,26 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
       name: 'New conversation',
       time: now.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }),
       preview: '',
+      isPending: true,
     }
     addSession(activeChatId, newSession, [])
     setActiveSessionId(sessionId)
+  }
+
+  const finalizePendingSession = (firstText, nameHint) => {
+    if (!isAgent || !activeSessionId) return
+    const current = (sessions[activeChatId] || []).find(s => s.id === activeSessionId)
+    if (!current?.isPending) return
+    const trimmed = String(firstText || '').trim()
+    const name = (nameHint && nameHint.trim()) || trimmed.slice(0, 60) || 'New conversation'
+    const preview = trimmed.slice(0, 100)
+    const now = new Date()
+    updateSession(activeChatId, activeSessionId, {
+      name,
+      preview,
+      time: now.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }),
+      isPending: false,
+    })
   }
 
   const nowTimeStr = () => new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
@@ -343,8 +375,9 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
     }
     setExtraMessages((prev) => ({
       ...prev,
-      [activeChatId]: [...(prev[activeChatId] || []), myMessage],
+      [canvasKey]: [...(prev[canvasKey] || []), myMessage],
     }))
+    finalizePendingSession(sentText)
     setShowMainComposeHint(false)
   }
 
@@ -354,6 +387,43 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
       handleSend()
     }
   }
+
+  const sendPromptSuggestion = (suggestion) => {
+    const chatId = activeChatId
+    const bucket = canvasKey
+    const timeStr = nowTimeStr()
+    const myMessage = {
+      id: `extra-${Date.now()}`,
+      senderId: 'me',
+      text: suggestion.text,
+      time: timeStr,
+    }
+    setExtraMessages((prev) => ({
+      ...prev,
+      [bucket]: [...(prev[bucket] || []), myMessage],
+    }))
+    finalizePendingSession(suggestion.text, suggestion.title)
+
+    // Typing indicator then the prepared response.
+    setMainTypingAgentId(chatId)
+    const delay = 2000 + Math.floor(Math.random() * 1000)
+    setTimeout(() => {
+      setMainTypingAgentId((prev) => (prev === chatId ? null : prev))
+      const agentMessage = {
+        id: `extra-${Date.now()}-r`,
+        senderId: chatId,
+        text: suggestion.response,
+        time: nowTimeStr(),
+      }
+      setExtraMessages((prev) => ({
+        ...prev,
+        [bucket]: [...(prev[bucket] || []), agentMessage],
+      }))
+    }, delay)
+  }
+
+  const agentSuggestions = isAgent ? promptSuggestions[activeChatId] : null
+  const showPromptSuggestions = !!agentSuggestions && messages.length === 0 && mainTypingAgentId !== activeChatId
 
   return (
     <div className="chat-view">
@@ -433,29 +503,49 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
 
         {/* Messages */}
         <div className="chat-messages">
-          <div className="messages-container">
-            {sourceChat && (
-              <div className="session-source-banner">
-                Started conversation from{' '}
-                <a
-                  className="session-source-banner-link"
-                  href="#"
-                  onClick={(e) => { e.preventDefault(); onSelectChat(sourceChat.id) }}
-                >{sourceChat.name}</a>
-                <br />
-                Recent context from the conversation has been shared with this session.
-              </div>
-            )}
-            {messages.map((msg) => (
-              <MessageRow
-                key={msg.id}
-                message={msg}
-                activeContact={activeContact}
-                onOpenThread={openJiraThread}
-              />
-            ))}
-            <div ref={messagesEndRef} />
-          </div>
+          {showPromptSuggestions ? (
+            <PromptSuggestions
+              agent={activeContact}
+              suggestions={agentSuggestions}
+              onSelectPrompt={sendPromptSuggestion}
+            />
+          ) : (
+            <div className="messages-container">
+              {sourceChat && (
+                <div className="session-source-banner">
+                  Started conversation from{' '}
+                  <a
+                    className="session-source-banner-link"
+                    href="#"
+                    onClick={(e) => { e.preventDefault(); onSelectChat(sourceChat.id) }}
+                  >{sourceChat.name}</a>
+                  <br />
+                  Recent context from the conversation has been shared with this session.
+                </div>
+              )}
+              {messages.map((msg) => (
+                <MessageRow
+                  key={msg.id}
+                  message={msg}
+                  activeContact={activeContact}
+                  onOpenThread={openJiraThread}
+                />
+              ))}
+              {mainTypingAgentId === activeChatId && (
+                <div className="message-row message-typing-row">
+                  <div className="message-avatar-col">
+                    <Avatar contact={activeContact} size={32} />
+                  </div>
+                  <div className="message-typing-bubble" aria-label={`${activeContact.name} is typing`}>
+                    <span className="message-typing-dots">
+                      <span /><span /><span />
+                    </span>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+          )}
         </div>
 
         {/* Compose */}

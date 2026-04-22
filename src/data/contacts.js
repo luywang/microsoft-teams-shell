@@ -29,17 +29,29 @@ export const contacts = [
   { id: 18, name: 'DW support in BizChat', initials: 'DW', color: '#498205', status: null, isGroup: true },
   { id: 19, name: 'Targeted Messages', initials: 'TM', color: '#DA3B01', status: null, isGroup: true },
   { id: 20, name: 'ACF', initials: 'AC', color: '#005B70', status: null, isGroup: true },
+  { id: 21, name: 'Northwind Core', initials: 'NC', color: '#0078D4', status: null, isGroup: true, memberCount: 9 },
+  { id: 22, name: 'Design crit', initials: 'DC', color: '#8764B8', status: null, isGroup: true, memberCount: 6 },
+  { id: 23, name: 'Northwind launch', initials: 'NL', color: '#CA5010', status: null, isGroup: true, memberCount: 7 },
+  { id: 24, name: 'Dogfood feedback', initials: 'DF', color: '#498205', status: null, isGroup: true, memberCount: 11 },
 ]
 
 export const favorites = [
   { contactId: 1 },
   { contactId: 12 },
+  { contactId: 15 },
   { contactId: 2 },
+  { contactId: 11, bold: true },
+]
+
+export const projectNorthwind = [
+  { contactId: 21, bold: true },
+  { contactId: 22 },
+  { contactId: 23 },
+  { contactId: 24 },
 ]
 
 export const chatList = [
   // Jira demo flow disabled — restore `draft: '/Jira Are there any blockers assigned to me?'` to re-enable.
-  { contactId: 11, bold: true },
   { contactId: 3 },
   { contactId: 4 },
   { contactId: 6 },
@@ -47,7 +59,6 @@ export const chatList = [
   { contactId: 14 },
   { contactId: 7, bold: true },
   { contactId: 8, bold: true },
-  { contactId: 15 },
   { contactId: 16 },
   { contactId: 5 },
   { contactId: 17 },

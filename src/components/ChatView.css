@@ -267,6 +267,7 @@
   line-height: 20px;
   color: #242424;
   word-wrap: break-word;
+  white-space: pre-wrap;
   padding: 8px 12px;
   border-radius: 4px;
   background: #F5F5F5;
@@ -366,6 +367,42 @@
    inside message bubbles we add a little breathing room below. */
 .message-bubble .private-disclaimer {
   margin-bottom: 4px;
+}
+
+/* ── Agent typing indicator (main canvas) ── */
+.message-typing-row {
+  align-items: flex-start;
+}
+
+.message-typing-bubble {
+  background: #F5F5F5;
+  border-radius: 4px;
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.message-typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.message-typing-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #616161;
+  animation: message-typing-bounce 1.2s ease-in-out infinite;
+}
+
+.message-typing-dots span:nth-child(2) { animation-delay: 0.15s; }
+.message-typing-dots span:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes message-typing-bounce {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
 }
 
 /* ── Reaction pills (under bubble) ──

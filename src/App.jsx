@@ -36,6 +36,15 @@ export default function App() {
     }
   }, [])
 
+  const updateSession = useCallback((agentId, sessionId, updates) => {
+    setSessions(prev => ({
+      ...prev,
+      [agentId]: (prev[agentId] || []).map(s =>
+        s.id === sessionId ? { ...s, ...updates } : s
+      ),
+    }))
+  }, [])
+
   const updateSessionMessages = useCallback((sessionId, messages) => {
     setDynamicSessionMessages(prev => ({ ...prev, [sessionId]: messages }))
   }, [])
@@ -55,6 +64,7 @@ export default function App() {
           onSelectChat={navigateToChat}
           sessions={sessions}
           addSession={addSession}
+          updateSession={updateSession}
           updateSessionMessages={updateSessionMessages}
           dynamicSessionMessages={dynamicSessionMessages}
           navIntent={navIntent}

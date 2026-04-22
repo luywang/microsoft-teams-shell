@@ -162,11 +162,25 @@
   font-weight: 600;
   color: #616161;
   cursor: pointer;
+  background: none;
+  border: none;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.chat-list-section-header:hover {
+  color: #242424;
 }
 
 .section-chevron-down {
   color: #616161;
   flex-shrink: 0;
+  transition: transform 120ms ease;
+}
+
+.section-chevron-collapsed {
+  transform: rotate(-90deg);
 }
 
 /* ── Chat items ── */

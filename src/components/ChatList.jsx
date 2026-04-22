@@ -1,10 +1,58 @@
-import { favorites, chatList, contacts } from '../data'
+import { useState } from 'react'
+import { favorites, projectNorthwind, chatList, contacts } from '../data'
 import { copilotLogo } from '../shared/assets'
 import { Avatar } from './common'
 import './ChatList.css'
 
+function SectionHeader({ label, collapsed, onToggle }) {
+  return (
+    <button
+      type="button"
+      className="chat-list-section-header"
+      aria-expanded={!collapsed}
+      onClick={onToggle}
+    >
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="currentColor"
+        className={`section-chevron-down ${collapsed ? 'section-chevron-collapsed' : ''}`}
+      >
+        <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
+      </svg>
+      <span>{label}</span>
+    </button>
+  )
+}
+
 export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
   const isUnread = (bold, contactId) => bold && !readChatIds?.has(contactId)
+  const [collapsed, setCollapsed] = useState(() => new Set())
+  const isCollapsed = (key) => collapsed.has(key)
+  const toggleSection = (key) => setCollapsed((prev) => {
+    const next = new Set(prev)
+    if (next.has(key)) next.delete(key)
+    else next.add(key)
+    return next
+  })
+
+  const renderItem = (chat) => {
+    const contact = contacts.find(c => c.id === chat.contactId)
+    const unread = isUnread(chat.bold, contact.id)
+    return (
+      <div
+        key={contact.id}
+        className={`chat-list-item ${contact.id === activeChatId ? 'selected' : ''}`}
+        onClick={() => onSelectChat(contact.id)}
+      >
+        <Avatar contact={contact} size={20} />
+        <span className={`chat-item-name ${unread ? 'chat-item-bold' : ''}`}>{contact.name}</span>
+        {unread && <span className="unread-dot" />}
+      </div>
+    )
+  }
+
   return (
     <div className="chat-list-panel">
       {/* Row 1: Title + actions */}
@@ -75,54 +123,32 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
       <div className="chat-list-divider" />
 
       {/* Favorites section */}
-      <div className="chat-list-section-header">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" className="section-chevron-down">
-          <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
-        </svg>
-        <span>Favorites</span>
-      </div>
+      <SectionHeader
+        label="Favorites"
+        collapsed={isCollapsed('favorites')}
+        onToggle={() => toggleSection('favorites')}
+      />
 
       <div className="chat-list-items">
-        {favorites.map((fav) => {
-          const contact = contacts.find(c => c.id === fav.contactId)
-          const unread = isUnread(fav.bold, contact.id)
-          return (
-            <div
-              key={contact.id}
-              className={`chat-list-item ${contact.id === activeChatId ? 'selected' : ''}`}
-              onClick={() => onSelectChat(contact.id)}
-            >
-              <Avatar contact={contact} size={20} />
-              <span className={`chat-item-name ${unread ? 'chat-item-bold' : ''}`}>{contact.name}</span>
-              {unread && <span className="unread-dot" />}
-            </div>
-          )
-        })}
+        {!isCollapsed('favorites') && favorites.map(renderItem)}
+
+        {/* Project Northwind section */}
+        <SectionHeader
+          label="Project Northwind"
+          collapsed={isCollapsed('northwind')}
+          onToggle={() => toggleSection('northwind')}
+        />
+
+        {!isCollapsed('northwind') && projectNorthwind.map(renderItem)}
 
         {/* Chats section */}
-        <div className="chat-list-section-header">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" className="section-chevron-down">
-            <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
-          </svg>
-          <span>Chats</span>
-        </div>
+        <SectionHeader
+          label="Chats"
+          collapsed={isCollapsed('chats')}
+          onToggle={() => toggleSection('chats')}
+        />
 
-        {chatList.map((chat) => {
-          const contact = contacts.find(c => c.id === chat.contactId)
-          const unread = isUnread(chat.bold, contact.id)
-          return (
-            <div
-              key={contact.id}
-              className={`chat-list-item ${contact.id === activeChatId ? 'selected' : ''}`}
-              onClick={() => onSelectChat(contact.id)}
-            >
-              <Avatar contact={contact} size={20} />
-              <span className={`chat-item-name ${unread ? 'chat-item-bold' : ''}`}>{contact.name}</span>
-              {unread && <span className="unread-dot" />}
-              {/* Jira demo arrow removed — `.demo-hint-arrow` remains in CSS if needed. */}
-            </div>
-          )
-        })}
+        {!isCollapsed('chats') && chatList.map(renderItem)}
       </div>
 
       <div className="chat-list-footer">
