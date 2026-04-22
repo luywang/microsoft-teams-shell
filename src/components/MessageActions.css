@@ -18,7 +18,21 @@
   white-space: nowrap;
 }
 
-.message-row:hover .message-actions {
+/* Small invisible hover zone at the top-right corner of the bubble — the only
+   area that reveals the toolbar. Sits flush against the toolbar's bottom edge
+   so the cursor can travel continuously from trigger → toolbar without the
+   toolbar disappearing mid-move. */
+.message-actions-trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 96px;
+  height: 20px;
+  z-index: 4;
+}
+
+.message-actions-trigger:hover ~ .message-actions,
+.message-actions:hover {
   display: flex;
 }
 

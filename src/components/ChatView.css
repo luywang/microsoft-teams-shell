@@ -376,23 +376,31 @@
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-top: 4px;
+  margin-top: -6px;
+  margin-left: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.message-mine .message-reactions-bar {
+  margin-left: 0;
+  margin-right: 8px;
 }
 
 .reaction-pill {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 2px 8px;
+  gap: 2px;
+  padding: 2px 5px;
   background: #FFFFFF;
   border: 1px solid #E0E0E0;
   border-radius: 12px;
   cursor: pointer;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1;
   color: #424242;
-  height: 22px;
+  height: 24px;
 }
 
 .reaction-pill:hover {

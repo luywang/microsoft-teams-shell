@@ -14,7 +14,9 @@ const QUICK_REACTIONS = [
 
 export default function MessageActions({ onReact }) {
   return (
-    <div className="message-actions" onClick={(e) => e.stopPropagation()}>
+    <>
+      <div className="message-actions-trigger" aria-hidden="true" />
+      <div className="message-actions" onClick={(e) => e.stopPropagation()}>
       {QUICK_REACTIONS.map((r) => (
         <button
           key={r.key}
@@ -36,6 +38,7 @@ export default function MessageActions({ onReact }) {
       <button type="button" className="message-action-btn" aria-label="More options">
         <Dots size={18} />
       </button>
-    </div>
+      </div>
+    </>
   )
 }
