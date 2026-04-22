@@ -282,6 +282,15 @@
   font-weight: 700;
 }
 
+/* Channel post subject — rendered inside the bubble, above the body. */
+.message-subject {
+  font-size: 15px;
+  font-weight: 600;
+  color: #242424;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
+
 .compose-mention {
   font-size: 14px;
   margin-right: 4px;

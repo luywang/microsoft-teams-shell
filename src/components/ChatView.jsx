@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { messagesByContact, contacts, currentUser, favorites, projectNorthwind, chatList } from '../data'
+import { messagesByContact, contacts, currentUser, favorites, projectNorthwind, chatList, channelPostsByContact } from '../data'
 import { sessionMessages } from '../data/sessionMessages'
 import { promptSuggestions } from '../data/promptSuggestions'
 import { copilotLogo } from '../shared/assets'
@@ -9,7 +9,31 @@ import MessageRow from './MessageRow'
 import SessionsRail from './SessionsRail'
 import AgentsRail from './AgentsRail'
 import PromptSuggestions from './PromptSuggestions'
+import ChannelThreadRail from './ChannelThreadRail'
 import './ChatView.css'
+
+// Convert a channel post (root + replies) into the message shape MessageRow
+// expects, attaching a threadReply badge built from the replies' unique
+// senders. Replies themselves are not shown in the main canvas — clicking the
+// badge opens ChannelThreadRail.
+function postToMessage(post) {
+  const replyCount = post.replies?.length || 0
+  if (!replyCount) {
+    return { ...post }
+  }
+  const seen = new Set()
+  const participantIds = []
+  for (const r of post.replies) {
+    if (seen.has(r.senderId)) continue
+    seen.add(r.senderId)
+    participantIds.push(r.senderId)
+    if (participantIds.length === 3) break
+  }
+  return {
+    ...post,
+    threadReply: { participantIds, count: replyCount },
+  }
+}
 
 // Flip to true to re-enable the scripted Jira demo flow (draft → private thread → reply → seeded compose).
 const JIRA_FLOW_ENABLED = false
@@ -40,7 +64,7 @@ const jiraScript = [
 export default function ChatView({ activeChatId, onSelectChat, sessions, addSession, updateSession, updateSessionMessages, dynamicSessionMessages, navIntent, clearNavIntent }) {
   const activeContact = contacts.find(c => c.id === activeChatId)
   const baseMessages = messagesByContact[activeChatId] || []
-  const participantCount = activeContact.isGroup
+  const participantCount = activeContact.isGroup || activeContact.isChannel
     ? activeContact.memberCount ?? new Set(baseMessages.map(m => m.senderId)).size
     : 2
   const allChats = [...favorites, ...projectNorthwind, ...chatList]
@@ -54,6 +78,8 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
   const parsedDraft = parseDraft(draft)
 
   const isAgent = activeContact.isAgent && !activeContact.isGroup
+  const isChannel = !!activeContact.isChannel
+  const channelPosts = isChannel ? channelPostsByContact[activeChatId] || [] : null
   const hasSessions = isAgent && sessions[activeChatId]
 
   const [extraMessages, setExtraMessages] = useState({})
@@ -72,6 +98,7 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
   const [activeSessionId, setActiveSessionId] = useState(null)
   const [jiraThreadAnchorId, setJiraThreadAnchorId] = useState(null)
   const [mainTypingAgentId, setMainTypingAgentId] = useState(null)
+  const [channelThreadPostId, setChannelThreadPostId] = useState(null)
   const messagesEndRef = useRef(null)
 
   useEffect(() => {
@@ -85,6 +112,7 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
     setRailTypingAgentId(null)
     setShowMainComposeHint(false)
     setJiraThreadAnchorId(null)
+    setChannelThreadPostId(null)
     if (navIntent && navIntent.chatId === activeChatId) {
       setShowSessions(true)
       if (navIntent.sessionId) setActiveSessionId(navIntent.sessionId)
@@ -434,10 +462,19 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
             <Avatar contact={activeContact} size={28} />
             <span className="chat-header-name">{activeContact.name}</span>
             <div className="chat-header-tabs">
-              <button className="chat-view-tab active">Chat</button>
-              <button className="chat-view-tab">Shared</button>
-              <button className="chat-view-tab">Recap</button>
-              <button className="chat-view-tab">Storyline</button>
+              {isChannel ? (
+                <>
+                  <button className="chat-view-tab active">Conversation</button>
+                  <button className="chat-view-tab">Shared</button>
+                </>
+              ) : (
+                <>
+                  <button className="chat-view-tab active">Chat</button>
+                  <button className="chat-view-tab">Shared</button>
+                  <button className="chat-view-tab">Recap</button>
+                  <button className="chat-view-tab">Storyline</button>
+                </>
+              )}
               <button className="chat-view-tab tab-add">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                   <path d="M8 2.5a.5.5 0 0 1 .5.5v4.5H13a.5.5 0 0 1 0 1H8.5V13a.5.5 0 0 1-1 0V8.5H3a.5.5 0 0 1 0-1h4.5V3a.5.5 0 0 1 .5-.5z"/>
@@ -503,7 +540,21 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
 
         {/* Messages */}
         <div className="chat-messages">
-          {showPromptSuggestions ? (
+          {isChannel ? (
+            <div className="messages-container">
+              {channelPosts.map((post) => (
+                <MessageRow
+                  key={post.id}
+                  message={postToMessage(post)}
+                  activeContact={activeContact}
+                  onOpenThread={() => {
+                    setChannelThreadPostId((prev) => (prev === post.id ? null : post.id))
+                  }}
+                />
+              ))}
+              <div ref={messagesEndRef} />
+            </div>
+          ) : showPromptSuggestions ? (
             <PromptSuggestions
               agent={activeContact}
               suggestions={agentSuggestions}
@@ -558,7 +609,7 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
             <input
               type="text"
               className="compose-input"
-              placeholder={composeMention ? '' : 'Type a message'}
+              placeholder={composeMention ? '' : isChannel ? 'Start a new post' : 'Type a message'}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => {
@@ -633,6 +684,17 @@ export default function ChatView({ activeChatId, onSelectChat, sessions, addSess
           onClose={() => setShowAgents(false)}
         />
       )}
+      {isChannel && channelThreadPostId && (() => {
+        const post = channelPosts.find((p) => p.id === channelThreadPostId)
+        if (!post) return null
+        return (
+          <ChannelThreadRail
+            post={post}
+            activeContact={activeContact}
+            onClose={() => setChannelThreadPostId(null)}
+          />
+        )
+      })()}
     </div>
   )
 }

@@ -36,6 +36,9 @@ export const contacts = [
   { id: 22, name: 'Design crit', initials: 'DC', color: '#8764B8', status: null, isGroup: true, memberCount: 6 },
   { id: 23, name: 'Northwind launch', initials: 'NL', color: '#CA5010', status: null, isGroup: true, memberCount: 7 },
   { id: 24, name: 'Dogfood feedback', initials: 'DF', color: '#498205', status: null, isGroup: true, memberCount: 11 },
+  // ── Channels (rounded-square avatars; threaded/posts layouts) ──
+  { id: 25, name: 'General', initials: 'AP', color: '#0078D4', status: null, isChannel: true, memberCount: 24 },
+  { id: 26, name: 'Announcements', initials: 'AP', color: '#0078D4', status: null, isChannel: true, memberCount: 42 },
 ]
 
 export const favorites = [
@@ -44,10 +47,12 @@ export const favorites = [
   { contactId: 15 },
   { contactId: 2 },
   { contactId: 11, bold: true },
+  { contactId: 26, bold: true },
 ]
 
 export const projectNorthwind = [
   { contactId: 21, bold: true },
+  { contactId: 25, bold: true },
   { contactId: 22 },
   { contactId: 23 },
   { contactId: 24 },

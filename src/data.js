@@ -3,3 +3,4 @@ export { currentUser, contacts, favorites, projectNorthwind, chatList } from './
 export { agentSessions } from './data/sessions'
 export { sessionMessages } from './data/sessionMessages'
 export { messagesByContact } from './data/messages'
+export { channelPostsByContact } from './data/channelPosts'

@@ -79,6 +79,11 @@ Pass `size` to the common `Avatar` component. Established sizes:
 
 The status dot scales automatically (~28% of avatar size, min 6px) — no need to tune it per surface. Matches real Teams: 20px avatar → 6px dot, 28px → 8px, 32px → 9px, 36px → 10px.
 
+### Avatar Shape
+
+- **People, groups, agents:** circle (`border-radius: 50%`).
+- **Channels** (`contact.isChannel`): rounded square. Radius is ~18% of size (min 3px) so it scales with the surface — matches the way Teams visually distinguishes channels from chats in the unified chat list.
+
 ## Dividers
 
 Standard divider used throughout the app (chat list header rows, chat view tab bar, section separators):

@@ -7,18 +7,26 @@ import './Avatar.css'
 export default function Avatar({ contact, size = 36 }) {
   const logoSize = size * 0.4
   const dotSize = Math.max(6, Math.round(size * 0.28))
+  // Channels use rounded-square avatars; everything else stays circular.
+  const radius = contact.isChannel ? Math.max(3, Math.round(size * 0.18)) : '50%'
   return (
     <div
-      className="avatar"
+      className={`avatar ${contact.isChannel ? 'avatar-channel' : ''}`}
       style={{
         width: size,
         height: size,
         background: contact.avatar ? 'transparent' : contact.color,
         fontSize: size * 0.36,
+        borderRadius: radius,
       }}
     >
       {contact.avatar ? (
-        <img src={contact.avatar} alt="" className="avatar-img" style={{ width: size, height: size }} />
+        <img
+          src={contact.avatar}
+          alt=""
+          className="avatar-img"
+          style={{ width: size, height: size, borderRadius: radius }}
+        />
       ) : contact.isAgent ? agentLogos[contact.logo](logoSize) : contact.initials}
       {contact.status && (
         <span

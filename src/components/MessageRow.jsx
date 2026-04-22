@@ -55,9 +55,10 @@ function ThreadReplyBadge({ reply, onClick }) {
 
 export default function MessageRow({ message, activeContact, onOpenThread }) {
   const isMe = message.senderId === 'me'
+  const isMultiParty = activeContact.isGroup || activeContact.isChannel
   const sender = isMe
     ? currentUser
-    : activeContact.isGroup
+    : isMultiParty
       ? contacts.find(c => c.id === message.senderId)
       : activeContact
 
@@ -93,6 +94,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
               <div className="forwarded-text">{message.forwardedFrom.text}</div>
             </div>
           )}
+          {message.subject && <div className="message-subject">{message.subject}</div>}
           {Array.isArray(message.text)
             ? message.text.map((part, i) =>
                 typeof part === 'string' ? part : <span key={i} className="mention">{part.name}</span>
@@ -146,7 +148,7 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
           />
         )}
       </div>
-      {isMe && activeContact.isGroup && (
+      {isMe && isMultiParty && (
         <div className="message-avatar-col">
           <Avatar contact={currentUser} size={32} />
         </div>
