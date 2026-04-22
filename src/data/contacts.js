@@ -1,10 +1,13 @@
 const base = import.meta.env.BASE_URL
 
+// Placeholder persona for the prototype. See PERSONA.md for the full
+// character sheet. Keep this fictional — the repo is published publicly.
 export const currentUser = {
-  name: 'Gino Buzzelli',
-  initials: 'GB',
-  email: 'ginobuzz@microsoft.com',
-  avatar: `${base}avatars/user.jpg`,
+  name: 'Alex Morgan',
+  initials: 'AM',
+  email: 'alex@morgancollective.co',
+  color: '#6264A7',
+  avatar: `${base}avatars/alex-rivera.jpg`,
   status: 'available',
 }
 
@@ -19,14 +22,14 @@ export const contacts = [
   { id: 8, name: 'Frontend Guild', initials: 'FG', color: '#498205', status: null, isGroup: true },
   { id: 9, name: 'Olivia Martinez', initials: 'OM', color: '#DA3B01', status: 'busy', avatar: `${base}avatars/olivia-martinez.jpg` },
   { id: 10, name: 'David Nguyen', initials: 'DN', color: '#005B70', status: 'available', avatar: `${base}avatars/david-nguyen.jpg` },
-  { id: 11, name: 'Conversational AI PM Team', initials: 'CA', color: '#6264A7', status: null, isGroup: true, memberCount: 12 },
+  { id: 11, name: 'Conversational AI Team', initials: 'CA', color: '#6264A7', status: null, isGroup: true, memberCount: 12 },
   { id: 12, name: 'Rachel Thompson', initials: 'RT', color: '#7160E8', status: 'available', avatar: `${base}avatars/rachel-thompson.jpg` },
   { id: 13, name: 'Sync on slash commands', initials: 'SS', color: '#B4009E', status: null, isGroup: true },
-  { id: 14, name: 'Copilot Extensibility', initials: 'CE', color: '#0078D4', status: null, isGroup: true },
+  { id: 14, name: 'Agent Extensibility', initials: 'AE', color: '#0078D4', status: null, isGroup: true },
   { id: 15, name: 'Kevin Park', initials: 'KP', color: '#038387', status: 'away', avatar: `${base}avatars/kevin-park.jpg` },
   { id: 16, name: 'Agents Platform v2 team', initials: 'AP', color: '#CA5010', status: null, isGroup: true },
   { id: 17, name: 'Natalie Brooks', initials: 'NB', color: '#E74856', status: 'available', avatar: `${base}avatars/natalie-brooks.jpg` },
-  { id: 18, name: 'DW support in BizChat', initials: 'DW', color: '#498205', status: null, isGroup: true },
+  { id: 18, name: 'Data Warehouse Support', initials: 'DW', color: '#498205', status: null, isGroup: true },
   { id: 19, name: 'Targeted Messages', initials: 'TM', color: '#DA3B01', status: null, isGroup: true },
   { id: 20, name: 'ACF', initials: 'AC', color: '#005B70', status: null, isGroup: true },
   { id: 21, name: 'Northwind Core', initials: 'NC', color: '#0078D4', status: null, isGroup: true, memberCount: 9 },

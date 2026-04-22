@@ -16,7 +16,7 @@
 | Element | Hex | Alignment |
 |---------|-----|-----------|
 | Other User | `#F5F5F5` | Left-aligned |
-| Current User (Gino Buzzelli) | `#E8EBFA` | Right-aligned |
+| Current User | `#E8EBFA` | Right-aligned |
 
 ### Chat List
 

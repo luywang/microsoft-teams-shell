@@ -51,7 +51,7 @@ export const sessionMessages = {
   // ── Jira sessions ──
   's4-2': [
     { id: 1, senderId: 'me', text: 'Show me all blockers for the April 25 milestone', time: '11:00 AM' },
-    { id: 2, senderId: 4, text: 'Found 2 open blockers for the April 25 milestone:\n\n• JIRA-4555 — Auth token refresh during agent handoff (High, assigned to Kevin Park)\n• JIRA-4562 — Plugin sandbox file system isolation (High, assigned to Gino Buzzelli)\n\nBoth are In Progress. Would you like more details on either?', time: '11:00 AM' },
+    { id: 2, senderId: 4, text: 'Found 2 open blockers for the April 25 milestone:\n\n• JIRA-4555 — Auth token refresh during agent handoff (High, assigned to Kevin Park)\n• JIRA-4562 — Plugin sandbox file system isolation (High, assigned to Alex Morgan)\n\nBoth are In Progress. Would you like more details on either?', time: '11:00 AM' },
     { id: 3, senderId: 'me', text: 'What\'s the status on JIRA-4555? Any recent updates?', time: '11:05 AM' },
     { id: 4, senderId: 4, text: 'JIRA-4555 — Last updated 2 hours ago by Kevin Park:\n\n"Found the root cause. The refresh token is being invalidated during the handoff context switch. Working on a fix that preserves the token across agent boundaries. ETA: end of day tomorrow."\n\nThere are 5 comments and 1 linked PR (draft).', time: '11:05 AM' },
   ],
@@ -64,7 +64,7 @@ export const sessionMessages = {
   ],
   's4-4': [
     { id: 1, senderId: 'me', text: 'Give me a Sprint 13 retrospective summary', time: '5:00 PM' },
-    { id: 2, senderId: 4, text: 'Sprint 13 Summary:\n\n• Velocity: 34 story points (target was 38)\n• Completed: 12 of 15 tickets\n• Carried over: 3 tickets (JIRA-4480, JIRA-4492, JIRA-4501)\n\nBy team member:\n• Gino Buzzelli: 10 pts completed, 0 carried over\n• Kevin Park: 8 pts completed, 1 carried over\n• Sarah Chen: 8 pts completed, 1 carried over\n• Olivia Martinez: 8 pts completed, 1 carried over', time: '5:01 PM' },
+    { id: 2, senderId: 4, text: 'Sprint 13 Summary:\n\n• Velocity: 34 story points (target was 38)\n• Completed: 12 of 15 tickets\n• Carried over: 3 tickets (JIRA-4480, JIRA-4492, JIRA-4501)\n\nBy team member:\n• Alex Morgan: 10 pts completed, 0 carried over\n• Kevin Park: 8 pts completed, 1 carried over\n• Sarah Chen: 8 pts completed, 1 carried over\n• Olivia Martinez: 8 pts completed, 1 carried over', time: '5:01 PM' },
     { id: 3, senderId: 'me', text: 'What were the carryover tickets about?', time: '5:05 PM' },
     { id: 4, senderId: 4, text: '• JIRA-4480 — "Implement rate limiting dashboard" (Kevin, 5 pts) — blocked by backend API dependency\n• JIRA-4492 — "Accessibility audit for settings page" (Sarah, 3 pts) — needed additional screen reader testing\n• JIRA-4501 — "Webhook retry metrics" (Olivia, 3 pts) — deprioritized mid-sprint for a production incident', time: '5:06 PM' },
   ],
@@ -72,7 +72,7 @@ export const sessionMessages = {
     { id: 1, senderId: 'me', text: 'Show me all P1 bugs in the webhook delivery module', time: '3:20 PM' },
     { id: 2, senderId: 4, text: 'Found 3 open P1 bugs in the webhook delivery module:\n\n• JIRA-4570 — "Webhooks silently failing for payloads over 1MB" (Unassigned)\n• JIRA-4573 — "Retry count not resetting after successful delivery" (Assigned to Olivia Martinez)\n• JIRA-4578 — "TLS handshake timeout not respecting configured value" (Assigned to you)', time: '3:20 PM' },
     { id: 3, senderId: 'me', text: 'Assign JIRA-4570 to me', time: '3:25 PM' },
-    { id: 4, senderId: 4, text: 'Done. JIRA-4570 has been assigned to Gino Buzzelli. I\'ve also updated the status to In Progress. You now have 5 open tickets in Sprint 14.', time: '3:25 PM' },
+    { id: 4, senderId: 4, text: 'Done. JIRA-4570 has been assigned to Alex Morgan. I\'ve also updated the status to In Progress. You now have 5 open tickets in Sprint 14.', time: '3:25 PM' },
   ],
   's4-6': [
     { id: 1, senderId: 'me', text: 'Are we ready to ship v2.3? Show me the release checklist status.', time: '10:00 AM' },

@@ -23,7 +23,7 @@ export const messagesByContact = {
     { id: 5, senderId: 4, text: 'You have 4 open tickets in Sprint 14:\n\n• JIRA-4521 — Implement notification preference API endpoints (High)\n• JIRA-4498 — Fix rate limiting on webhook delivery (Medium)\n• JIRA-4533 — Add unit tests for template renderer (Medium)\n• JIRA-4540 — Update API docs for v2 notification schema (Low)', time: 'Today 8:30 AM' },
   ],
   3: [
-    { id: 1, senderId: 3, text: 'Hey Gino, did you get a chance to test the auth flow on staging?', time: 'Yesterday 3:15 PM' },
+    { id: 1, senderId: 3, text: 'Hey Alex, did you get a chance to test the auth flow on staging?', time: 'Yesterday 3:15 PM' },
     { id: 2, senderId: 'me', text: 'Yep, ran through it this morning. The redirect after login is broken on mobile Safari — it loops back to the sign-in page.', time: 'Yesterday 3:22 PM' },
     { id: 3, senderId: 3, text: 'Hmm that might be the SameSite cookie issue we saw before. I\'ll check the middleware config.', time: 'Yesterday 3:25 PM' },
     { id: 4, senderId: 'me', text: 'That\'s what I was thinking too. Let me know if you need me to test again after the fix.', time: 'Yesterday 3:30 PM' },
@@ -41,11 +41,13 @@ export const messagesByContact = {
     { id: 4, senderId: 9, text: 'I\'ll cover the API rate limiting changes. Quick walkthrough of the dashboard metrics.', time: 'Yesterday 9:18 AM' },
   ],
   7: [
-    { id: 1, senderId: 'me', text: 'Hey James, are you free for a quick sync on the migration plan?', time: 'Today 8:00 AM' },
-    { id: 2, senderId: 7, text: 'Yeah give me 10 min, just finishing up a review.', time: 'Today 8:02 AM' },
+    { id: 1, senderId: 'me', text: 'Hey James, got 10? Want to sync on the handoff analytics events we\'re emitting for v2.', time: 'Today 8:00 AM' },
+    { id: 2, senderId: 7, text: 'Yeah give me a sec, finishing up a review.', time: 'Today 8:02 AM' },
     { id: 3, senderId: 7, text: 'Ok ready. What\'s up?', time: 'Today 8:14 AM' },
-    { id: 4, senderId: 'me', text: 'So the DB migration from Postgres 14 to 16 — I think we should do it in two phases. First upgrade the read replicas, then cut over the primary.', time: 'Today 8:15 AM' },
-    { id: 5, senderId: 7, text: 'Makes sense. We should also run the pg_upgrade dry run in staging first. Last time we hit that extension compatibility issue.', time: 'Today 8:18 AM' },
+    { id: 4, senderId: 'me', text: 'Want to make sure we\'re firing HandoffInitiated and HandoffCompleted with the right props — tenant id, source agent, target agent, latency, outcome.', time: 'Today 8:15 AM' },
+    { id: 5, senderId: 7, text: 'All in. I also added a `reason` enum — explicit, timeout, fallback. Should help when we\'re debugging the weird failure cases.', time: 'Today 8:18 AM' },
+    { id: 6, senderId: 'me', text: 'Nice. Can we also capture context size being transferred? Will be useful once the plugin sandboxing work lands.', time: 'Today 8:20 AM' },
+    { id: 7, senderId: 7, text: 'Yep, easy add. I\'ll push it today.', time: 'Today 8:22 AM' },
   ],
   8: [
     { id: 1, senderId: 5, text: 'Has anyone tried the new React compiler yet? I saw the beta dropped last week.', time: 'Yesterday 10:30 AM' },
@@ -108,7 +110,7 @@ export const messagesByContact = {
     { id: 5, senderId: 15, text: 'I like that approach. Let\'s draft it up and bring it to the API review next week.', time: '4/14 2:20 PM' },
   ],
   14: [
-    { id: 1, senderId: 10, text: 'The Copilot extensibility SDK v2 is almost ready for preview. We need to finalize the plugin lifecycle hooks.', time: '4/13 11:00 AM' },
+    { id: 1, senderId: 10, text: 'The agent extensibility SDK v2 is almost ready for preview. We need to finalize the plugin lifecycle hooks.', time: '4/13 11:00 AM' },
     { id: 2, senderId: 'me', text: 'I reviewed the PR. The onActivate/onDeactivate hooks look good. One thing — should we add an onConfigChange hook for when users update plugin settings?', time: '4/13 11:10 AM' },
     { id: 3, senderId: 10, text: 'That\'s a great call. I\'ll add it to the interface. It can fire after settings are persisted.', time: '4/13 11:15 AM' },
     { id: 4, senderId: 'me', text: 'What\'s the story for the docs? The v1 reference page is pretty thin and partners already complain.', time: '4/13 11:20 AM' },
@@ -130,12 +132,12 @@ export const messagesByContact = {
   ],
   17: [
     { id: 1, senderId: 'me', text: 'Hey Natalie, welcome to the team! Let me know if you need anything to get set up.', time: '4/10 9:00 AM' },
-    { id: 2, senderId: 17, text: 'Thanks Gino! I\'m getting my dev environment set up now. Quick question — do I need a special token to access the staging API?', time: '4/10 9:15 AM' },
+    { id: 2, senderId: 17, text: 'Thanks Alex! I\'m getting my dev environment set up now. Quick question — do I need a special token to access the staging API?', time: '4/10 9:15 AM' },
     { id: 3, senderId: 'me', text: 'Yes, you\'ll need to request one from the DevPortal. Go to Settings > API Keys > Create Staging Token. If you hit any issues, ping me.', time: '4/10 9:18 AM' },
     { id: 4, senderId: 17, text: 'Got it, thanks! All set up now.', time: '4/10 10:30 AM' },
   ],
   18: [
-    { id: 1, senderId: 10, text: 'We need to decide on the DW support approach for BizChat by Friday.', time: '4/9 2:00 PM' },
+    { id: 1, senderId: 10, text: 'We need to decide on the data warehouse support approach by Friday.', time: '4/9 2:00 PM' },
     { id: 2, senderId: 'me', text: 'I think we should go with the adapter pattern. That way each data warehouse connector is pluggable without touching the core query engine.', time: '4/9 2:10 PM' },
     { id: 3, senderId: 15, text: 'Agreed. We already have the Snowflake adapter as a reference implementation. Shouldn\'t be too hard to generalize.', time: '4/9 2:15 PM' },
     { id: 4, senderId: 10, text: 'The piece I\'m nervous about is credential management. Each DW has its own auth story — PATs, OAuth, workload identity. We can\'t leak that into the query engine either.', time: '4/9 2:20 PM' },
@@ -152,5 +154,40 @@ export const messagesByContact = {
     { id: 1, senderId: 7, text: 'ACF meeting notes: we agreed to standardize on the new component token system. Migration guide is in the wiki.', time: '4/7 3:00 PM' },
     { id: 2, senderId: 'me', text: 'Thanks for the notes. I\'ll start migrating the notification components this sprint.', time: '4/7 3:15 PM' },
     { id: 3, senderId: 9, text: 'I can take the settings page components. Should be straightforward.', time: '4/7 3:20 PM' },
+  ],
+  // ── Northwind Core (main project team chat) ──
+  21: [
+    { id: 1, senderId: 12, text: 'Quick status check for Northwind before tomorrow\'s readiness sync — where are we on the partner onboarding flow?', time: 'Today 9:15 AM' },
+    { id: 2, senderId: 'me', text: 'Onboarding is code-complete. Rolling into staging tomorrow morning so we have a full day to catch regressions before the partner review.', time: 'Today 9:18 AM' },
+    { id: 3, senderId: 15, text: 'I\'ll have the auth token wiring for Northwind\'s tenant done by EOD. Edge case — their guest accounts use a different claim format. Saw it in their test tenant this morning.', time: 'Today 9:21 AM' },
+    { id: 4, senderId: 1, text: 'Latest empty-state and error mocks are in the PR. Copy is still placeholder — Alex, can you take a pass when you get a sec?', time: 'Today 9:30 AM' },
+    { id: 5, senderId: 'me', text: 'On it — draft copy by EOD.', time: 'Today 9:32 AM' },
+    { id: 6, senderId: 12, text: 'Great. Holding a 30-min readiness check Thursday at 10 — calendar invite coming.', time: 'Today 9:35 AM', reactions: [{ emoji: '👍', count: 3 }] },
+  ],
+  // ── Design crit (weekly design review) ──
+  22: [
+    { id: 1, senderId: 1, text: 'Dropping the latest Northwind empty-state mocks for Thursday\'s crit — three variants. Open a thread if you have feedback before the meeting.', time: 'Yesterday 2:00 PM' },
+    { id: 2, senderId: 3, text: 'Variant C reads cleanest to me. The illustration in A feels a bit heavy for an empty state.', time: 'Yesterday 2:15 PM' },
+    { id: 3, senderId: 'me', text: 'Agree on C. The body copy still feels a little marketing-y though — can we cut a sentence?', time: 'Yesterday 2:22 PM' },
+    { id: 4, senderId: 1, text: 'Totally fair, I\'ll tighten it before the partner demo. Also picking up the 8px corner radius from the design guide update.', time: 'Yesterday 2:30 PM' },
+    { id: 5, senderId: 'me', text: 'Nice. While you\'re in there — the prompt suggestion cards in variant B are still on the old radius too.', time: 'Yesterday 2:33 PM' },
+  ],
+  // ── Northwind launch (readiness + coordination) ──
+  23: [
+    { id: 1, senderId: 12, text: 'Launch is 3 days out (April 25). Walking the readiness checklist today so we can flag any risks before the weekend.', time: 'Today 8:45 AM' },
+    { id: 2, senderId: 'me', text: 'PM side is green. PRD is final, partner FAQ drafted, docs handoff to David tomorrow.', time: 'Today 8:48 AM' },
+    { id: 3, senderId: 10, text: 'Docs are ~80% there — blocking on the final auth PR so I can write the migration note. Everything else is ready for review.', time: 'Today 8:52 AM' },
+    { id: 4, senderId: 15, text: 'Auth PR should land tomorrow afternoon. I\'ll ping you the moment it merges.', time: 'Today 8:54 AM' },
+    { id: 5, senderId: 12, text: 'What about the launch blog post — do we have a draft?', time: 'Today 8:58 AM' },
+    { id: 6, senderId: 'me', text: 'Drafting this week. Will have something circulatable by Friday EOD.', time: 'Today 9:00 AM' },
+  ],
+  // ── Dogfood feedback (internal users testing Northwind) ──
+  24: [
+    { id: 1, senderId: 17, text: 'Tried the Northwind agent this morning — the prompt suggestions on a new session are really helpful when you don\'t know what to ask.', time: 'Today 10:05 AM', reactions: [{ emoji: '🔥', count: 4 }, { emoji: '❤️', count: 2 }] },
+    { id: 2, senderId: 'me', text: 'Glad to hear! Any that fell flat?', time: 'Today 10:08 AM' },
+    { id: 3, senderId: 17, text: 'The "Release readiness" card is pretty specific to how we do eng launches — might not land for external customers.', time: 'Today 10:10 AM' },
+    { id: 4, senderId: 5, text: 'Also — found a bug where the handoff loses context if I switch chats mid-conversation. Filed JIRA-4591.', time: 'Today 10:20 AM' },
+    { id: 5, senderId: 'me', text: 'Saw that one. Kevin\'s owning the auth side of it — tracking for the ship-train fix.', time: 'Today 10:22 AM' },
+    { id: 6, senderId: 7, text: 'One more small thing — when the agent types for a while, the indicator occasionally sticks around after the reply shows. Repro\'d twice today.', time: 'Today 10:35 AM' },
   ],
 }

@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A high-fidelity static shell of the Microsoft Teams Chat UI, intended as a **forkable starting point for prototyping new Teams features**. The shell already looks like Teams out of the box, so prototype work can focus on the new feature rather than rebuilding chrome. There is no backend; all data is mocked.
 
+Seeded content (messages, chat names, session titles, agent replies) should sound like it came from a real person's Teams. Read `PERSONA.md` before generating any new content — it describes the user's role, active projects, collaborators, and communication style. Reuse names and details from there instead of inventing generic placeholders.
+
 ## Repo Layout
 
 ```
@@ -93,5 +95,6 @@ Component-scoped CSS: each `Foo.jsx` has a sibling `Foo.css`. No CSS-in-JS, no T
 ## When Adding Features
 
 - Set up the scenario in `src/data/` first (new contact, message, agent, or session)
+- Any time you author new copy — messages, chat names, session titles, agent responses, draft text — consult `PERSONA.md` and match the user's voice, active projects, and collaborators. Reuse existing names/tickets/surface references instead of inventing new ones.
 - Reach for `components/common/` primitives before rolling a new button, icon, or avatar
 - If the user provides design guidance (colors, spacing, icon styles, typography), update `DESIGN_GUIDE.md` in addition to implementing the change
