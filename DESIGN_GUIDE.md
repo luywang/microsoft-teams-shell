@@ -6,10 +6,12 @@
 
 | Element | Hex | Usage |
 |---------|-----|-------|
-| Title Bar | `#EBEBEB` | Top header bar containing search and navigation |
-| App Bar (Nav Rail) | `#EBEBEB` | Far-left vertical icon navigation |
-| Chat List | `#F5F5F5` | Chat list panel (right of the app bar) |
+| Title Bar | `#ECE4DD` | Top header bar containing search and navigation |
+| App Bar (Nav Rail) | `#ECE4DD` | Far-left vertical icon navigation |
+| Chat List | `#F6F2EE` | Chat list panel (right of the app bar) |
 | Chat Canvas | `#FFFFFF` | Main area where chat messages are displayed |
+
+The title bar, app bar, and chat list form a warm neutral palette that matches current Microsoft Teams. The chat list is the lightest of the three so its surface reads as a container nested inside the chrome.
 
 ### Message Bubbles
 
@@ -22,8 +24,8 @@
 
 | Element | Hex | Notes |
 |---------|-----|-------|
-| Chat item hover | `#EBEBEB` | Slightly darker than panel background |
-| Chat item selected | `#FFFFFF` | White to stand out from `#F5F5F5` panel |
+| Chat item hover | `#ECE4DD` | Matches the title/app bar for visual cohesion — ~4% darker than the `#F6F2EE` panel |
+| Chat item selected | `#FFFFFF` | White to stand out from `#F6F2EE` panel |
 | Active tab text | `#242424` | Bold, no background fill |
 | Inactive tab text | `#616161` | Regular weight, no background fill |
 

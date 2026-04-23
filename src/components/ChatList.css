@@ -1,6 +1,6 @@
 .chat-list-panel {
   width: 320px;
-  background: #F5F5F5;
+  background: #F6F2EE;
   border-right: 1px solid #e8e8e8;
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@
 }
 
 .icon-btn:hover {
-  background: #EBEBEB;
+  background: #ECE4DD;
   color: #242424;
 }
 
@@ -88,7 +88,7 @@
 }
 
 .filter-pill:hover {
-  background: #EBEBEB;
+  background: #ECE4DD;
   border-color: #C0C0C0;
 }
 
@@ -112,7 +112,7 @@
 }
 
 .pinned-item:hover {
-  background: #EBEBEB;
+  background: #ECE4DD;
 }
 
 .copilot-icon {
@@ -211,7 +211,7 @@
 }
 
 .chat-list-item:hover {
-  background: #EBEBEB;
+  background: #ECE4DD;
 }
 
 .chat-list-item.selected {
@@ -221,7 +221,7 @@
 /* .avatar, .status-dot, .status-* now live in components/common/Avatar.css */
 /* Override the status-dot ring color so it blends with the chat list panel bg. */
 .chat-list-panel .status-dot {
-  border-color: #F5F5F5;
+  border-color: #F6F2EE;
 }
 
 .chat-list-item.selected .status-dot {
@@ -322,7 +322,7 @@
 }
 
 .team-row:hover {
-  background: #EBEBEB;
+  background: #ECE4DD;
 }
 
 .team-icon {
@@ -353,7 +353,7 @@
 }
 
 .channel-row:hover {
-  background: #EBEBEB;
+  background: #ECE4DD;
 }
 
 .channel-row.selected {

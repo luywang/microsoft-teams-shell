@@ -61,10 +61,10 @@ export const messagesByContact = {
     { id: 9, senderId: 3, text: 'We have basic coverage — two happy-path traces. Edge cases (guest tenant, expired token mid-handoff) aren\'t automated yet. Want me to manual-check before Friday?', time: 'Tue 9:18 AM' },
     { id: 10, senderId: 'me', text: 'Yes please. Guest tenant especially — Kevin flagged their claim format is different.', time: 'Tue 9:20 AM' },
     { id: 11, senderId: 3, text: 'On it. Will send results by EOD tomorrow.', time: 'Tue 9:22 AM' },
-    { id: 12, senderId: 3, text: 'Manual results from today — 8 scenarios, all pass except one. Guest tenant with expired token: user sees a blank page instead of the re-auth prompt. Filed JIRA-4593.', time: 'Today 4:20 PM', reactions: [{ emoji: '🐛', count: 2 }] },
+    { id: 12, senderId: 3, text: 'Manual results from today — 8 scenarios, all pass except one. Guest tenant with expired token: user sees a blank page instead of the re-auth prompt. Filed JIRA-4593.', time: 'Today 4:20 PM', reactions: [{ emoji: '🐛', count: 1 }] },
     { id: 13, senderId: 'me', text: 'Ugh, that\'s launch-blocking for guest flow. Assigning to Kevin — let\'s make sure this lands before Friday freeze.', time: 'Today 4:25 PM' },
     { id: 14, senderId: 3, text: 'Agreed. FYI I\'m out all next week (PTO) — back 5/1. Happy to be pinged for P0s only.', time: 'Today 4:28 PM' },
-    { id: 15, senderId: 'me', text: 'Noted. Enjoy the break — you\'ve earned it. I\'ll loop Natalie on any QA questions while you\'re out.', time: 'Today 4:30 PM', reactions: [{ emoji: '🌴', count: 3 }] },
+    { id: 15, senderId: 'me', text: 'Noted. Enjoy the break — you\'ve earned it. I\'ll loop Natalie on any QA questions while you\'re out.', time: 'Today 4:30 PM', reactions: [{ emoji: '🌴', count: 1 }] },
   ],
 
   // ── Jira agent ────────────────────────────────────────────────────────
@@ -104,7 +104,7 @@ export const messagesByContact = {
     { id: 12, senderId: 'me', text: 'Np. Enjoy the break.', time: 'Tue 10:15 AM' },
     { id: 13, senderId: 5, text: 'Also — found a bug while dogfooding last night. The handoff loses context if I switch chats mid-conversation. Filed JIRA-4591.', time: 'Today 10:20 AM' },
     { id: 14, senderId: 'me', text: 'Saw it in the dogfood channel — Kevin\'s owning the auth side of that one. Tracking for the ship-train fix.', time: 'Today 10:22 AM' },
-    { id: 15, senderId: 5, text: '👋 signing off for real now. Back 4/28. Don\'t break anything.', time: 'Today 4:55 PM', reactions: [{ emoji: '👋', count: 4 }] },
+    { id: 15, senderId: 5, text: '👋 signing off for real now. Back 4/28. Don\'t break anything.', time: 'Today 4:55 PM', reactions: [{ emoji: '👋', count: 1 }] },
   ],
 
   // ── Design Sprint Team (group) ────────────────────────────────────────
@@ -134,7 +134,7 @@ export const messagesByContact = {
     { id: 5, senderId: 7, text: 'All in. I also added a `reason` enum — explicit, timeout, fallback. Should help when debugging the weird failure cases.', time: 'Mon 8:18 AM' },
     { id: 6, senderId: 'me', text: 'Nice. Can we also capture context size being transferred? Useful once plugin sandboxing lands.', time: 'Mon 8:20 AM' },
     { id: 7, senderId: 7, text: 'Yep, easy add. I\'ll push it today.', time: 'Mon 8:22 AM' },
-    { id: 8, senderId: 7, text: 'Pushed contextSizeBytes on HandoffCompleted. Nullable on v1 event path so existing consumers don\'t break.', time: 'Mon 4:20 PM', reactions: [{ emoji: '✅', count: 2 }] },
+    { id: 8, senderId: 7, text: 'Pushed contextSizeBytes on HandoffCompleted. Nullable on v1 event path so existing consumers don\'t break.', time: 'Mon 4:20 PM', reactions: [{ emoji: '✅', count: 1 }] },
     { id: 9, senderId: 'me', text: 'Perfect. Can you sanity-check that partner dashboards pick it up automatically? Last time we added a field, half the boards broke.', time: 'Tue 9:00 AM' },
     { id: 10, senderId: 7, text: 'Already did — ran the schema diff against the 4 partner dashboards. Two silently drop the field, two surface it. Both drops are non-critical; flagged for their owners.', time: 'Tue 9:15 AM' },
     { id: 11, senderId: 'me', text: 'Good. For the launch readout — can you get me handoff success rate by `reason` for the last 7 days on staging? Just need the numbers for the blog.', time: 'Today 10:30 AM' },
@@ -165,13 +165,13 @@ export const messagesByContact = {
 
   // ── Olivia Martinez — webhook delivery ────────────────────────────────
   9: [
-    { id: 1, senderId: 9, text: 'The test suite is green again! The flaky integration test was caused by a race condition in the event bus mock.', time: '4/10 4:30 PM', reactions: [{ emoji: '🎉', count: 3 }, { emoji: '👍', count: 1 }] },
+    { id: 1, senderId: 9, text: 'The test suite is green again! The flaky integration test was caused by a race condition in the event bus mock.', time: '4/10 4:30 PM', reactions: [{ emoji: '🎉', count: 1 }] },
     { id: 2, senderId: 'me', text: 'Oh nice catch! That\'s been failing intermittently for weeks. What was the fix?', time: '4/10 4:35 PM' },
     { id: 3, senderId: 9, text: 'Added a proper async barrier instead of relying on setTimeout. Classic.', time: '4/10 4:37 PM' },
     { id: 4, senderId: 'me', text: 'Love it. Simple and correct. Thanks Olivia!', time: '4/10 4:40 PM' },
     { id: 5, senderId: 9, text: 'Anytime! Heads up — found another flaky test in the webhook module. Same pattern. I\'ll push a fix today.', time: '4/10 4:45 PM' },
     { id: 6, senderId: 9, text: 'Fix shipped. Watching staging overnight to confirm. If it doesn\'t recur by morning, it\'s resolved.', time: '4/10 5:30 PM' },
-    { id: 7, senderId: 'me', text: 'Morning-after check: still green. Calling it.', time: 'Mon 8:15 AM', reactions: [{ emoji: '✅', count: 2 }] },
+    { id: 7, senderId: 'me', text: 'Morning-after check: still green. Calling it.', time: 'Mon 8:15 AM', reactions: [{ emoji: '✅', count: 1 }] },
     { id: 8, senderId: 9, text: 'Switching gears — picking up JIRA-4498, the webhook rate limiting work. Current retry backoff is too aggressive for partner endpoints. Proposal: token bucket per-tenant with jitter.', time: 'Mon 10:00 AM' },
     { id: 9, senderId: 'me', text: 'Love the token bucket approach. What\'s the bucket size going to look like for a typical partner?', time: 'Mon 10:05 AM' },
     { id: 10, senderId: 9, text: 'Default: 100/min refill, burst of 200. Configurable per-tenant. Largest partners (5+) can negotiate higher.', time: 'Mon 10:10 AM' },
@@ -182,7 +182,7 @@ export const messagesByContact = {
     { id: 15, senderId: 'me', text: 'Adding myself. Will review tonight.', time: 'Tue 11:32 AM' },
     { id: 16, senderId: 9, text: 'Merged. Deployed to staging. One small bug surfaced — jitter window was too narrow, seeing bursty retries. Pushing a fix now.', time: 'Today 2:00 PM' },
     { id: 17, senderId: 'me', text: 'How small is the fix?', time: 'Today 2:02 PM' },
-    { id: 18, senderId: 9, text: '3 lines — widened jitter from ±10% to ±25%. Already pushed. Staging looks clean.', time: 'Today 2:10 PM', reactions: [{ emoji: '🔧', count: 2 }] },
+    { id: 18, senderId: 9, text: '3 lines — widened jitter from ±10% to ±25%. Already pushed. Staging looks clean.', time: 'Today 2:10 PM', reactions: [{ emoji: '🔧', count: 1 }] },
   ],
 
   // ── David Nguyen — docs ───────────────────────────────────────────────
@@ -260,7 +260,7 @@ export const messagesByContact = {
     { id: 9, senderId: 12, text: 'Draft v2 is up. Also added a question about cross-tenant handoff — felt like a gap.', time: 'Tue 11:00 AM' },
     { id: 10, senderId: 'me', text: 'Good add. Cross-tenant was on my post-launch list but partners will ask day one. Read in a minute.', time: 'Tue 11:02 AM' },
     { id: 11, senderId: 'me', text: 'Read. Approved from my side. One tiny edit: Q11 uses "seamless" twice in the same paragraph. Swap one for "uninterrupted" or similar.', time: 'Tue 11:40 AM' },
-    { id: 12, senderId: 12, text: 'Caught, fixed. Shipping today.', time: 'Tue 11:45 AM', reactions: [{ emoji: '✅', count: 2 }] },
+    { id: 12, senderId: 12, text: 'Caught, fixed. Shipping today.', time: 'Tue 11:45 AM', reactions: [{ emoji: '✅', count: 1 }] },
     { id: 13, senderId: 12, text: 'New topic — post-launch. Leadership wants us to extend the engagement to cover cross-tenant handoff work through June. What\'s your availability?', time: 'Today 10:00 AM' },
     { id: 14, senderId: 'me', text: 'Open in principle. Have to check with Morgan Collective re: capacity — Taylor and I have a capacity sync Thursday. Can I come back with a firm answer Thursday afternoon?', time: 'Today 10:05 AM' },
     { id: 15, senderId: 12, text: 'Thursday works. No pressure — if the timing is wrong we can revisit after launch.', time: 'Today 10:07 AM' },
@@ -328,7 +328,7 @@ export const messagesByContact = {
     { id: 16, senderId: 'me', text: 'Emma found a new issue — guest tenant with expired token shows a blank page instead of the inline re-auth. JIRA-4593.', time: 'Today 4:30 PM' },
     { id: 17, senderId: 15, text: 'Ugh, that\'s the path I thought was covered. Looking now. Quick fix — my guess is the inline fallback isn\'t firing because we\'re catching the error too early. Will post a fix by EOD.', time: 'Today 4:35 PM' },
     { id: 18, senderId: 'me', text: 'Appreciate the hustle. Once this lands we\'re done with the auth critical path.', time: 'Today 4:38 PM' },
-    { id: 19, senderId: 15, text: 'Fix in draft — it was the error handler catching before the interactive flow could fire. 20-line fix + a test for the exact scenario.', time: 'Today 6:15 PM', reactions: [{ emoji: '🔧', count: 2 }] },
+    { id: 19, senderId: 15, text: 'Fix in draft — it was the error handler catching before the interactive flow could fire. 20-line fix + a test for the exact scenario.', time: 'Today 6:15 PM', reactions: [{ emoji: '🔧', count: 1 }] },
   ],
 
   // ── Agents Platform v2 team (group) ───────────────────────────────────
