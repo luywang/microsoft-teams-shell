@@ -140,7 +140,7 @@ export const messagesByContact = {
     { id: 11, senderId: 'me', text: 'Good. For the launch readout — can you get me handoff success rate by `reason` for the last 7 days on staging? Just need the numbers for the blog.', time: 'Today 10:30 AM' },
     { id: 12, senderId: 7, text: 'Last 7 days, staging:\n• explicit → 98.2% success\n• timeout → 74.5% (expected, this is the retry path)\n• fallback → 92.1%\n\nOverall ~95.3%. Sample size ~42k handoffs.', time: 'Today 11:00 AM' },
     { id: 13, senderId: 'me', text: 'That\'s strong. Ok to cite the overall 95.3% in the blog? Want to check before I commit the text.', time: 'Today 11:05 AM' },
-    { id: 14, senderId: 7, text: 'Go for it. Staging \!= prod but we\'re within the margin Rachel set for launch comms. I\'d say "above 95%" rather than the exact number — buys a little room.', time: 'Today 11:08 AM' },
+    { id: 14, senderId: 7, text: 'Go for it. Staging != prod but we\'re within the margin Rachel set for launch comms. I\'d say "above 95%" rather than the exact number — buys a little room.', time: 'Today 11:08 AM' },
     { id: 15, senderId: 'me', text: 'Good call. "Above 95%" it is.', time: 'Today 11:10 AM' },
     { id: 16, senderId: 7, text: 'One more thing — I\'m adding an `agentFamily` prop (same-family vs cross-family) since you flagged it for the CA working group. Helps partition the timeout cases.', time: 'Today 2:45 PM' },
     { id: 17, senderId: 'me', text: 'Appreciate that. Let me know when it ships to staging and I\'ll use it in the Friday working-group prep.', time: 'Today 2:48 PM' },

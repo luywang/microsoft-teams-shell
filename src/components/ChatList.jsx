@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { favorites, projectNorthwind, chatList, contacts, teams } from '../data'
 import { copilotLogo } from '../shared/assets'
-import { Avatar } from './common'
+import { Avatar, ChevronDown, Dots, Search } from './common'
 import './ChatList.css'
 
 // Small rounded-square team icon used in the Teams & channels section. Mirrors
@@ -33,15 +33,9 @@ function SectionHeader({ label, collapsed, onToggle }) {
       aria-expanded={!collapsed}
       onClick={onToggle}
     >
-      <svg
-        width="12"
-        height="12"
-        viewBox="0 0 12 12"
-        fill="currentColor"
-        className={`section-chevron-down ${collapsed ? 'section-chevron-collapsed' : ''}`}
-      >
-        <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
-      </svg>
+      <span className={`section-chevron-down ${collapsed ? 'section-chevron-collapsed' : ''}`}>
+        <ChevronDown />
+      </span>
       <span>{label}</span>
     </button>
   )
@@ -81,14 +75,10 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
         <h2 className="chat-list-title">Chat</h2>
         <div className="chat-list-actions">
           <button className="icon-btn" aria-label="More options">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M6.25 10a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zm5 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0zm3.75 1.25a1.25 1.25 0 1 0 0-2.5 1.25 1.25 0 0 0 0 2.5z"/>
-            </svg>
+            <Dots size={20} />
           </button>
           <button className="icon-btn" aria-label="Search">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M8.5 3a5.5 5.5 0 0 1 4.38 8.82l3.65 3.65a.75.75 0 0 1-1.06 1.06l-3.65-3.65A5.5 5.5 0 1 1 8.5 3zm0 1.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-            </svg>
+            <Search />
           </button>
           <div className="compose-btn-group">
             <button className="icon-btn" aria-label="New chat">
@@ -98,9 +88,7 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
               </svg>
             </button>
             <button className="icon-btn compose-chevron" aria-label="New chat options">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
-              </svg>
+              <ChevronDown />
             </button>
           </div>
         </div>
@@ -116,9 +104,7 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
           <button className="filter-pill">Chats</button>
         </div>
         <button className="icon-btn filter-chevron" aria-label="More filters">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M3.15 5.15a.5.5 0 0 1 .7 0L8 9.29l4.15-4.14a.5.5 0 0 1 .7.7l-4.5 4.5a.5.5 0 0 1-.7 0l-4.5-4.5a.5.5 0 0 1 0-.7z"/>
-          </svg>
+          <ChevronDown size={16} />
         </button>
       </div>
 
@@ -133,9 +119,10 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
           <span className="pinned-label">Copilot</span>
         </div>
         <div className="pinned-item">
-          <svg width="14" height="14" viewBox="0 0 12 12" fill="currentColor" className="section-chevron">
-            <path d="M4.15 2.15a.5.5 0 0 1 .7 0l3.5 3.5a.5.5 0 0 1 0 .7l-3.5 3.5a.5.5 0 0 1-.7-.7L7.29 6 4.15 2.85a.5.5 0 0 1 0-.7z"/>
-          </svg>
+          {/* Right-facing chevron: rotate the shared ChevronDown. */}
+          <span className="section-chevron section-chevron-right">
+            <ChevronDown size={12} />
+          </span>
           <span className="pinned-label pinned-label-bold">Quick views</span>
           <span className="quick-views-badge">46</span>
         </div>
@@ -189,15 +176,9 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
                 aria-expanded={!teamCollapsed}
                 onClick={() => toggleSection(teamKey)}
               >
-                <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="currentColor"
-                  className={`section-chevron-down ${teamCollapsed ? 'section-chevron-collapsed' : ''}`}
-                >
-                  <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
-                </svg>
+                <span className={`section-chevron-down ${teamCollapsed ? 'section-chevron-collapsed' : ''}`}>
+                  <ChevronDown />
+                </span>
                 <TeamIcon team={team} size={20} />
                 <span className="team-name">{team.name}</span>
               </button>

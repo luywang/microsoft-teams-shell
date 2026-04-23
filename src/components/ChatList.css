@@ -106,13 +106,15 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 5px 20px;
+  padding: 5px 12px;
+  margin: 0 8px;
+  border-radius: 4px;
   cursor: pointer;
   color: #424242;
 }
 
 .pinned-item:hover {
-  background: #ECE4DD;
+  background: #FCFBFA;
 }
 
 .copilot-icon {
@@ -135,6 +137,12 @@
 .section-chevron {
   color: #616161;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+.section-chevron-right {
+  transform: rotate(-90deg);
 }
 
 .quick-views-badge {
@@ -183,6 +191,8 @@
 .section-chevron-down {
   color: #616161;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
   transition: transform 120ms ease;
 }
 
@@ -205,17 +215,16 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 7px 20px;
+  padding: 7px 12px;
+  margin: 0 8px;
+  border-radius: 4px;
   cursor: pointer;
   position: relative;
 }
 
-.chat-list-item:hover {
-  background: #ECE4DD;
-}
-
+.chat-list-item:hover,
 .chat-list-item.selected {
-  background: #FFFFFF;
+  background: #FCFBFA;
 }
 
 /* .avatar, .status-dot, .status-* now live in components/common/Avatar.css */
@@ -224,8 +233,9 @@
   border-color: #F6F2EE;
 }
 
+.chat-list-item:hover .status-dot,
 .chat-list-item.selected .status-dot {
-  border-color: #FFFFFF;
+  border-color: #FCFBFA;
 }
 
 .chat-item-content {
@@ -310,8 +320,10 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 20px;
-  width: 100%;
+  padding: 5px 12px;
+  margin: 0 8px;
+  border-radius: 4px;
+  width: calc(100% - 16px);
   background: none;
   border: none;
   cursor: pointer;
@@ -322,7 +334,7 @@
 }
 
 .team-row:hover {
-  background: #ECE4DD;
+  background: #FCFBFA;
 }
 
 .team-icon {
@@ -346,18 +358,17 @@
 .channel-row {
   display: flex;
   align-items: center;
-  padding: 5px 20px 5px 54px;
+  padding: 5px 12px 5px 46px;
+  margin: 0 8px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   color: #424242;
 }
 
-.channel-row:hover {
-  background: #ECE4DD;
-}
-
+.channel-row:hover,
 .channel-row.selected {
-  background: #FFFFFF;
+  background: #FCFBFA;
   color: #242424;
 }
 
@@ -365,20 +376,4 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* ── Demo hint arrow ── */
-.demo-hint-arrow {
-  margin-left: auto;
-  color: #E8173A;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  animation: hint-pulse 1.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes hint-pulse {
-  0%, 100% { opacity: 1; transform: translateX(0); }
-  50% { opacity: 0.4; transform: translateX(3px); }
 }

@@ -13,176 +13,7 @@
   min-width: 0;
 }
 
-/* ── Header ── */
-.chat-view-header {
-  flex-shrink: 0;
-  border-bottom: 1px solid #E0E0E0;
-}
-
-.chat-header-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 24px;
-  height: 56px;
-}
-
-/* Chat header avatar styles now come from the common Avatar component. */
-
-.chat-header-name {
-  font-size: 18px;
-  font-weight: 700;
-  color: #242424;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* ── Tabs (inline with header) ── */
-.chat-header-tabs {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-left: 4px;
-}
-
-.chat-view-tab {
-  background: none;
-  border: none;
-  padding: 14px 6px;
-  position: relative;
-  font-size: 14px;
-  font-weight: 400;
-  color: #424242;
-  cursor: pointer;
-  text-align: center;
-  white-space: nowrap;
-  max-width: 150px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-height: 20px;
-  white-space: nowrap;
-}
-
-.chat-view-tab:hover {
-  color: #242424;
-}
-
-.chat-view-tab.active {
-  color: #242424;
-  font-weight: 600;
-}
-
-/* Underline spans only the tab label (content box), not the full button width. */
-.chat-view-tab.active::after {
-  content: '';
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  bottom: 0;
-  height: 3px;
-  background: #6264A7;
-  border-radius: 2px;
-}
-
-.chat-view-tab.tab-add {
-  color: #616161;
-  padding: 14px 8px;
-  display: flex;
-  align-items: center;
-}
-
-.chat-view-tab.tab-add:hover {
-  color: #242424;
-}
-
-/* ── Header actions (right side) ── */
-.chat-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-left: auto;
-  flex-shrink: 0;
-}
-
-.meet-now-btn {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #616161;
-  font-size: 12px;
-  font-family: inherit;
-  white-space: nowrap;
-}
-
-.meet-now-btn:hover {
-  background: #f0f0f0;
-  color: #242424;
-}
-
-.meet-chevron {
-  margin-left: -2px;
-}
-
-.participants-btn {
-  gap: 3px;
-}
-
-.participants-count {
-  font-size: 12px;
-  font-weight: 600;
-  color: #616161;
-}
-
-.header-divider {
-  width: 1px;
-  height: 16px;
-  background: #E0E0E0;
-  flex-shrink: 0;
-}
-
-.header-action-btn {
-  background: none;
-  border: none;
-  padding: 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #616161;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header-action-btn:hover {
-  background: #f0f0f0;
-  color: #242424;
-}
-
-.header-action-btn-active {
-  background: rgba(98, 100, 167, 0.08);
-  color: #6264A7;
-}
-
-.header-action-btn-active:hover {
-  background: rgba(98, 100, 167, 0.12);
-  color: #6264A7;
-}
-
-.copilot-logo-img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-}
-
-.copilot-logo-img-sm {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-}
+/* Header styles live in ChatHeader.css. Compose styles live in Compose.css. */
 
 /* ── Messages ── */
 .chat-messages {
@@ -226,11 +57,16 @@
   padding-top: 18px;
 }
 
-/* Message avatar styles now come from the common Avatar component. */
-
 .message-content-wrap {
   max-width: 65%;
   min-width: 0;
+}
+
+/* Channel posts are typically longer (announcement-style) — give them a
+   slightly wider bubble than regular chat bubbles so body copy doesn't
+   wrap as aggressively. */
+.messages-container-channel .message-content-wrap {
+  max-width: 80%;
 }
 
 .message-mine .message-content-wrap {
@@ -291,17 +127,6 @@
   margin-bottom: 4px;
 }
 
-.compose-mention {
-  font-size: 14px;
-  margin-right: 4px;
-  white-space: nowrap;
-}
-
-/* ── Targeted messages ── */
-.message-bubble-targeted {
-  border: 1px solid #616161;
-}
-
 /* ── Forwarded message quote ── */
 .forwarded-message {
   border-left: 3px solid #6264A7;
@@ -323,48 +148,6 @@
   color: #616161;
   line-height: 16px;
   word-wrap: break-word;
-}
-
-.targeted-notice {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 12px;
-  color: #616161;
-  margin-bottom: 6px;
-}
-
-.continue-private-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.demo-hint-arrow-continue {
-  color: #E8173A;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  animation: hint-pulse-send 1.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.continue-private-btn {
-  background: none;
-  border: 1px solid #D1D1D1;
-  border-radius: 4px;
-  padding: 4px 12px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #6264A7;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.continue-private-btn:hover {
-  background: #F5F5F5;
-  border-color: #6264A7;
 }
 
 /* ── Private (only-you) thread anchor ── */
@@ -527,7 +310,11 @@
   line-height: 16px;
 }
 
-/* ── Adaptive Cards ── */
+/* ── Adaptive Cards (inside message bubbles) ──
+   Teams renders agent-sent rich content via the Adaptive Cards framework
+   (https://adaptivecards.microsoft.com/). The shape here is a minimal
+   fixture — real adaptive cards support richer elements; add them as the
+   prototype needs them. See DESIGN_GUIDE.md. */
 .message-cards {
   display: flex;
   flex-direction: column;
@@ -604,154 +391,3 @@
 .session-source-banner-link:hover {
   text-decoration: underline;
 }
-
-/* ── Last read divider ── */
-.last-read-divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 0;
-}
-
-.last-read-divider::before,
-.last-read-divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: #C4314B;
-}
-
-.last-read-text {
-  font-size: 12px;
-  font-weight: 600;
-  color: #C4314B;
-  white-space: nowrap;
-}
-
-/* ── Compose ── */
-.chat-compose {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 8px 24px 16px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.compose-box {
-  position: relative;
-  display: flex;
-  align-items: center;
-  border: 1px solid #d1d1d1;
-  border-radius: 20px;
-  background: #fff;
-  padding: 6px 8px 6px 16px;
-  gap: 4px;
-}
-
-.main-compose-hint-arrow {
-  position: absolute;
-  right: 12px;
-  top: -22px;
-  color: #E8173A;
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-  animation: main-compose-hint-pulse 1.5s ease-in-out infinite;
-}
-
-@keyframes main-compose-hint-pulse {
-  0%, 100% { opacity: 1; transform: translateY(0); }
-  50% { opacity: 0.4; transform: translateY(3px); }
-}
-
-.compose-input {
-  font-size: 14px;
-  color: #242424;
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-family: inherit;
-}
-
-.compose-input::placeholder {
-  color: #999;
-}
-
-.compose-actions {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  flex-shrink: 0;
-}
-
-.compose-divider {
-  width: 1px;
-  height: 20px;
-  background: #d1d1d1;
-  margin: 0 4px;
-  flex-shrink: 0;
-}
-
-.compose-btn {
-  background: none;
-  border: none;
-  padding: 5px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #616161;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.compose-btn:hover {
-  background: #f0f0f0;
-  color: #242424;
-}
-
-.compose-box-wrap {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-
-.compose-box-wrap .compose-box {
-  flex: 1;
-  min-width: 0;
-}
-
-.demo-hint-arrow-send {
-  color: #E8173A;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  animation: hint-pulse-send 1.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes hint-pulse-send {
-  0%, 100% { opacity: 1; transform: translateX(0); }
-  50% { opacity: 0.4; transform: translateX(-3px); }
-}
-
-.send-btn {
-  background: none;
-  border: none;
-  padding: 5px 6px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #bbb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.send-btn:hover {
-  background: #f0f0f0;
-  color: #6264A7;
-}
-
-/* .status-dot / .status-* now live in components/common/Avatar.css */

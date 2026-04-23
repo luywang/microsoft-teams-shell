@@ -31,18 +31,22 @@ function renderText(text) {
 }
 
 function AgentChat({ agent, messages, onSendMessage, composeHint, isTyping }) {
-  const [input, setInput] = useState('')
+  // Derive the initial input from the compose hint so a prefilled suggestion
+  // shows up without a setState-in-effect round trip. Keyed on hint+agent so
+  // a new hint or a new agent resets the field.
+  const hintText = composeHint && composeHint.agentId === agent.id ? composeHint.text : ''
+  const [input, setInput] = useState(hintText)
+  const [inputKey, setInputKey] = useState(`${agent.id}:${hintText}`)
+  const nextKey = `${agent.id}:${hintText}`
+  if (inputKey !== nextKey) {
+    setInputKey(nextKey)
+    setInput(hintText)
+  }
   const endRef = useRef(null)
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, isTyping])
-
-  useEffect(() => {
-    if (composeHint && composeHint.agentId === agent.id) {
-      setInput(composeHint.text)
-    }
-  }, [composeHint, agent.id])
 
   const send = () => {
     const text = input.trim()
@@ -193,7 +197,6 @@ function AgentDetailView({ agent, messages, onSendMessage, composeHint, isTyping
 export default function AgentsRail({
   agents,
   recommended = [],
-  chatName,
   selectedAgent,
   onSelectAgent,
   messages = [],
