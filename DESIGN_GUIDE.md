@@ -6,14 +6,15 @@
 
 | Element | Hex | Usage |
 |---------|-----|-------|
-| Title Bar | `#ECE4DD` | Top header bar containing search and navigation |
-| App Bar (Nav Rail) | `#ECE4DD` | Far-left vertical icon navigation |
-| Chat List | `#F6F2EE` | Chat list panel (right of the app bar) |
+| Title Bar | `#EBEBEB` | Top header bar containing search and navigation |
+| App Bar (Nav Rail) | `#EBEBEB` | Far-left vertical icon navigation |
+| Search Bar | `#FAFAFA` | Search input in the title bar |
+| Chat List | `#F5F5F5` | Chat list panel (right of the app bar) |
 | Chat Canvas | `#FFFFFF` | Main area where chat messages are displayed |
 | Agents Rail | `#FAFAFA` | Right-side rail for per-conversation agents |
 | Channel Thread Rail | `#FFFFFF` | Right-side rail for a channel post's replies |
 
-The title bar, app bar, and chat list form a warm neutral palette that matches current Microsoft Teams. The chat list is the lightest of the three so its surface reads as a container nested inside the chrome.
+The title bar, app bar, and chat list form a cool neutral palette that matches current Microsoft Teams. The chat list is slightly lighter than the chrome so its surface reads as a container nested inside it. The search bar is the lightest surface in the header, floating on top of the title bar.
 
 ### Message Bubbles
 
@@ -26,7 +27,7 @@ The title bar, app bar, and chat list form a warm neutral palette that matches c
 
 | Element | Hex | Notes |
 |---------|-----|-------|
-| Chat item hover + selected | `#FCFBFA` | Same fill for both states — a chat doesn't get a separate "selected" treatment. Subtle off-white above the `#F6F2EE` panel. |
+| Chat item hover + selected | `#FCFBFA` | Same fill for both states — a chat doesn't get a separate "selected" treatment. Subtle off-white above the `#F5F5F5` panel. |
 | Active tab text | `#242424` | Bold, no background fill |
 | Inactive tab text | `#616161` | Regular weight, no background fill |
 
@@ -105,10 +106,20 @@ Before adding an icon inline, check `src/components/common/Icon.jsx` — the sha
 
 ### App Bar (Nav Rail) Icons
 
-- **Inactive state:** Outlined icons, default icon color (`#616161`)
-- **Active state:** Filled icons, purple accent (`#6264A7`)
+- **Inactive state:** Outlined icons, `#666666`
+- **Active state:** Filled icons, Teams purple (`#5B5FC7`); same color drives the 3px left-edge active indicator and an 8% tinted background fill (`rgba(91, 95, 199, 0.08)`)
 
 ## Message Patterns
+
+### Bubble / compose alignment
+
+Bubble edges line up with the edges of the compose field in all chat canvases (1:1, group, and channel) so the conversation reads as a single vertical column anchored to the same left/right rails as input:
+
+- Others' bubble **left** edge aligns with compose left edge
+- Mine bubble **right** edge aligns with compose right edge
+- Avatars extend **past** those rails (to the left for others, to the right for mine in group chats)
+
+Implemented by setting `.messages-container` side padding to `24px` (matching `.chat-compose`), then pulling the message row horizontally with `margin-left: -40px` (others) / `margin-right: -40px` (mine + avatar) so the 32px avatar + 8px gap lands outside the compose rail. In 1:1 chats my own messages have no avatar, so the mine row sits flush with no negative margin.
 
 ### Reactions
 

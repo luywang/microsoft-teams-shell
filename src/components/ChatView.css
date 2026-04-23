@@ -31,12 +31,16 @@
 .messages-container {
   max-width: 920px;
   margin: 0 auto;
-  padding: 16px 64px;
+  padding: 16px 24px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
+/* Bubble edges align to the compose field in both chats and channels:
+   - others' bubble left = compose left; avatar (-40px) extends past it
+   - mine bubble right  = compose right; my avatar (group chats) extends past it
+   - mine 1:1 has no avatar, so the row sits flush with the compose right edge */
 .message-row {
   display: flex;
   gap: 8px;
@@ -48,6 +52,10 @@
 .message-row.message-mine {
   justify-content: flex-end;
   margin-left: 0;
+  margin-right: 0;
+}
+
+.message-row.message-mine:has(.message-avatar-col) {
   margin-right: -40px;
 }
 
