@@ -74,7 +74,10 @@ export default function MessageRow({ message, activeContact, onOpenThread }) {
   const reactions = buildReactionList(message.reactions, myReactions)
 
   return (
-    <div className={`message-row ${isMe ? 'message-mine' : ''}`}>
+    <div
+      className={`message-row ${isMe ? 'message-mine' : ''}`}
+      data-message-id={message.id}
+    >
       {!isMe && (
         <div className="message-avatar-col">
           <Avatar contact={sender} size={32} />

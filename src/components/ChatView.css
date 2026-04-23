@@ -382,6 +382,26 @@
   text-decoration: underline;
 }
 
+/* ── Activity-navigation highlight ──
+   When the user clicks an Activity event, ChatView scrolls the triggering
+   message into view and briefly flashes a tinted background + left accent
+   behind the row so the destination is obvious. */
+.message-row.message-row-highlight {
+  animation: message-row-highlight-pulse 1.8s ease-out;
+  border-radius: 6px;
+}
+
+@keyframes message-row-highlight-pulse {
+  0%, 20% {
+    background: rgba(91, 95, 199, 0.14);
+    box-shadow: inset 3px 0 0 0 #5B5FC7;
+  }
+  100% {
+    background: transparent;
+    box-shadow: inset 3px 0 0 0 transparent;
+  }
+}
+
 /* ── Session source banner ── */
 .session-source-banner {
   text-align: center;

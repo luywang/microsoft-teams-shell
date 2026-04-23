@@ -43,25 +43,31 @@ Single-page React 19 app built with Vite 8. No routing, no state management libr
 `src/App.jsx` owns the top-level state and renders:
 
 ```
-┌──────────────────────── TitleBar ───────────────────────┐
-│ NavRail │ ChatList │ ChatView (+ optional right rails) │
-└─────────┴──────────┴──────────────────────────────────────┘
+┌──────────────────────── TitleBar ─────────────────────────────────────┐
+│ NavRail │ ChatList │ ChatView (+ optional right rails)                │
+│         │   or     │                                                  │
+│         │ ActivityList (when the bell icon is selected)               │
+└─────────┴──────────┴──────────────────────────────────────────────────┘
 ```
+
+`NavRail` is a controlled component driving `activeView` (`'chat' | 'activity'`). When `activity` is active, `ChatList` is swapped for `ActivityList` and `ChatView` renders the chat the selected activity event points at (with that event's source message highlighted).
 
 `ChatView` can render up to two right-hand rails alongside the main canvas:
 - **SessionsRail** — list of past agent sessions for the active agent chat (agent chats only)
 - **AgentsRail** — agents in the current conversation + per-agent private chat thread
-- **ChannelThreadRail** — a channel post's replies thread (channel chats only; opens when a reply indicator is clicked)
+- **ChannelThreadRail** — a channel post's replies thread (channel chats only; opens when a reply indicator is clicked, or when an Activity event points at a channel reply)
 
 ### State lives in `App.jsx`
 
 Hoisted so rails and the canvas stay in sync:
 
+- `activeView` — `'chat' | 'activity'`, driven by NavRail
 - `activeChatId` — which chat is open
 - `readChatIds` (`Set`) — chats the user has visited; dismisses `bold` + unread-dot in `ChatList`
 - `sessions` — per-agent list of past sessions (starts from `data/sessions.js`, augmented at runtime)
 - `dynamicSessionMessages` — messages for sessions created during the prototype session
-- `navIntent` — one-shot signal to open a specific session when cross-navigating between chats
+- `activityEvents` / `activeActivityId` — notification feed state backing the Activity view
+- `navIntent` — one-shot signal used when cross-navigating between chats. Shape: `{ chatId, sessionId?, channelThreadPostId?, highlightMessageId? }`. ChatView consumes it on the next render to open the sessions rail, auto-open a channel thread, or scroll + flash a specific message
 
 `ChatView` owns local state for compose input, which rail is open, per-chat ephemeral flags, scripted/demo flow progress, etc. When `activeChatId` changes, the chat-level state is reset via the render-phase state-adjustment pattern (not a `useEffect`).
 
@@ -76,6 +82,7 @@ All mocks live in `src/data/` and are re-exported by `src/data.js` (the barrel).
 - `sessions.js` — `agentSessions`, the initial per-agent session lists
 - `sessionMessages.js` — message history keyed by session id
 - `promptSuggestions.js` — the 2×3 grid of prompt cards shown in the empty state for a new agent session, keyed by agent contact id
+- `activityEvents.js` — `activityEvents`, the chronological notification feed (reactions, replies, mentions) referenced by contact/message/post ids
 
 ### Contact types
 
@@ -95,6 +102,7 @@ Channels are additionally grouped into teams via the `teams` export. Each team h
 - `src/components/common/` — shared primitives meant for reuse across surfaces (`Avatar`, `LinkCard`, `IconButton`, `Icon` library, `PrivateDisclaimer`). Add a new reusable primitive here; don't inline SVGs or hand-roll a button when a common one fits.
 - `src/components/` — feature components for the current surface:
   - `TitleBar`, `NavRail`, `ChatList` — chrome
+  - `ActivityList` — left pane when the bell icon is selected; chronological feed of reactions/replies/mentions that target the current user. Clicking an event routes `ChatView` to the source chat (and opens a channel thread or flashes an anchor message when relevant)
   - `ChatView` — the main canvas router; delegates to `ChatHeader`, `Compose`, and the rails
   - `ChatHeader`, `Compose` — split out from `ChatView` to keep it focused on state + routing
   - `MessageRow` — one message bubble (reactions, thread reply badge, link cards, Adaptive Cards)

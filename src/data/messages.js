@@ -234,7 +234,7 @@ export const messagesByContact = {
     { id: 6, senderId: 15, text: 'Yeah, this one\'s tricky. Token refresh during handoff causing brief session drops. Should have a fix by end of week but could use a second pair of eyes on the auth middleware.', time: '4/17 9:40 AM' },
     { id: 7, senderId: 'me', text: 'Happy to review once you have a PR up. Also — can we pair tomorrow afternoon? 30 min.', time: '4/17 9:42 AM' },
     { id: 8, senderId: 15, text: 'Yes please. Sending invite for 3pm Monday.', time: '4/17 9:44 AM' },
-    { id: 9, senderId: 12, text: 'For the CA client (cc Sarah), a reminder that their April 24 session needs our working-group materials by Wed EOD. Alex, are you good?', time: 'Mon 10:00 AM' },
+    { id: 9, senderId: 12, text: ['For the CA client (cc Sarah), a reminder that their April 24 session needs our working-group materials by Wed EOD. ', { type: 'mention', name: 'Alex' }, ', are you good?'], time: 'Mon 10:00 AM' },
     { id: 10, senderId: 'me', text: 'Good. Context packet shape is finalized, two anonymized traces are ready, and the "did the user notice" instrumentation spec is drafted. Will post in the shared doc Wed EOD.', time: 'Mon 10:05 AM' },
     { id: 11, senderId: 1, text: 'On the design side — I can bring the three handoff disclosure variants. Want them walked through or just shared asynchronously?', time: 'Mon 10:12 AM' },
     { id: 12, senderId: 'me', text: 'Walk through briefly at the top of the session. Context matters — they need to see why we landed on passive disclosure.', time: 'Mon 10:15 AM' },

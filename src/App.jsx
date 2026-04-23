@@ -1,17 +1,24 @@
 import { useState, useCallback } from 'react'
-import { agentSessions as initialSessions } from './data/sessions'
+import { agentSessions as initialSessions, activityEvents as seedActivityEvents } from './data'
 import NavRail from './components/NavRail'
 import ChatList from './components/ChatList'
 import ChatView from './components/ChatView'
+import ActivityList from './components/ActivityList'
 import TitleBar from './components/TitleBar'
 import './App.css'
 
 export default function App() {
+  const [activeView, setActiveView] = useState('chat') // 'chat' | 'activity'
   const [activeChatId, setActiveChatId] = useState(1)
   const [readChatIds, setReadChatIds] = useState(() => new Set([1]))
   const [sessions, setSessions] = useState(initialSessions)
   const [dynamicSessionMessages, setDynamicSessionMessages] = useState({})
-  // When navigating to an agent chat, optionally open sessions rail with a specific session
+  // Activity feed: persist which events the user has opened so unread decorations clear.
+  const [activityEvents, setActivityEvents] = useState(seedActivityEvents)
+  const [activeActivityId, setActiveActivityId] = useState(null)
+  // When navigating to a chat, optionally tell ChatView to open a specific
+  // session (sessions rail), open a specific channel thread, or flash a
+  // specific message so the user can see where a notification landed.
   const [navIntent, setNavIntent] = useState(null)
 
   const selectChat = useCallback((chatId) => {
@@ -49,16 +56,44 @@ export default function App() {
     setDynamicSessionMessages(prev => ({ ...prev, [sessionId]: messages }))
   }, [])
 
+  const selectActivity = useCallback((event) => {
+    setActiveActivityId(event.id)
+    setActivityEvents(prev =>
+      prev.map(e => (e.id === event.id && e.unread ? { ...e, unread: false } : e))
+    )
+    setActiveChatId(event.chatId)
+    setReadChatIds(prev => (prev.has(event.chatId) ? prev : new Set(prev).add(event.chatId)))
+    setNavIntent({
+      chatId: event.chatId,
+      channelThreadPostId: event.postId || null,
+      highlightMessageId: event.messageId || null,
+    })
+  }, [])
+
+  const activityUnreadCount = activityEvents.reduce((n, e) => n + (e.unread ? 1 : 0), 0)
+
   return (
     <div className="app">
       <TitleBar />
       <div className="app-body">
-        <NavRail />
-        <ChatList
-          activeChatId={activeChatId}
-          onSelectChat={selectChat}
-          readChatIds={readChatIds}
+        <NavRail
+          activeView={activeView}
+          onSelectView={setActiveView}
+          activityUnreadCount={activityUnreadCount}
         />
+        {activeView === 'activity' ? (
+          <ActivityList
+            events={activityEvents}
+            activeEventId={activeActivityId}
+            onSelectEvent={selectActivity}
+          />
+        ) : (
+          <ChatList
+            activeChatId={activeChatId}
+            onSelectChat={selectChat}
+            readChatIds={readChatIds}
+          />
+        )}
         <ChatView
           activeChatId={activeChatId}
           onSelectChat={navigateToChat}

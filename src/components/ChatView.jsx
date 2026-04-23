@@ -116,6 +116,7 @@ export default function ChatView({
   const [jiraThreadAnchorId, setJiraThreadAnchorId] = useState(null)
   const [mainTypingAgentId, setMainTypingAgentId] = useState(null)
   const [channelThreadPostId, setChannelThreadPostId] = useState(null)
+  const [highlightMessageId, setHighlightMessageId] = useState(null)
   const messagesEndRef = useRef(null)
 
   // Reset per-chat ephemeral state when activeChatId changes. Using the
@@ -135,25 +136,59 @@ export default function ChatView({
     setRailTypingAgentId(null)
     setJiraThreadAnchorId(null)
     setChannelThreadPostId(null)
-    if (navIntent && navIntent.chatId === activeChatId) {
+    setHighlightMessageId(null)
+    const intentMatches = navIntent && navIntent.chatId === activeChatId
+    const intentHasSession = intentMatches && 'sessionId' in navIntent
+    if (intentHasSession) {
       setShowSessions(true)
       setActiveSessionId(navIntent.sessionId || null)
-      clearNavIntent()
     } else {
       setShowSessions(!!hasSessions)
       const agentSessionList = sessions[activeChatId]
       setActiveSessionId(agentSessionList?.length > 0 ? agentSessionList[0].id : null)
     }
+    if (intentMatches && navIntent.channelThreadPostId) {
+      setChannelThreadPostId(navIntent.channelThreadPostId)
+    }
+    if (intentMatches && navIntent.highlightMessageId) {
+      setHighlightMessageId(navIntent.highlightMessageId)
+    }
+    if (intentMatches) clearNavIntent()
   } else if (navIntent !== navIntentCursor && navIntent?.chatId === activeChatId) {
     setNavIntentCursor(navIntent)
-    setShowSessions(true)
-    if (navIntent.sessionId) setActiveSessionId(navIntent.sessionId)
+    if ('sessionId' in navIntent) {
+      setShowSessions(true)
+      if (navIntent.sessionId) setActiveSessionId(navIntent.sessionId)
+    }
+    if (navIntent.channelThreadPostId) {
+      setChannelThreadPostId(navIntent.channelThreadPostId)
+    }
+    if (navIntent.highlightMessageId) {
+      setHighlightMessageId(navIntent.highlightMessageId)
+    }
     clearNavIntent()
   }
 
   useEffect(() => {
+    if (highlightMessageId) {
+      // Activity-navigation: scroll the triggering message into view and
+      // flash it briefly so the user sees where the notification landed.
+      const el = document.querySelector(
+        `[data-message-id="${CSS.escape(String(highlightMessageId))}"]`
+      )
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+        el.classList.add('message-row-highlight')
+        const t = setTimeout(() => {
+          el.classList.remove('message-row-highlight')
+          setHighlightMessageId(null)
+        }, 1800)
+        return () => clearTimeout(t)
+      }
+      return
+    }
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [extraMessages, activeChatId, activeSessionId, mainTypingAgentId])
+  }, [extraMessages, activeChatId, activeSessionId, mainTypingAgentId, highlightMessageId])
 
   // Mirror the rail's Jira thread messages back into the source chat's
   // session so the conversation is discoverable from Jira's sessions list.

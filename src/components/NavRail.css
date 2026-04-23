@@ -34,6 +34,10 @@
   cursor: pointer;
   color: #666666;
   position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
 }
 
 .nav-item:hover {
@@ -46,14 +50,15 @@
   background: rgba(91, 95, 199, 0.08);
 }
 
+/* Active indicator is a vertical bar flush against the nav rail's left edge,
+   running the full height of the row. */
 .nav-item.active::before {
   content: '';
   position: absolute;
   left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: 0;
   width: 3px;
-  height: 16px;
   background: #5B5FC7;
   border-radius: 0 3px 3px 0;
 }
@@ -63,13 +68,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .nav-icon-wrap svg {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .nav-badge {

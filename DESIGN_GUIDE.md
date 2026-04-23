@@ -106,8 +106,10 @@ Before adding an icon inline, check `src/components/common/Icon.jsx` — the sha
 
 ### App Bar (Nav Rail) Icons
 
+- **Size:** 24×24 SVG inside a 28×28 wrap (larger than Teams' typical 20px — the icons read more clearly at this size and the prototype skews the detail up slightly)
 - **Inactive state:** Outlined icons, `#666666`
-- **Active state:** Filled icons, Teams purple (`#5B5FC7`); same color drives the 3px left-edge active indicator and an 8% tinted background fill (`rgba(91, 95, 199, 0.08)`)
+- **Active state:** Filled icons, Teams purple (`#5B5FC7`); same color drives a 3px left-edge active indicator spanning the **full height of the nav-item row** (flush top to bottom, not capped) and an 8% tinted background fill (`rgba(91, 95, 199, 0.08)`)
+- **Clickable surfaces:** `chat` and `activity` toggle the left pane (ChatList ↔ ActivityList). Others are decorative for now.
 
 ## Message Patterns
 
