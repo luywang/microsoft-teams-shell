@@ -37,8 +37,46 @@ export const contacts = [
   { id: 23, name: 'Northwind launch', initials: 'NL', color: '#CA5010', status: null, isGroup: true, memberCount: 7 },
   { id: 24, name: 'Dogfood feedback', initials: 'DF', color: '#498205', status: null, isGroup: true, memberCount: 11 },
   // ── Channels (rounded-square avatars; threaded/posts layouts) ──
-  { id: 25, name: 'General', initials: 'AP', color: '#0078D4', status: null, isChannel: true, memberCount: 24 },
-  { id: 26, name: 'Announcements', initials: 'AP', color: '#0078D4', status: null, isChannel: true, memberCount: 42 },
+  // Northwind Traders (client — Alex is a guest).
+  { id: 25, name: 'General', initials: 'NT', color: '#0078D4', status: null, isChannel: true, memberCount: 86 },
+  { id: 26, name: 'Announcements', initials: 'NT', color: '#0078D4', status: null, isChannel: true, memberCount: 124 },
+  { id: 27, name: 'Launch readiness', initials: 'NT', color: '#0078D4', status: null, isChannel: true, memberCount: 14 },
+  // Morgan Collective (Alex's own consultancy).
+  { id: 28, name: 'General', initials: 'MC', color: '#6264A7', status: null, isChannel: true, memberCount: 6 },
+  { id: 29, name: 'Client engagements', initials: 'MC', color: '#6264A7', status: null, isChannel: true, memberCount: 4 },
+  // Morgan Collective partner (used in channel replies).
+  { id: 30, name: 'Taylor Reed', initials: 'TR', color: '#038387', status: 'available' },
+]
+
+// Teams the user belongs to. Each team has a list of channels (by contact id,
+// with optional `bold: true` to indicate unread content). Team icons use the
+// same rounded-square treatment as channels.
+//
+// Per PERSONA.md:
+//  • Northwind Traders is Alex's lead client engagement (guest access).
+//  • Morgan Collective is Alex's own boutique consultancy.
+export const teams = [
+  {
+    id: 't-northwind',
+    name: 'Northwind Traders',
+    initials: 'NT',
+    color: '#0078D4',
+    channels: [
+      { id: 25, bold: true },
+      { id: 26, bold: true },
+      { id: 27 },
+    ],
+  },
+  {
+    id: 't-morgan',
+    name: 'Morgan Collective',
+    initials: 'MC',
+    color: '#6264A7',
+    channels: [
+      { id: 28, bold: true },
+      { id: 29 },
+    ],
+  },
 ]
 
 export const favorites = [

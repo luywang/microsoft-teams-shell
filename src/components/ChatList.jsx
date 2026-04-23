@@ -1,8 +1,29 @@
 import { useState } from 'react'
-import { favorites, projectNorthwind, chatList, contacts } from '../data'
+import { favorites, projectNorthwind, chatList, contacts, teams } from '../data'
 import { copilotLogo } from '../shared/assets'
 import { Avatar } from './common'
 import './ChatList.css'
+
+// Small rounded-square team icon used in the Teams & channels section. Mirrors
+// the channel avatar treatment but is standalone (no status dot, no agent
+// logo) so we don't need to add a synthetic contact for each team.
+function TeamIcon({ team, size = 20 }) {
+  const radius = Math.max(3, Math.round(size * 0.18))
+  return (
+    <div
+      className="team-icon"
+      style={{
+        width: size,
+        height: size,
+        background: team.color,
+        borderRadius: radius,
+        fontSize: size * 0.4,
+      }}
+    >
+      {team.initials}
+    </div>
+  )
+}
 
 function SectionHeader({ label, collapsed, onToggle }) {
   return (
@@ -149,10 +170,57 @@ export default function ChatList({ activeChatId, onSelectChat, readChatIds }) {
         />
 
         {!isCollapsed('chats') && chatList.map(renderItem)}
-      </div>
 
-      <div className="chat-list-footer">
-        <span>Teams and channels</span>
+        {/* Teams and channels section */}
+        <SectionHeader
+          label="Teams and channels"
+          collapsed={isCollapsed('teams')}
+          onToggle={() => toggleSection('teams')}
+        />
+
+        {!isCollapsed('teams') && teams.map((team) => {
+          const teamKey = `team-${team.id}`
+          const teamCollapsed = isCollapsed(teamKey)
+          return (
+            <div key={team.id} className="team-group">
+              <button
+                type="button"
+                className="team-row"
+                aria-expanded={!teamCollapsed}
+                onClick={() => toggleSection(teamKey)}
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="currentColor"
+                  className={`section-chevron-down ${teamCollapsed ? 'section-chevron-collapsed' : ''}`}
+                >
+                  <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
+                </svg>
+                <TeamIcon team={team} size={20} />
+                <span className="team-name">{team.name}</span>
+              </button>
+              {!teamCollapsed && team.channels.map((entry) => {
+                const channel = contacts.find((c) => c.id === entry.id)
+                if (!channel) return null
+                const unread = isUnread(entry.bold, channel.id)
+                return (
+                  <div
+                    key={channel.id}
+                    className={`channel-row ${channel.id === activeChatId ? 'selected' : ''}`}
+                    onClick={() => onSelectChat(channel.id)}
+                  >
+                    <span className={`channel-name ${unread ? 'chat-item-bold' : ''}`}>
+                      {channel.name}
+                    </span>
+                    {unread && <span className="unread-dot" />}
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
       </div>
     </div>
   )

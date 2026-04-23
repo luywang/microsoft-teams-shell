@@ -105,8 +105,8 @@
 .pinned-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 6px 20px;
+  gap: 8px;
+  padding: 5px 20px;
   cursor: pointer;
   color: #424242;
 }
@@ -169,6 +169,13 @@
   text-align: left;
 }
 
+/* Add breathing room above every section header that follows another section
+   inside the scroll container. The top-most section (Favorites) lives outside
+   chat-list-items and is not affected. */
+.chat-list-items > .chat-list-section-header {
+  margin-top: 14px;
+}
+
 .chat-list-section-header:hover {
   color: #242424;
 }
@@ -197,8 +204,8 @@
 .chat-list-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 8px 20px;
+  gap: 10px;
+  padding: 7px 20px;
   cursor: pointer;
   position: relative;
 }
@@ -293,26 +300,71 @@
   flex-shrink: 0;
 }
 
-/* ── Footer ── */
-.chat-list-footer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-top: 1px solid #e8e8e8;
-  font-size: 13px;
-  font-weight: 600;
-  color: #616161;
-  cursor: pointer;
+/* ── Teams & channels section ── */
+.team-group {
+  /* Wraps a team row + its channel rows so the collapse animation can target
+     one block. No explicit styling beyond grouping. */
 }
 
-.chat-list-footer:hover {
+.team-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 20px;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  color: #242424;
+  text-align: left;
+}
+
+.team-row:hover {
   background: #EBEBEB;
+}
+
+.team-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.team-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #242424;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.channel-row {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px 5px 54px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #424242;
+}
+
+.channel-row:hover {
+  background: #EBEBEB;
+}
+
+.channel-row.selected {
+  background: #FFFFFF;
   color: #242424;
 }
 
-.footer-icon {
-  flex-shrink: 0;
+.channel-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ── Demo hint arrow ── */
