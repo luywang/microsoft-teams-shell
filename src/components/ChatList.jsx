@@ -6,7 +6,8 @@ import './ChatList.css'
 
 // Small rounded-square team icon used in the Teams & channels section. Mirrors
 // the channel avatar treatment but is standalone (no status dot, no agent
-// logo) so we don't need to add a synthetic contact for each team.
+// logo) so we don't need to add a synthetic contact for each team. Renders
+// `team.avatar` if set, otherwise falls back to initials over `team.color`.
 function TeamIcon({ team, size = 20 }) {
   const radius = Math.max(3, Math.round(size * 0.18))
   return (
@@ -15,12 +16,20 @@ function TeamIcon({ team, size = 20 }) {
       style={{
         width: size,
         height: size,
-        background: team.color,
+        background: team.avatar ? 'transparent' : team.color,
         borderRadius: radius,
         fontSize: size * 0.4,
       }}
     >
-      {team.initials}
+      {team.avatar ? (
+        <img
+          src={team.avatar}
+          alt=""
+          style={{ width: size, height: size, borderRadius: radius, display: 'block' }}
+        />
+      ) : (
+        team.initials
+      )}
     </div>
   )
 }

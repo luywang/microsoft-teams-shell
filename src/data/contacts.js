@@ -61,6 +61,7 @@ export const teams = [
     name: 'Northwind Traders',
     initials: 'NT',
     color: '#0078D4',
+    avatar: `${base}avatars/northwind-traders.svg`,
     channels: [
       { id: 25, bold: true },
       { id: 26, bold: true },
@@ -72,6 +73,7 @@ export const teams = [
     name: 'Morgan Collective',
     initials: 'MC',
     color: '#6264A7',
+    avatar: `${base}avatars/morgan-collective.svg`,
     channels: [
       { id: 28, bold: true },
       { id: 29 },
@@ -114,3 +116,16 @@ export const chatList = [
   { contactId: 19 },
   { contactId: 20 },
 ]
+
+// Channels inherit their parent team's avatar — a channel in the chat list
+// should visually read as "part of Team X", not get its own generic tile.
+// Backfills any channel contact that doesn't already specify its own avatar.
+for (const team of teams) {
+  if (!team.avatar) continue
+  for (const entry of team.channels) {
+    const channel = contacts.find((c) => c.id === entry.id)
+    if (channel && channel.isChannel && !channel.avatar) {
+      channel.avatar = team.avatar
+    }
+  }
+}

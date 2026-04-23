@@ -187,9 +187,17 @@ Channels appear in the chat list grouped under their parent team:
 
 ## Demo Hint Arrows
 
-Red pulsing arrows (`#E8173A`) cue the viewer where to click next during the demo. They animate with a ~1.5s opacity + translate nudge pointing *toward* the target:
+Red pulsing arrows (`#E8173A`) cue the viewer to the next click target during a prototype walkthrough. Use the reusable **`DemoArrow`** component in `components/common/` — do not inline a new SVG arrow.
 
-- Main compose send button (initial `/Jira` draft)
-- Main compose (after Jira flow completes, prefilled recap reply)
+**Visual spec:**
+- Color: `#E8173A`
+- Animation: ~1.5s opacity (`1` → `0.4`) + `translate` nudge (3px) toward the target
+- Directions: `'left' | 'right' | 'up' | 'down'`
+- Size: 24px default, caller-tunable
 
-These are gated by `JIRA_FLOW_ENABLED` in `ChatView.jsx` — the CSS is retained so re-enabling the flow doesn't require restoring styles.
+**Usage rules:**
+- **Positioning is the caller's job.** Typically `position: absolute` anchored near the target, inside a wrapper with `pointer-events: none` so clicks pass through to the target underneath. Wrap `DemoArrow` in a positioning `<span>` / `<div>` rather than relying on the arrow's own layout.
+- **Arrows are ephemeral.** Track a `show/hide` state wherever the target's click handler lives and unmount the arrow once the target is clicked so it doesn't linger after the action is taken. Clearing persistently (rather than toggling) matches demo/tutorial conventions.
+- One arrow per target at a time — don't stack hints.
+
+The disabled scripted Jira flow in `ChatView.jsx` retains pre-`DemoArrow` inline arrow styles (`.main-compose-hint-arrow`, `.demo-hint-arrow-send` in `Compose.css`; `.agent-chat-hint-arrow` in `AgentsRail.css`) as a reference pattern only. Any new walkthrough should use `DemoArrow` instead.
