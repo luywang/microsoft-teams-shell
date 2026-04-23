@@ -13,7 +13,7 @@ import {
   pollyAgent,
   breakthuAgent,
 } from '../data'
-import { Avatar } from './common'
+import { TypingIndicator } from './common'
 import MessageRow from './MessageRow'
 import SessionsRail from './SessionsRail'
 import AgentsRail from './AgentsRail'
@@ -441,13 +441,15 @@ export default function ChatView({
   const handleSend = () => {
     if (!composeMention && !inputValue.trim()) return
 
+    const chatId = activeChatId
+    const bucket = canvasKey
     const sentText = composeMention
       ? `/${composeMention}${inputValue ? ' ' + inputValue.trimStart() : ''}`
       : inputValue
     setInputValue('')
     setComposeMention(null)
 
-    const isJiraInvocation = JIRA_FLOW_ENABLED && activeChatId === 11 && sentText.toLowerCase().includes('jira')
+    const isJiraInvocation = JIRA_FLOW_ENABLED && chatId === 11 && sentText.toLowerCase().includes('jira')
     if (isJiraInvocation) {
       startJiraDemoFlow(sentText)
       return
@@ -461,9 +463,27 @@ export default function ChatView({
     }
     setExtraMessages((prev) => ({
       ...prev,
-      [canvasKey]: [...(prev[canvasKey] || []), myMessage],
+      [bucket]: [...(prev[bucket] || []), myMessage],
     }))
     finalizePendingSession(sentText)
+
+    // Sarah Chen (id 1) scripted auto-response — exercises the typing
+    // indicator flow end-to-end from a regular 1:1 chat.
+    if (chatId === 1) {
+      setMainTypingAgentId(chatId)
+      setTimeout(() => {
+        setMainTypingAgentId((prev) => (prev === chatId ? null : prev))
+        setExtraMessages((prev) => ({
+          ...prev,
+          [bucket]: [...(prev[bucket] || []), {
+            id: `sarah-reply-${Date.now()}`,
+            senderId: 1,
+            text: 'got it — taking a look now, will ping you in a bit',
+            time: nowTimeStr(),
+          }],
+        }))
+      }, 2000)
+    }
   }
 
   const sendPromptSuggestion = (suggestion) => {
@@ -557,31 +577,27 @@ export default function ChatView({
                   onOpenThread={openJiraThread}
                 />
               ))}
-              {mainTypingAgentId === activeChatId && (
-                <div className="message-row message-typing-row">
-                  <div className="message-avatar-col">
-                    <Avatar contact={activeContact} size={32} />
-                  </div>
-                  <div className="message-typing-bubble" aria-label={`${activeContact.name} is typing`}>
-                    <span className="message-typing-dots">
-                      <span /><span /><span />
-                    </span>
-                  </div>
-                </div>
-              )}
               <div ref={messagesEndRef} />
             </div>
           )}
         </div>
 
-        <Compose
-          value={inputValue}
-          mention={composeMention}
-          onChange={setInputValue}
-          onClearMention={() => setComposeMention(null)}
-          onSend={handleSend}
-          isChannel={isChannel}
-        />
+        <div className="chat-compose-area">
+          {mainTypingAgentId === activeChatId && (
+            <TypingIndicator
+              contact={activeContact}
+              className="chat-compose-typing"
+            />
+          )}
+          <Compose
+            value={inputValue}
+            mention={composeMention}
+            onChange={setInputValue}
+            onClearMention={() => setComposeMention(null)}
+            onSend={handleSend}
+            isChannel={isChannel}
+          />
+        </div>
       </div>
 
       {showSessions && (

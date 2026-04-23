@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Avatar, LinkCard, IconButton, PrivateDisclaimer, Close, Clock, ChevronLeft, Send } from './common'
+import { Avatar, LinkCard, IconButton, PrivateDisclaimer, TypingIndicator, Close, Clock, ChevronLeft, Send } from './common'
 import './AgentsRail.css'
 
 function AgentItem({ agent, onClick }) {
@@ -90,14 +90,12 @@ function AgentChat({ agent, messages, onSendMessage, composeHint, isTyping }) {
         <div ref={endRef} />
       </div>
       {isTyping && (
-        <div className="agent-chat-typing">
-          <div className="agent-chat-typing-avatar-wrap">
-            <Avatar contact={agent} size={24} />
-          </div>
-          <span className="agent-chat-typing-dots">
-            <span /><span /><span />
-          </span>
-        </div>
+        <TypingIndicator
+          contact={agent}
+          avatarSize={24}
+          dotSize={4}
+          className="agent-chat-typing"
+        />
       )}
       <div className="agent-chat-compose">
         {/* Jira demo hint arrow removed — `.agent-chat-hint-arrow` remains in CSS if needed. */}

@@ -6,7 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A high-fidelity static shell of the Microsoft Teams Chat UI, intended as a **forkable starting point for prototyping new Teams features**. The shell already looks like Teams out of the box, so prototype work can focus on the new feature rather than rebuilding chrome. There is no backend; all data is mocked.
 
-Seeded content (messages, chat names, session titles, agent replies) should sound like it came from a real person's Teams. Read `PERSONA.md` before generating any new content — it describes the user's role, active projects, collaborators, and communication style. Reuse names and details from there instead of inventing generic placeholders.
+Users will ask you to build, modify, or extend prototype features on top of this shell. **Stay within the boundaries of the Microsoft Teams framework and design language** — match real Teams chrome, interaction patterns, and visual style unless the user explicitly asks you to deviate. The goal is that a prototype feels indistinguishable from real Teams except for the new feature under test.
+
+## REQUIRED READING — Before Any Change
+
+**At the start of every task that touches the experience (UI, copy, data, flows, styling), read these two files first:**
+
+1. **`PERSONA.md`** — the user's role, active projects, collaborators, and communication style. Any new messages, chat names, session titles, agent replies, or draft text must sound like it came from this person's Teams. Reuse existing names, tickets, and surface references instead of inventing generic placeholders.
+2. **`DESIGN_GUIDE.md`** — color tokens, spacing, typography, icon style, card patterns, and surface decisions. Any visual change (colors, layout, new component, card anatomy) must conform to what's documented here.
+
+These are not optional references — they are the guardrails that keep prototypes on-brand and on-voice. If the user provides new persona details or design guidance during a task, **update the corresponding file** in the same change so future work stays in sync.
 
 ## Repo Layout
 
@@ -99,7 +108,7 @@ Channels are additionally grouped into teams via the `teams` export. Each team h
 
 ### Component layers
 
-- `src/components/common/` — shared primitives meant for reuse across surfaces (`Avatar`, `LinkCard`, `IconButton`, `Icon` library, `PrivateDisclaimer`). Add a new reusable primitive here; don't inline SVGs or hand-roll a button when a common one fits.
+- `src/components/common/` — shared primitives meant for reuse across surfaces. See the **Available Components** catalog below for the full list. Add a new reusable primitive here; don't inline SVGs or hand-roll a button when a common one fits.
 - `src/components/` — feature components for the current surface:
   - `TitleBar`, `NavRail`, `ChatList` — chrome
   - `ActivityList` — left pane when the bell icon is selected; chronological feed of reactions/replies/mentions that target the current user. Clicking an event routes `ChatView` to the source chat (and opens a channel thread or flashes an anchor message when relevant)
@@ -113,6 +122,21 @@ Channels are additionally grouped into teams via the `teams` export. Each team h
 ### Styling
 
 Component-scoped CSS: each `Foo.jsx` has a sibling `Foo.css`. No CSS-in-JS, no Tailwind. Color tokens, spacing, and surface decisions are documented in `DESIGN_GUIDE.md` — always consult it before changing colors or layout surfaces, and update it when the user provides new design guidance.
+
+## Available Components
+
+Running catalog of the reusable primitives in `src/components/common/`. **Always check this list before building a new component** — if something here fits (even loosely), reuse it rather than rolling your own. Import from the barrel: `import { Avatar, TypingIndicator, ... } from '../common'` (or `./common` depending on depth).
+
+A component appearing here doesn't mean it's actively used in the default repo — some are provided for prototyping surfaces that aren't wired up out of the box. **When you add a new reusable primitive to `components/common/`, add a row to this table in the same change.**
+
+| Component | What it is | Props | Notes |
+|-----------|------------|-------|-------|
+| `Avatar` | Person / agent / group / channel avatar. Circle for people/agents/groups, rounded-square for channels. Renders an image if `contact.avatar` is set, else an agent logo (via `shared/agentLogos.jsx`) for agents, else `contact.initials` over `contact.color`. | `contact`, `size = 36` | Status dot auto-draws when `contact.status` is set and auto-scales (~28% of avatar). See `DESIGN_GUIDE.md` for established sizes per surface. |
+| `LinkCard` | Rich external-link card used inside message bubbles — icon tile + title/subtitle. Today supports Jira and GitHub icon treatments. | `link: { source, title, subtitle, url }` | `source: 'jira' \| 'github'`. Extend the icon set inside the component when a new source is needed. |
+| `IconButton` | Accessible icon-only button: consistent reset, hover state, required `aria-label`. | `label`, `active?`, `className?`, `children`, plus any native `<button>` props | Use this instead of hand-rolling a `<button>` with an SVG — callers still add their own className for size/color. |
+| `PrivateDisclaimer` | Lock icon + "Only you can see this conversation" strip. | `text?` (override the default copy) | Used inside private message bubbles and above the agents-rail chat thread. |
+| `TypingIndicator` | Canonical "X is typing" UI — avatar + 3 bouncing dots. **Whenever a task says "typing indicator", it means this.** | `contact`, `avatarSize = 32`, `dotSize = 5`, `className?` | Component owns only the avatar + dots visual; positioning is the caller's job. Main canvas: floats above `Compose` with the avatar's bottom ~10% tucked behind the compose box top edge (see `.chat-compose-area` / `.chat-compose-typing` in `ChatView.css`). Agents rail: in-flow above the rail compose. Add new surface-specific CSS rather than forking the component. |
+| `Icon` library | Shared SVG icons exported from `components/common/Icon.jsx`: `Close`, `Plus`, `ChevronDown`, `ChevronLeft`, `Send`, `Clock`, `Search`, `Dots`, `EmojiAdd`, `Edit`, `Lock`. | Each takes `size`; stroked icons (`Clock`, `EmojiAdd`, `Edit`) also take `stroke`. | When adding a new icon, start at [fluenticons.co](https://fluenticons.co/) (Fluent UI — matches Teams). Add it here instead of inlining SVG in a feature component. |
 
 ## Key Conventions
 
@@ -130,6 +154,6 @@ Component-scoped CSS: each `Foo.jsx` has a sibling `Foo.css`. No CSS-in-JS, no T
 
 - Set up the scenario in `src/data/` first (new contact, message, agent, session, channel post)
 - Any time you author new copy — messages, chat names, session titles, agent responses, draft text — consult `PERSONA.md` and match the user's voice, active projects, and collaborators. Reuse existing names/tickets/surface references instead of inventing new ones.
-- Reach for `components/common/` primitives before rolling a new button, icon, or avatar. Import icons from `./common` (or `../common`) — the library is in `components/common/Icon.jsx`.
+- Reach for `components/common/` primitives before rolling a new button, icon, avatar, or typing indicator — see the **Available Components** catalog above. Import from the barrel (`./common` / `../common`), including icons from the `Icon` library.
 - Import data from `src/data.js` (the barrel), not from individual `src/data/*` files.
 - If the user provides design guidance (colors, spacing, icon styles, typography, card patterns), update `DESIGN_GUIDE.md` in addition to implementing the change
