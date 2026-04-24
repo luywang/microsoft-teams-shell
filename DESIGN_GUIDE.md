@@ -1,4 +1,4 @@
-# Design Guide
+# Design Guide 2
 
 ## Color Palette
 
