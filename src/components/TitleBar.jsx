@@ -1,11 +1,21 @@
 import { currentUser } from '../data/contacts'
-import { Avatar, ChevronLeft, ChevronRight } from './common'
+import { Avatar, ChevronLeft, ChevronRight, Info } from './common'
 import './TitleBar.css'
 
-export default function TitleBar() {
+export default function TitleBar({ onShowFre }) {
   return (
     <div className="title-bar">
-      <div className="title-bar-left" />
+      <div className="title-bar-left">
+        {onShowFre && (
+          <button
+            className="title-btn"
+            aria-label="Show welcome info"
+            onClick={onShowFre}
+          >
+            <Info size={16} />
+          </button>
+        )}
+      </div>
 
       <div className="title-bar-center">
         <div className="title-bar-nav-buttons">

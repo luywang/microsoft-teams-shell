@@ -95,6 +95,24 @@ export function Edit({ size = 16 }) {
   )
 }
 
+export function Info({ size = 18, stroke = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="10" r="7.5"/>
+      <path d="M10 9.5v4"/>
+      <circle cx="10" cy="6.75" r="0.85" fill={stroke} stroke="none"/>
+    </svg>
+  )
+}
+
+export function Check({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 8.5l3.5 3.5L13 5"/>
+    </svg>
+  )
+}
+
 export function ChatMultiple({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
