@@ -18,4 +18,22 @@ export const agentSessions = {
     { id: 's4-6', name: 'Release readiness check', time: 'Apr 9 10:00 AM', preview: 'Verified all tickets for v2.3 release are Done or Ready for QA.', sourceChatId: 11 },
     { id: 's4-7', name: 'Dependency audit', time: 'Apr 7 2:45 PM', preview: 'Listed all tickets blocked by the auth token refresh work.' },
   ],
+  31: [
+    { id: 's31-1', name: 'Northwind launch file activity', time: 'Today 4:10 PM', preview: 'Listed recent edits, detached instances, and deprecated-token frames.' },
+    { id: 's31-2', name: 'Variant C empty state export', time: 'Today 2:40 PM', preview: 'Exported variant-c-empty-state at 2x for the launch blog.' },
+    { id: 's31-3', name: 'Prompt-card v2.4 changelog', time: 'Today 10:15 AM', preview: 'Pulled the v2.4 changelog and current usage count.' },
+    { id: 's31-4', name: 'Detached instances audit', time: 'Yesterday 11:20 AM', preview: 'Flagged 3 detached component instances and tagged Sarah on each.' },
+    { id: 's31-5', name: 'Token migration sweep', time: 'Apr 18 3:00 PM', preview: 'Migrated 2 frames off deprecated tokens with one-token equivalents.' },
+    { id: 's31-6', name: 'Component library diff', time: 'Apr 15 9:30 AM', preview: 'Compared v2.3 → v2.4 component library and listed breaking renames.' },
+  ],
+  32: [
+    { id: 's32-1', name: 'Northwind partner readout prep', time: 'Today 4:31 PM', preview: 'Generated brief, draft email, and competitive context with citations. 2 checkpoints surfaced.' },
+    { id: 's32-2', name: 'Calendar audit — Tuesday', time: 'Tue 7:58 AM', preview: 'Approved plan: resolved 1 conflict, declined 2 low-priority meetings, blocked 2–4 PM as focus.' },
+    { id: 's32-3', name: 'Research: handoff benchmarks', time: 'Tue 11:33 AM', preview: 'Compiled 1-page summary across 8 internal + external sources with inline citations.' },
+    { id: 's32-4', name: 'Launch plan: Cross-tenant v3', time: 'Mon 3:15 PM', preview: 'Drafted competitive view, value prop one-pager, and milestone outline with proposed owners.' },
+    { id: 's32-5', name: 'Meeting prep: Rachel 1:1', time: 'Mon 11:40 AM', preview: 'Aggregated 14-day context, drafted talking points, queued follow-up email template.' },
+    { id: 's32-6', name: '30-day focus reflection', time: 'Today 4:31 PM', preview: 'Running — will populate the Reflect-on-Friday Word doc by Fri morning.' },
+    { id: 's32-7', name: 'Workstream digest: Northwind', time: 'Mon 7:00 AM', preview: 'Daily 7-AM digest combining channel posts, open emails, and pending decisions.' },
+    { id: 's32-8', name: 'Competitive snapshot: Vendor Y', time: 'Apr 18 2:20 PM', preview: 'Built Excel comparison across 5 dimensions; flagged methodology gaps for review.' },
+  ],
 }
