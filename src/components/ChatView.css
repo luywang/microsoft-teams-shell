@@ -16,12 +16,19 @@
 /* Header styles live in ChatHeader.css. Compose styles live in Compose.css. */
 
 /* ── Messages ── */
+/* Horizontal padding here ensures the message-row avatar (which extends
+   16px past the messages-container outer edge via `margin-left: -40px`)
+   stays clear of the canvas edge as the viewport narrows or rails take
+   space — gives a 16px buffer between avatar and canvas edge. The same
+   padding amount is mirrored on `.chat-compose-area` (with its max-width
+   bumped by 2× the padding) so bubble and compose stay aligned. */
 .chat-messages {
   flex: 1;
   overflow-y: auto;
   background: #FFFFFF;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding: 0 32px;
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -177,9 +184,10 @@
    bottom ~10% of the typing avatar. */
 .chat-compose-area {
   position: relative;
-  max-width: 920px;
+  max-width: 984px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 32px;
   box-sizing: border-box;
 }
 
