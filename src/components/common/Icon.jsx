@@ -33,6 +33,14 @@ export function ChevronLeft({ size = 16 }) {
   )
 }
 
+export function ChevronRight({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
+      <path d="M5.65 2.65a.5.5 0 0 1 .7 0l5 5a.5.5 0 0 1 0 .7l-5 5a.5.5 0 0 1-.7-.7L10.29 8 5.65 3.35a.5.5 0 0 1 0-.7z"/>
+    </svg>
+  )
+}
+
 export function Send({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="currentColor">

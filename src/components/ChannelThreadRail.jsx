@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import MessageRow from './MessageRow'
-import { IconButton, Close, Send } from './common'
+import { IconButton, Close, Dots, Send } from './common'
 import './ChannelThreadRail.css'
 
 // Right-pane thread view for a channel post. Shows the root post, all replies,
@@ -55,9 +55,14 @@ export default function ChannelThreadRail({ post, activeContact, onClose }) {
           <span className="channel-thread-rail-title-chevron" aria-hidden="true">›</span>
           <span className="channel-thread-rail-title-subject">{firstLine}</span>
         </div>
-        <IconButton label="Close" className="channel-thread-rail-close" onClick={onClose}>
-          <Close />
-        </IconButton>
+        <div className="channel-thread-rail-actions">
+          <IconButton label="More options" className="channel-thread-rail-action">
+            <Dots size={16} />
+          </IconButton>
+          <IconButton label="Close" className="channel-thread-rail-action" onClick={onClose}>
+            <Close />
+          </IconButton>
+        </div>
       </div>
 
       <div className="channel-thread-rail-body">

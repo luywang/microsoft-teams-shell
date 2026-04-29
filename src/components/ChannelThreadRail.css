@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 20px;
   padding: 0 16px;
   height: 56px;
   border-bottom: 1px solid #E8E8E8;
@@ -58,7 +58,14 @@
   text-overflow: ellipsis;
 }
 
-.channel-thread-rail-close {
+.channel-thread-rail-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.channel-thread-rail-action {
   background: none;
   border: none;
   padding: 4px;
@@ -68,10 +75,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
 }
 
-.channel-thread-rail-close:hover {
+.channel-thread-rail-action:hover {
   background: #F0F0F0;
   color: #242424;
 }

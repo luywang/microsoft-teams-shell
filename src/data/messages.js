@@ -477,6 +477,27 @@ export const messagesByContact = {
     { id: 18, senderId: 'me', text: 'Cut. Also rebalanced the demo callout sizes — felt like the second one was getting too much visual weight.', time: 'Today 3:50 PM', reactions: [{ emoji: '📝', count: 2 }] },
   ],
 
+  // ── Figma agent ───────────────────────────────────────────────────────
+  31: [
+    { id: 1, senderId: 31, text: 'Hi Alex — I\'m the Figma agent. Ask me about files, frames, components, or recent edits in your team library.', time: 'Mon 9:00 AM' },
+    { id: 2, senderId: 'me', text: 'What changed in the Northwind launch file in the last 24 hours?', time: 'Mon 9:02 AM' },
+    { id: 3, senderId: 31, text: 'Northwind / Agents Platform v2 — Launch — 6 edits in the last 24h:\n\n• Sarah Chen — updated Variant C empty state copy\n• Sarah Chen — swapped 4px → 8px corner radius on prompt cards\n• Sarah Chen — added 4 error-state variants (auth, rate-limit, expired, offline)\n• Auto-layout fix on the partner onboarding frame\n• 2 component instances detached (now reattached)', time: 'Mon 9:02 AM' },
+    { id: 4, senderId: 'me', text: 'Pull the variant C empty state — share the frame link?', time: 'Mon 9:05 AM' },
+    { id: 5, senderId: 31, text: 'figma.com/file/nw-launch/Variant-C-Empty-State — last edited by Sarah Chen 47m ago. 1 unresolved comment from Emma Larsen on the body copy.', time: 'Mon 9:05 AM' },
+    { id: 6, senderId: 'me', text: 'Any detached instances still floating in the file?', time: 'Tue 11:20 AM' },
+    { id: 7, senderId: 31, text: '3 detached component instances in the Northwind launch file:\n\n• Button / Primary — partner onboarding step 2\n• Toast / Info — session expired flow\n• Avatar / 32 — agents rail header\n\nWant me to flag them for Sarah?', time: 'Tue 11:20 AM' },
+    { id: 8, senderId: 'me', text: 'Yes — comment on each with @Sarah and a one-line note.', time: 'Tue 11:22 AM' },
+    { id: 9, senderId: 31, text: 'Done. 3 comments left on the file, all assigned to Sarah Chen.', time: 'Tue 11:22 AM', reactions: [{ emoji: '👍', count: 1 }] },
+    { id: 10, senderId: 'me', text: 'What\'s the latest version of the prompt-suggestion card component? Need to make sure I\'m referencing the right one in the PRD.', time: 'Today 10:15 AM' },
+    { id: 11, senderId: 31, text: 'Component: Card / Prompt Suggestion — v2.4 (published 4/21 by Sarah Chen).\n\nv2.4 changelog:\n• 8px corner radius (was 4px)\n• Hover lift reduced 4px → 2px\n• Title size 15 → 14\n\nUsed in 3 files, 18 instances.', time: 'Today 10:15 AM' },
+    { id: 12, senderId: 'me', text: 'Export the variant C empty state at 2x for the launch blog.', time: 'Today 2:40 PM' },
+    { id: 13, senderId: 31, text: 'Exported variant-c-empty-state@2x.png (1840×1240). Dropped in the shared launch folder under /assets/blog/.', time: 'Today 2:40 PM', reactions: [{ emoji: '🎨', count: 1 }] },
+    { id: 14, senderId: 'me', text: 'Any frames in the file still using the old token system? Want a clean handoff before launch.', time: 'Today 4:10 PM' },
+    { id: 15, senderId: 31, text: '2 frames still reference deprecated tokens:\n\n• Settings / Notification preferences — uses color/legacy/surface-2\n• Onboarding / Step 4 — uses spacing/legacy/md\n\nBoth have one-token migrations available. Apply automatically?', time: 'Today 4:10 PM' },
+    { id: 16, senderId: 'me', text: 'Apply both and leave a comment so Sarah sees it next time she\'s in the file.', time: 'Today 4:12 PM' },
+    { id: 17, senderId: 31, text: 'Migrations applied to both frames. Comment left on each tagging Sarah Chen with the diff.', time: 'Today 4:12 PM', reactions: [{ emoji: '✅', count: 1 }] },
+  ],
+
   // ── Dogfood feedback (group) ──────────────────────────────────────────
   24: [
     { id: 1, senderId: 17, text: 'Tried the Northwind agent this morning — the prompt suggestions on a new session are really helpful when you don\'t know what to ask.', time: 'Mon 10:05 AM', reactions: [{ emoji: '🔥', count: 4 }, { emoji: '❤️', count: 2 }] },

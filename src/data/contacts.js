@@ -46,6 +46,7 @@ export const contacts = [
   { id: 29, name: 'Client engagements', initials: 'MC', color: '#6264A7', status: null, isChannel: true, memberCount: 4 },
   // Morgan Collective partner (used in channel replies).
   { id: 30, name: 'Taylor Reed', initials: 'TR', color: '#038387', status: 'available' },
+  { id: 31, name: 'Figma', initials: null, color: '#FFFFFF', status: null, isAgent: true, logo: 'figma', avatar: `${base}avatars/figma.png`, logoInset: true, description: 'Design files and component libraries' },
 ]
 
 // Teams the user belongs to. Each team has a list of channels (by contact id,
@@ -115,6 +116,7 @@ export const chatList = [
   { contactId: 10 },
   { contactId: 19 },
   { contactId: 20 },
+  { contactId: 31 },
 ]
 
 // Channels inherit their parent team's avatar — a channel in the chat list
