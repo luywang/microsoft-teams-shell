@@ -14,7 +14,7 @@ export default function TypingIndicator({ contact, avatarSize = 32, dotSize = 5,
       aria-label={`${contact.name} is typing`}
       style={{ '--typing-dot-size': `${dotSize}px` }}
     >
-      <Avatar contact={contact} size={avatarSize} />
+      <Avatar contact={contact} size={avatarSize} hideStatus />
       <span className="typing-indicator-dots">
         <span /><span /><span />
       </span>

@@ -15,6 +15,15 @@
   object-fit: cover;
 }
 
+.avatar-inset {
+  border: 1px solid #E0E0E0;
+  box-sizing: border-box;
+}
+
+.avatar-img-inset {
+  object-fit: contain;
+}
+
 .status-dot {
   position: absolute;
   bottom: -3px;

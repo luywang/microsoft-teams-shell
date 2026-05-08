@@ -1,16 +1,19 @@
-import { Avatar, IconButton, Clock, Plus, Dots } from './common'
+import { Avatar, IconButton, ChatMultiple, Clock, Plus, Dots } from './common'
 import './ChatHeader.css'
 
 // Teams-style chat header: avatar + name, inline tabs, and the right-side
 // action cluster (meet, participants, notes, sessions, apps, more). Static
-// placeholders for most actions — the sessions toggle is the only wired one.
+// placeholders for most actions — sessions and threads are the wired toggles.
 export default function ChatHeader({
   activeContact,
   isChannel,
+  isGroup,
   participantCount,
   hasSessions,
   showSessions,
   onToggleSessions,
+  showThreads,
+  onToggleThreads,
 }) {
   return (
     <div className="chat-view-header">
@@ -41,8 +44,8 @@ export default function ChatHeader({
               <rect x="2" y="4" width="12" height="11" rx="1.5"/>
               <path d="M14 8.5l4-2.5v8l-4-2.5"/>
             </svg>
-            <span>Meet now</span>
-            <svg width="10" height="10" viewBox="0 0 12 12" fill="currentColor" className="meet-chevron">
+            <span className="meet-now-label">Meet now</span>
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" className="meet-chevron">
               <path d="M2.15 4.15a.5.5 0 0 1 .7 0L6 7.29l3.15-3.14a.5.5 0 0 1 .7.7l-3.5 3.5a.5.5 0 0 1-.7 0l-3.5-3.5a.5.5 0 0 1 0-.7z"/>
             </svg>
           </button>
@@ -56,6 +59,16 @@ export default function ChatHeader({
             <span className="participants-count">{participantCount}</span>
           </button>
           <div className="header-divider" />
+          {isGroup && (
+            <IconButton
+              label="Threads"
+              active={showThreads}
+              className="header-action-btn"
+              onClick={onToggleThreads}
+            >
+              <ChatMultiple />
+            </IconButton>
+          )}
           <button className="header-action-btn" aria-label="Notes">
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 3h10a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4V3z"/>

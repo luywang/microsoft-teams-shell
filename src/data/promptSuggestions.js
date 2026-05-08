@@ -91,4 +91,92 @@ export const promptSuggestions = {
         'v2.4 release readiness:\n\n✅ Feature tickets: 7 of 7 Done\n⚠️ Bug fixes: 4 of 5 Done (JIRA-4578 still In Progress)\n⚠️ QA sign-off: Pending — blocked on JIRA-4578\n✅ Staging deployment: Verified April 20\n✅ Load test: Passed (p99 = 178ms, target <200ms)\n⚠️ Docs: 1 of 2 articles updated\n\nTwo items in progress — both are feasible for the April 25 target if JIRA-4578 lands by tomorrow. Want me to check in with the owners?',
     },
   ],
+  31: [
+    {
+      title: 'What changed recently',
+      description: 'Recent edits across a Figma file or library.',
+      text: 'What changed in the Northwind launch file in the last 24 hours?',
+      response:
+        'Northwind / Agents Platform v2 — Launch — 5 edits in the last 24h:\n\n• Sarah Chen — tightened body copy on Variant C empty state\n• Sarah Chen — swapped 4px → 8px corner radius on prompt cards\n• Sarah Chen — added 4 error-state variants (auth, rate-limit, expired, offline)\n• Auto-layout fix on the partner onboarding frame\n• 1 component instance detached on Step 4 (now reattached)',
+    },
+    {
+      title: 'Find a component',
+      description: 'Look up the latest published version + usage.',
+      text: 'Find the latest version of the prompt-suggestion card component.',
+      response:
+        'Component: Card / Prompt Suggestion — v2.4 (published 4/21 by Sarah Chen).\n\nv2.4 changelog:\n• 8px corner radius (was 4px)\n• Hover lift reduced 4px → 2px\n• Title size 15 → 14\n\nUsed in 3 files, 18 instances.',
+    },
+    {
+      title: 'Audit detached instances',
+      description: 'Find component instances that broke from the library.',
+      text: 'Audit detached component instances across the Northwind launch file.',
+      response:
+        '3 detached component instances:\n\n• Button / Primary — partner onboarding step 2\n• Toast / Info — session expired flow\n• Avatar / 32 — agents rail header\n\nWant me to flag them for Sarah?',
+    },
+    {
+      title: 'Export an asset',
+      description: 'Export a frame for a doc, blog post, or deck.',
+      text: 'Export the variant C empty state at 2x for the launch blog.',
+      response:
+        'Exported variant-c-empty-state@2x.png (1840×1240). Dropped in the shared launch folder under /assets/blog/.',
+    },
+    {
+      title: 'Token migration check',
+      description: 'Find frames still using deprecated tokens.',
+      text: 'Which frames are still using deprecated tokens?',
+      response:
+        '2 frames still reference deprecated tokens:\n\n• Settings / Notification preferences — uses color/legacy/surface-2\n• Onboarding / Step 4 — uses spacing/legacy/md\n\nBoth have one-token equivalents available. Apply automatically?',
+    },
+    {
+      title: 'Compare library versions',
+      description: 'Diff two versions of a component library.',
+      text: 'Compare the v2.3 → v2.4 component library and list breaking renames.',
+      response:
+        'v2.3 → v2.4 component library diff:\n\nBreaking renames (3):\n• Button / Primary → Button / Filled (style API parity)\n• Card / Suggestion → Card / Prompt Suggestion (clarifies usage)\n• Toast / Error → Toast / Critical (severity scale rename)\n\nNon-breaking: 12 published edits, 0 removed components.',
+    },
+  ],
+  32: [
+    {
+      title: 'Prep for a meeting',
+      description: 'Brief, follow-up draft, and key context.',
+      text: 'Prep me for my next partner readout — one-page brief, draft follow-up email, and key open questions.',
+      response:
+        'Plan ready: aggregate context (last 30 days of channels/email/tracker), draft a one-page brief in Word, draft a follow-up email in Outlook (saves to drafts), and surface open questions inline. Estimated runtime ~4 minutes. Approve to run, or tell me what to change.',
+    },
+    {
+      title: 'Audit my calendar',
+      description: 'Resolve conflicts, protect focus time.',
+      text: 'Audit my calendar for tomorrow. Decline anything I\'m not the decision-maker on; protect 2–4 PM as deep work.',
+      response:
+        'Plan ready: 11 meetings reviewed, 1 conflict found, 2 low-priority candidates flagged, 2:00–4:00 PM focus block proposed. I\'ll send polite "follow up async" notes on the declines. Approve to apply, or edit the plan.',
+    },
+    {
+      title: 'Compile research',
+      description: 'Web + internal sources, with citations.',
+      text: 'Compile a one-pager on agent handoff benchmarks across the industry. Internal + public sources, with citations.',
+      response:
+        'Plan ready: pull internal staging data and CA working-group thread, plus 5 external sources (Vendor X benchmark, Vendor Y whitepaper, 2 Forrester notes, 1 Gartner mention). Output a one-page Word summary with inline citations and a 5-row comparison table. ~2 minutes. Approve to run.',
+    },
+    {
+      title: 'Build a launch plan',
+      description: 'Competitive view, value prop, milestones.',
+      text: 'Build a launch plan for the cross-tenant v3 capability — competitive analysis, value prop, milestone outline with owners.',
+      response:
+        'Plan ready: 4 deliverables — competitive analysis (Excel), value-prop one-pager (Word), pitch deck skeleton (PowerPoint), milestone outline with proposed owners (Word). I\'ll cite all internal sources. Estimated runtime ~6 minutes. Approve to run, or scope down.',
+    },
+    {
+      title: 'Summarize a workstream',
+      description: 'Catch up across channels, email, and docs.',
+      text: 'Give me a daily digest of what\'s moving on the Northwind launch — channels, partner email threads, and pending decisions.',
+      response:
+        'Plan ready: scan Northwind launch channel + 3 partner email threads + readiness tracker for the last 24h. Output a 5-bullet digest grouped by theme (decisions pending · risks · wins · blockers · FYI). Run as a daily 7 AM job? Or one-time?',
+    },
+    {
+      title: 'Draft a follow-up email',
+      description: 'From a meeting or thread, with action items.',
+      text: 'Draft a follow-up email from this week\'s Northwind launch sync — recap, action items, owners.',
+      response:
+        'Plan ready: pull meeting notes + chat thread, draft an email with 3 sections (recap, action items with owners + dates, open questions). Saves to Outlook drafts so you can review before sending. ~1 minute. Approve to run.',
+    },
+  ],
 }

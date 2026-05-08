@@ -53,10 +53,32 @@ export const sessionMessages = {
     { id: 1, senderId: 'me', text: 'Show me all blockers for the April 25 milestone', time: '11:00 AM' },
     { id: 2, senderId: 4, text: 'Found 2 open blockers for the April 25 milestone:\n\n• JIRA-4555 — Auth token refresh during agent handoff (High, assigned to Kevin Park)\n• JIRA-4562 — Plugin sandbox file system isolation (High, assigned to Alex Morgan)\n\nBoth are In Progress. Would you like more details on either?', time: '11:00 AM' },
     { id: 3, senderId: 'me', text: 'What\'s the status on JIRA-4555? Any recent updates?', time: '11:05 AM' },
-    { id: 4, senderId: 4, text: 'JIRA-4555 — Last updated 2 hours ago by Kevin Park:\n\n"Found the root cause. The refresh token is being invalidated during the handoff context switch. Working on a fix that preserves the token across agent boundaries. ETA: end of day tomorrow."\n\nThere are 5 comments and 1 linked PR (draft).', time: '11:05 AM' },
+    {
+      id: 4,
+      senderId: 4,
+      text: 'JIRA-4555 — Last updated 2 hours ago by Kevin Park:\n\n"Found the root cause. The refresh token is being invalidated during the handoff context switch. Working on a fix that preserves the token across agent boundaries. ETA: end of day tomorrow."\n\nThere are 5 comments and 1 linked PR (draft).',
+      link: {
+        source: 'jira',
+        title: 'JIRA-4555 — Auth token refresh during agent handoff',
+        subtitle: 'In Progress · Kevin Park · High priority',
+        url: 'https://jira.example.com/browse/JIRA-4555',
+      },
+      time: '11:05 AM',
+    },
   ],
   's4-3': [
-    { id: 1, senderId: 4, text: 'JIRA-4521 has been assigned to you: "Implement notification preference API endpoints"', time: '2:15 PM' },
+    {
+      id: 1,
+      senderId: 4,
+      text: 'JIRA-4521 has been assigned to you: "Implement notification preference API endpoints"',
+      link: {
+        source: 'jira',
+        title: 'JIRA-4521 — Implement notification preference API endpoints',
+        subtitle: 'To Do · assigned to you · Sprint 14',
+        url: 'https://jira.example.com/browse/JIRA-4521',
+      },
+      time: '2:15 PM',
+    },
     { id: 2, senderId: 'me', text: 'What\'s the full description and acceptance criteria?', time: '2:18 PM' },
     { id: 3, senderId: 4, text: 'JIRA-4521 — Implement notification preference API endpoints\n\nDescription: Build REST endpoints for managing user notification preferences across push, email, and in-app channels.\n\nAcceptance Criteria:\n• GET /preferences returns the full preference matrix\n• PUT /preferences updates individual channel × category toggles\n• POST /preferences/reset restores defaults\n• All endpoints require authentication\n• Changes emit a PreferenceUpdated event', time: '2:18 PM' },
     { id: 4, senderId: 'me', text: 'Who are the linked issues?', time: '2:22 PM' },
@@ -72,18 +94,594 @@ export const sessionMessages = {
     { id: 1, senderId: 'me', text: 'Show me all P1 bugs in the webhook delivery module', time: '3:20 PM' },
     { id: 2, senderId: 4, text: 'Found 3 open P1 bugs in the webhook delivery module:\n\n• JIRA-4570 — "Webhooks silently failing for payloads over 1MB" (Unassigned)\n• JIRA-4573 — "Retry count not resetting after successful delivery" (Assigned to Olivia Martinez)\n• JIRA-4578 — "TLS handshake timeout not respecting configured value" (Assigned to you)', time: '3:20 PM' },
     { id: 3, senderId: 'me', text: 'Assign JIRA-4570 to me', time: '3:25 PM' },
-    { id: 4, senderId: 4, text: 'Done. JIRA-4570 has been assigned to Alex Morgan. I\'ve also updated the status to In Progress. You now have 5 open tickets in Sprint 14.', time: '3:25 PM' },
+    {
+      id: 4,
+      senderId: 4,
+      text: 'Done. JIRA-4570 has been assigned to Alex Morgan. I\'ve also updated the status to In Progress. You now have 5 open tickets in Sprint 14.',
+      link: {
+        source: 'jira',
+        title: 'JIRA-4570 — Webhooks silently failing for payloads over 1MB',
+        subtitle: 'In Progress · assigned to you · P1',
+        url: 'https://jira.example.com/browse/JIRA-4570',
+      },
+      time: '3:25 PM',
+    },
   ],
   's4-6': [
     { id: 1, senderId: 'me', text: 'Are we ready to ship v2.3? Show me the release checklist status.', time: '10:00 AM' },
     { id: 2, senderId: 4, text: 'v2.3 Release Readiness:\n\n✅ All feature tickets: Done (8/8)\n✅ Bug fixes: Done (5/5)\n✅ QA sign-off: Approved\n⚠️ Documentation: 2 of 3 articles updated\n✅ Staging deployment: Verified\n✅ Load test: Passed (p99 < 200ms)\n\nOne documentation ticket is still In Review: JIRA-4510 — "Update API migration guide for v2.3"', time: '10:01 AM' },
     { id: 3, senderId: 'me', text: 'Who\'s working on that doc ticket?', time: '10:05 AM' },
-    { id: 4, senderId: 4, text: 'JIRA-4510 is assigned to David Nguyen. Last updated 3 hours ago with comment: "PR is up, waiting for tech writer review." The PR has 1 approval, needs 1 more.', time: '10:05 AM' },
+    {
+      id: 4,
+      senderId: 4,
+      text: 'JIRA-4510 is assigned to David Nguyen. Last updated 3 hours ago with comment: "PR is up, waiting for tech writer review." The PR has 1 approval, needs 1 more.',
+      link: {
+        source: 'jira',
+        title: 'JIRA-4510 — Update API migration guide for v2.3',
+        subtitle: 'In Review · David Nguyen · 1/2 approvals',
+        url: 'https://jira.example.com/browse/JIRA-4510',
+      },
+      time: '10:05 AM',
+    },
   ],
   's4-7': [
     { id: 1, senderId: 'me', text: 'What tickets are blocked by the auth token refresh work?', time: '2:45 PM' },
     { id: 2, senderId: 4, text: 'Found 4 tickets blocked by JIRA-4555 (Auth token refresh during agent handoff):\n\n• JIRA-4560 — "End-to-end agent handoff testing" (QA, assigned to Rachel Thompson)\n• JIRA-4563 — "Agent handoff analytics events" (Dev, assigned to James Kim)\n• JIRA-4567 — "Handoff UX polish and loading states" (Design, assigned to Sarah Chen)\n• JIRA-4571 — "Agent handoff documentation" (Docs, assigned to David Nguyen)', time: '2:46 PM' },
     { id: 3, senderId: 'me', text: 'When is the ETA for the auth fix?', time: '2:50 PM' },
-    { id: 4, senderId: 4, text: 'Based on Kevin Park\'s latest update on JIRA-4555: "ETA is end of day April 18." If that holds, the blocked tickets can resume on April 19, giving 6 working days before the April 25 milestone.', time: '2:50 PM' },
+    {
+      id: 4,
+      senderId: 4,
+      text: 'Based on Kevin Park\'s latest update on JIRA-4555: "ETA is end of day April 18." If that holds, the blocked tickets can resume on April 19, giving 6 working days before the April 25 milestone.',
+      link: {
+        source: 'jira',
+        title: 'JIRA-4555 — Auth token refresh during agent handoff',
+        subtitle: 'In Progress · Kevin Park · ETA April 18',
+        url: 'https://jira.example.com/browse/JIRA-4555',
+      },
+      time: '2:50 PM',
+    },
+  ],
+
+  // ── Figma sessions ──
+  's31-2': [
+    { id: 1, senderId: 'me', text: 'Export the variant C empty state at 2x for the launch blog.', time: '2:36 PM' },
+    { id: 2, senderId: 31, text: 'Exporting Variant C / Empty State from the Northwind launch file at 2x…', time: '2:36 PM' },
+    {
+      id: 3,
+      senderId: 31,
+      text: 'Done — variant-c-empty-state@2x.png (1840×1240). Dropped in /assets/blog/ in the shared launch folder.',
+      link: {
+        source: 'figma',
+        title: 'Northwind launch / Variant C — Empty state',
+        subtitle: 'figma.com · source frame',
+        url: 'https://figma.com/file/nw-launch/variant-c-empty-state',
+      },
+      time: '2:38 PM',
+    },
+    { id: 4, senderId: 'me', text: 'Also export the dark variant.', time: '2:40 PM' },
+    { id: 5, senderId: 31, text: 'No "dark" variant of empty state in the file — only Variant A, B, and C. Dark mode treatment hasn\'t been published yet. Should I flag Sarah?', time: '2:40 PM' },
+    { id: 6, senderId: 'me', text: 'No, leave it. Will check with her directly.', time: '2:42 PM' },
+  ],
+  's31-3': [
+    { id: 1, senderId: 'me', text: 'What\'s the latest version of the prompt-suggestion card component?', time: '10:13 AM' },
+    {
+      id: 2,
+      senderId: 31,
+      text: 'Component: Card / Prompt Suggestion — v2.4 (published 4/21 by Sarah Chen).\n\nv2.4 changelog:\n• 8px corner radius (was 4px)\n• Hover lift reduced 4px → 2px\n• Title size 15 → 14\n\nUsed in 3 files, 18 instances.',
+      link: {
+        source: 'figma',
+        title: 'Northwind UI Library / Card / Prompt Suggestion',
+        subtitle: 'figma.com · v2.4 · published 4/21',
+        url: 'https://figma.com/file/nw-ui-lib/card-prompt-suggestion',
+      },
+      time: '10:13 AM',
+    },
+    { id: 3, senderId: 'me', text: 'Any instances still on v2.3?', time: '10:15 AM' },
+    { id: 4, senderId: 31, text: '2 instances still on v2.3:\n\n• Northwind / Onboarding — Step 1 (1 instance)\n• Morgan Collective / Internal — Brief Template (1 instance)\n\nBoth can swap to v2.4 with no breaking changes. Update them?', time: '10:15 AM' },
+    { id: 5, senderId: 'me', text: 'Yes for the Northwind one. Leave the Morgan internal file for me to handle.', time: '10:18 AM' },
+    { id: 6, senderId: 31, text: 'Updated the Northwind onboarding instance to v2.4. Left the Morgan Collective file untouched.', time: '10:18 AM', reactions: [{ emoji: '✅', count: 1 }] },
+  ],
+  's31-4': [
+    { id: 1, senderId: 'me', text: 'Audit detached component instances across the Northwind launch file.', time: '11:18 AM' },
+    {
+      id: 2,
+      senderId: 31,
+      text: '3 detached component instances:\n\n• Button / Primary — partner onboarding step 2\n• Toast / Info — session expired flow\n• Avatar / 32 — agents rail header\n\nWant me to flag them for Sarah?',
+      link: {
+        source: 'figma',
+        title: 'Northwind launch — file',
+        subtitle: 'figma.com · 3 detached instances',
+        url: 'https://figma.com/file/nw-launch',
+      },
+      time: '11:18 AM',
+    },
+    { id: 3, senderId: 'me', text: 'Yes — comment on each with @Sarah and a one-line note.', time: '11:20 AM' },
+    { id: 4, senderId: 31, text: 'Done. 3 comments left on the file, all assigned to Sarah Chen.', time: '11:20 AM', reactions: [{ emoji: '👍', count: 1 }] },
+  ],
+  's31-5': [
+    { id: 1, senderId: 'me', text: 'Which frames in the Northwind file are still on the deprecated tokens?', time: '3:00 PM' },
+    { id: 2, senderId: 31, text: '2 frames still reference deprecated tokens:\n\n• Settings / Notification preferences — uses color/legacy/surface-2\n• Onboarding / Step 4 — uses spacing/legacy/md\n\nBoth have one-token migrations available. Apply automatically?', time: '3:00 PM' },
+    { id: 3, senderId: 'me', text: 'Apply both and leave a comment so Sarah sees it next time she\'s in the file.', time: '3:03 PM' },
+    {
+      id: 4,
+      senderId: 31,
+      text: 'Migrations applied to both frames. Comment left on each tagging Sarah Chen with the diff.',
+      link: {
+        source: 'figma',
+        title: 'Northwind launch — file (2 frames updated)',
+        subtitle: 'figma.com · updated just now',
+        url: 'https://figma.com/file/nw-launch',
+      },
+      time: '3:03 PM',
+      reactions: [{ emoji: '✅', count: 1 }],
+    },
+  ],
+  's31-6': [
+    { id: 1, senderId: 'me', text: 'Compare the v2.3 and v2.4 component library — list breaking renames.', time: '9:30 AM' },
+    {
+      id: 2,
+      senderId: 31,
+      text: 'v2.3 → v2.4 diff:\n\nBreaking renames (3):\n• Button / Primary → Button / Filled (style API parity)\n• Card / Suggestion → Card / Prompt Suggestion (clarifies usage)\n• Toast / Error → Toast / Critical (severity scale rename)\n\nNon-breaking: 12 published edits, 0 removed components.',
+      link: {
+        source: 'figma',
+        title: 'Northwind UI Library — Component sheet',
+        subtitle: 'figma.com · v2.4 · published 4/21',
+        url: 'https://figma.com/file/nw-ui-lib',
+      },
+      time: '9:30 AM',
+    },
+    { id: 3, senderId: 'me', text: 'For the renames — how many places need to be updated?', time: '9:34 AM' },
+    { id: 4, senderId: 31, text: 'Across all your files:\n\n• Button / Primary → Filled — 47 instances in 6 files\n• Card / Suggestion → Card / Prompt Suggestion — 18 instances in 3 files\n• Toast / Error → Toast / Critical — 9 instances in 2 files\n\nMost are auto-migratable (style props are 1:1). The Toast rename has a severity-color shift that warrants a manual look.', time: '9:34 AM' },
+    { id: 5, senderId: 'me', text: 'Auto-migrate the buttons and cards. Leave the toasts for me.', time: '9:38 AM' },
+    { id: 6, senderId: 31, text: 'Auto-migrated — 47 buttons + 18 cards updated across 9 files. Toasts left for manual review with a tracking comment on each frame.', time: '9:39 AM', reactions: [{ emoji: '🎯', count: 1 }] },
+  ],
+
+  // ── Cowork sessions ──
+  // Each session showcases the canonical Cowork loop: request → plan →
+  // approval → background execution → checkpoint → delivered artifacts.
+  's32-2': [
+    { id: 1, senderId: 'me', text: 'Audit my calendar for tomorrow. Decline anything I\'m not the decision-maker on; protect 2–4 PM as deep work.', time: '7:50 AM' },
+    {
+      id: 2,
+      senderId: 32,
+      text: 'Calendar audit plan — review for approval before I apply changes.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Tuesday calendar audit',
+          subtitle: '11 meetings · 8h 15m booked · 1 conflict found.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Will reschedule (1)',
+              bullets: ['Eng/Design sync — overlaps Northwind launch sync; propose Wed 10 AM'],
+            },
+            {
+              heading: 'Will decline (2)',
+              bullets: [
+                'Brand refresh kickoff — FYI only; "follow up async" note',
+                'Tooling guild monthly — you\'re not on the agenda',
+              ],
+            },
+            {
+              heading: 'Will protect',
+              bullets: ['2:00–4:00 PM — focus block, notifications muted'],
+            },
+          ],
+          footer: 'No changes applied until you approve',
+          actions: ['Approve & apply', 'Edit'],
+        },
+      ],
+      time: '7:50 AM',
+    },
+    { id: 3, senderId: 'me', text: 'Approved.', time: '7:52 AM' },
+    { id: 4, senderId: 32, text: 'Running. 12 changes to process — I\'ll DM when done.', time: '7:52 AM' },
+    {
+      id: 5,
+      senderId: 32,
+      text: 'Calendar audit complete:\n\n• Conflict resolved — Eng/Design sync moved to Wed 10 AM (all 4 attendees accepted)\n• 2 declines sent with "follow up async" notes\n• 2:00–4:00 PM blocked as Focus Time, notifications muted\n• Pre-meeting briefs queued for the 3 remaining 1:1s\n\nNet recovered time: 1h 45m.',
+      chainOfThought: [
+        'Reviewed Tuesday\'s 11 meetings against your decision-maker rules',
+        'Identified 1 conflict (Eng/Design sync overlapping Northwind launch sync)',
+        'Flagged 2 low-priority candidates (Brand refresh kickoff, Tooling guild monthly)',
+        'Rescheduled Eng/Design sync to Wed 10 AM and re-invited 4 attendees',
+        'Sent 2 polite "follow up async" decline notes',
+        'Applied 2:00–4:00 PM focus block and muted notifications for that window',
+        'Queued pre-meeting briefs for your 3 remaining 1:1s',
+      ],
+      time: '7:58 AM',
+      reactions: [{ emoji: '🎯', count: 1 }],
+    },
+  ],
+  's32-3': [
+    { id: 1, senderId: 'me', text: 'Compile a research brief on agent handoff success benchmarks across the industry. Internal + public sources, with citations.', time: '11:30 AM' },
+    {
+      id: 2,
+      senderId: 32,
+      text: 'Plan ready. "Research" run, not "publish-ready" — confirm before I execute.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Handoff success benchmarks',
+          subtitle: 'Cited research — internal + public sources, packaged in Word.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Internal sources',
+              bullets: [
+                'James\'s Sprint 14 staging numbers',
+                'CA working-group thread',
+                'Partner readout prep brief',
+              ],
+            },
+            {
+              heading: 'External sources',
+              bullets: [
+                'Vendor X benchmark (Q1 2026)',
+                'Vendor Y whitepaper',
+                '2 Forrester analyst notes',
+                '1 Gartner mention',
+              ],
+            },
+            {
+              heading: 'Output',
+              text: 'One-page Word summary with inline citations + 5-row comparison table.',
+            },
+          ],
+          footer: 'Estimated runtime ~2 min',
+          actions: ['Approve & run', 'Edit'],
+        },
+      ],
+      time: '11:30 AM',
+    },
+    { id: 3, senderId: 'me', text: 'Run it.', time: '11:31 AM' },
+    {
+      id: 4,
+      senderId: 32,
+      text: 'Done. One-page summary + 5-row table, 8 citations. Headline: Northwind staging at 95.3% sits at the top of the public band.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Handoff benchmarks — Research summary',
+          subtitle: 'Visible only to you',
+        },
+      ],
+      chainOfThought: [
+        'Pulled internal staging numbers from James\'s Sprint 14 report',
+        'Read the CA working-group thread for context',
+        'Searched the Vendor X benchmark (Q1 2026)',
+        'Read the Vendor Y whitepaper',
+        'Reviewed 2 Forrester analyst notes and 1 Gartner mention',
+        'Compiled a 5-row comparison table',
+        'Drafted a one-page Word summary with 8 inline citations',
+      ],
+      time: '11:33 AM',
+    },
+    { id: 5, senderId: 'me', text: 'Add the table to my Conversational AI prep deck slide 4.', time: '11:35 AM' },
+    {
+      id: 6,
+      senderId: 32,
+      text: 'Added — table inserted on slide 4 (Benchmarks) with citations linked.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'powerpoint',
+          name: 'CA prep — April 24',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: '11:36 AM',
+      reactions: [{ emoji: '🎯', count: 1 }],
+    },
+  ],
+  's32-4': [
+    { id: 1, senderId: 'me', text: 'Build a launch plan for the cross-tenant v3 capability — competitive analysis, value prop, milestone outline with owners.', time: '3:00 PM' },
+    {
+      id: 2,
+      senderId: 32,
+      text: '4-deliverable plan. Larger run — confirms scope before I start.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Cross-tenant v3 launch package',
+          subtitle: 'Cross-app run — Excel, Word, PowerPoint.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          steps: [
+            { text: 'Competitive analysis (Excel) — 4 vendors × 6 dimensions, sourced from public materials + analyst notes', status: 'pending' },
+            { text: 'Value prop one-pager (Word) — for partner-facing leadership', status: 'pending' },
+            { text: 'Pitch deck skeleton (PowerPoint) — 8-slide outline, you fill in the narrative', status: 'pending' },
+            { text: 'Milestone outline (Word) — phases with proposed owners pulled from your collaborator graph', status: 'pending' },
+          ],
+          footer: 'Estimated runtime ~6 min · runs in the background',
+          actions: ['Approve & run', 'Edit scope'],
+        },
+      ],
+      time: '3:00 PM',
+    },
+    { id: 3, senderId: 'me', text: 'Approved. For owners — propose, don\'t assign. I\'ll confirm.', time: '3:02 PM' },
+    { id: 4, senderId: 32, text: 'Got it. Owners will be flagged "proposed" in the milestone doc with rationale.', time: '3:02 PM' },
+    { id: 5, senderId: 32, text: 'Checkpoint — Vendor Y\'s public materials are sparse. Substitute Vendor Z (more comparable feature set) or note Y as "limited public data"?', time: '3:08 PM' },
+    { id: 6, senderId: 'me', text: 'Substitute Vendor Z. Note the swap in a footnote.', time: '3:09 PM' },
+    {
+      id: 7,
+      senderId: 32,
+      text: 'Run complete. 4 artifacts ready — competitive analysis, value prop, pitch deck (8-slide skeleton), and milestones doc (owners flagged "proposed" for your confirmation).',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'excel',
+          name: 'Cross-tenant v3 — Competitive analysis',
+          subtitle: 'Visible only to you',
+        },
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Cross-tenant v3 — Value prop',
+          subtitle: 'Visible only to you',
+        },
+        {
+          type: 'file',
+          fileType: 'powerpoint',
+          name: 'Cross-tenant v3 — Pitch',
+          subtitle: 'Visible only to you',
+        },
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Cross-tenant v3 — Milestones',
+          subtitle: 'Visible only to you',
+        },
+      ],
+      chainOfThought: [
+        'Researched 4 vendors (X, Z, Q, R) — substituted Vendor Z for Y per your decision',
+        'Read Vendor X, Z, Q, R public materials and 2 analyst notes',
+        'Built a 6-dimension comparison in Excel (depth, breadth, security, ops, pricing, partner motion)',
+        'Drafted a value-prop one-pager in Word for partner-facing leadership',
+        'Generated an 8-slide PowerPoint skeleton with section headings',
+        'Pulled milestone phases from your cross-tenant PRD draft',
+        'Proposed owners from your collaborator graph and flagged each as "proposed"',
+      ],
+      time: '3:15 PM',
+      reactions: [{ emoji: '🚀', count: 1 }],
+    },
+  ],
+  's32-5': [
+    { id: 1, senderId: 'me', text: 'Prep me for my Rachel 1:1 today at 2 PM.', time: '11:30 AM' },
+    {
+      id: 2,
+      senderId: 32,
+      text: 'Plan — quick prep run, ~90 seconds.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Rachel 1:1 prep',
+          subtitle: 'Aggregating context from the last 14 days.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Sources',
+              bullets: [
+                '1:1 chat history',
+                'Northwind launch channel',
+                'Shared docs you both touched',
+                'Calendar overlaps',
+              ],
+            },
+            {
+              heading: 'Output',
+              text: '5 talking points + open questions Rachel raised but didn\'t resolve + recap of last 1:1 commitments.',
+            },
+          ],
+          footer: '~90 sec runtime',
+          actions: ['Approve & run'],
+        },
+      ],
+      time: '11:30 AM',
+    },
+    { id: 3, senderId: 'me', text: 'Approved.', time: '11:31 AM' },
+    {
+      id: 4,
+      senderId: 32,
+      text: 'Done — your prep doc is ready 5 minutes before the meeting. 5 talking points (incl. Northwind readiness, cross-tenant scope, retro logistics, Q3 renewal, CA cadence), 3 open questions Rachel raised but didn\'t resolve, and a recap of last 1:1 commitments.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Rachel 1:1 prep — April 24',
+          subtitle: 'Visible only to you',
+        },
+      ],
+      chainOfThought: [
+        'Pulled 14 days of Rachel 1:1 chat history',
+        'Scanned Northwind launch channel for cross-references',
+        'Compared shared docs you both touched in the last 14 days',
+        'Identified 5 talking points based on recent activity',
+        'Surfaced 3 open questions Rachel raised but didn\'t resolve',
+        'Recapped commitments from your last 1:1 (4/15) — both completed',
+        'Saved prep doc to Word, scheduled to surface 5 min before the meeting',
+      ],
+      time: '11:40 AM',
+      reactions: [{ emoji: '🧠', count: 1 }],
+    },
+  ],
+  's32-6': [
+    { id: 1, senderId: 'me', text: 'Build me a 30-day reflection on focus time honored vs. booked. Drop it in my Reflect-on-Friday template.', time: '4:30 PM' },
+    {
+      id: 2,
+      senderId: 32,
+      text: 'Reflection plan — runs against your last 30 days of calendar + Teams activity.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: '30-day focus-time reflection',
+          subtitle: 'Aggregate analysis — no individual meeting names in output.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Sources',
+              bullets: [
+                'Outlook calendar — focus blocks scheduled vs. honored',
+                'Teams status history — DND/quiet hours respected',
+                'Meeting overrides — count and pattern',
+              ],
+            },
+            {
+              heading: 'Output',
+              text: 'Filled section in your Reflect-on-Friday Word doc: focus hours honored, top breakers, weekday pattern, week-over-week trend.',
+            },
+          ],
+          footer: 'Privacy: aggregate only',
+          actions: ['Approve & run', 'Edit scope'],
+        },
+      ],
+      time: '4:30 PM',
+    },
+    { id: 3, senderId: 'me', text: 'Approved.', time: '4:31 PM' },
+    { id: 4, senderId: 32, text: 'Running in the background. Will land in your Reflect doc — I\'ll DM you when done so you can read it Friday morning.', time: '4:31 PM', reactions: [{ emoji: '🪞', count: 1 }] },
+  ],
+  's32-7': [
+    { id: 1, senderId: 'me', text: 'Set up a daily 7 AM digest of what\'s moving on the Northwind launch — channels, partner email threads, and pending decisions.', time: '7:00 AM' },
+    {
+      id: 2,
+      senderId: 32,
+      text: 'Recurring plan — runs every weekday, takes ~30s, lands as a DM.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Northwind launch daily digest',
+          subtitle: 'Weekday 7 AM digest grouped by theme.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          facts: [
+            { label: 'Cadence', value: 'Weekdays at 7:00 AM PT' },
+            { label: 'Sources', value: 'Northwind launch channel · 3 partner email threads · readiness tracker' },
+            { label: 'Stop condition', value: 'Pause anytime; auto-pauses after 3 quiet weekdays' },
+          ],
+          footer: '~30 sec per run · runs in the background',
+          actions: ['Approve & schedule', 'Run once'],
+        },
+      ],
+      time: '7:00 AM',
+    },
+    { id: 3, senderId: 'me', text: 'Schedule it.', time: '7:02 AM' },
+    { id: 4, senderId: 32, text: 'Scheduled. First digest fires tomorrow 7:00 AM PT.', time: '7:02 AM' },
+    {
+      id: 5,
+      senderId: 32,
+      text: 'Today\'s digest:',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          title: 'Northwind launch — daily digest',
+          subtitle: 'Tue April 22 · 24-hour rollup',
+          badge: { text: 'Daily', tone: 'purple' },
+          sections: [
+            {
+              heading: 'Decisions pending',
+              bullets: ['Cross-tenant scope (partner-asked) — Rachel owns, no movement in 24h'],
+            },
+            {
+              heading: 'Risks',
+              bullets: ['JIRA-4593 still in review — Kevin targeting EOD'],
+            },
+            {
+              heading: 'Wins',
+              bullets: [
+                'Auth PR merged, staging clean for 14h',
+                'Sarah\'s variant C empty state landed final',
+              ],
+            },
+            {
+              heading: 'Blockers',
+              bullets: ['None active'],
+            },
+            {
+              heading: 'FYI',
+              bullets: [
+                'David\'s migration guide hits draft-2 today',
+                'Emma starts PTO Friday',
+              ],
+            },
+          ],
+          footer: 'Generated by Cowork · Tue 7:00 AM · pause anytime',
+          actions: ['Snooze 1 day', 'Pause'],
+        },
+      ],
+      chainOfThought: [
+        'Scanned Northwind launch channel for last 24h activity (37 messages)',
+        'Pulled 3 partner email threads with new replies',
+        'Checked the readiness tracker for status changes',
+        'Cross-referenced JIRA for ticket movement (4 changes)',
+        'Grouped findings by theme — decisions, risks, wins, blockers, FYI',
+        'Composed the 5-section digest',
+      ],
+      time: 'Tue 7:00 AM',
+    },
+  ],
+  's32-8': [
+    { id: 1, senderId: 'me', text: 'Build a competitive snapshot for Vendor Y. Want it for tomorrow\'s strategy review.', time: '2:00 PM' },
+    {
+      id: 2,
+      senderId: 32,
+      text: 'Plan — single-vendor deep dive.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Vendor Y competitive snapshot',
+          subtitle: 'Excel deliverable — 5 dimensions, methodology gaps flagged inline.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Sources',
+              bullets: [
+                'Vendor Y public docs',
+                '2 analyst notes',
+                'Partner-recorded demo',
+                'Their last 3 release blogs',
+              ],
+            },
+            {
+              heading: 'Output',
+              text: '5-dimension Excel: capability depth · security · ops model · pricing · partner motion. Methodology gaps flagged in cell comments.',
+            },
+          ],
+          actions: ['Approve & run'],
+        },
+      ],
+      time: '2:00 PM',
+    },
+    { id: 3, senderId: 'me', text: 'Approved.', time: '2:01 PM' },
+    { id: 4, senderId: 32, text: 'Checkpoint — Vendor Y\'s public benchmark methodology counts user-cancelled handoffs as failures (we don\'t). Note this in the snapshot, or normalize their numbers to our methodology?', time: 'Apr 18 2:08 PM' },
+    { id: 5, senderId: 'me', text: 'Note it. Don\'t normalize — partners read these and we shouldn\'t adjust their published numbers.', time: 'Apr 18 2:10 PM' },
+    {
+      id: 6,
+      senderId: 32,
+      text: 'Done. 5-dimension comparison, 6 cited sources, 2 methodology gaps flagged inline (handoff counting, retention denominator).',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'excel',
+          name: 'Vendor Y — Competitive snapshot',
+          subtitle: 'Visible only to you',
+        },
+      ],
+      chainOfThought: [
+        'Pulled Vendor Y public docs and last 3 release blogs',
+        'Read 2 analyst notes covering Vendor Y',
+        'Watched the partner-recorded Vendor Y demo',
+        'Identified 2 methodology gaps (handoff counting, retention denominator)',
+        'Flagged gaps as cell comments per your decision (no normalization)',
+        'Compiled 5-dimension Excel comparison with 6 cited sources',
+      ],
+      time: 'Apr 18 2:20 PM',
+      reactions: [{ emoji: '🎯', count: 1 }],
+    },
   ],
 }

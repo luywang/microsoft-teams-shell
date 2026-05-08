@@ -33,6 +33,14 @@ export function ChevronLeft({ size = 16 }) {
   )
 }
 
+export function ChevronRight({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="currentColor">
+      <path d="M5.65 2.65a.5.5 0 0 1 .7 0l5 5a.5.5 0 0 1 0 .7l-5 5a.5.5 0 0 1-.7-.7L10.29 8 5.65 3.35a.5.5 0 0 1 0-.7z"/>
+    </svg>
+  )
+}
+
 export function Send({ size = 18 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 20 20" fill="currentColor">
@@ -83,6 +91,42 @@ export function Edit({ size = 16 }) {
     <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M11.5 2.5l2 2L5 13H3v-2z"/>
       <path d="M10.5 3.5l2 2"/>
+    </svg>
+  )
+}
+
+export function Info({ size = 18, stroke = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="10" r="7.5"/>
+      <path d="M10 9.5v4"/>
+      <circle cx="10" cy="6.75" r="0.85" fill={stroke} stroke="none"/>
+    </svg>
+  )
+}
+
+export function Check({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 8.5l3.5 3.5L13 5"/>
+    </svg>
+  )
+}
+
+export function CheckCircle({ size = 16, stroke = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke={stroke} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="10" r="7.5"/>
+      <path d="M6.75 10.5l2.25 2.25 4.5-4.5"/>
+    </svg>
+  )
+}
+
+export function ChatMultiple({ size = 18 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 4h7.5A2.5 2.5 0 0 1 17 6.5V11"/>
+      <path d="M5 7h7A2.5 2.5 0 0 1 14.5 9.5v3A2.5 2.5 0 0 1 12 15h-2L7 17.5V15H5a2.5 2.5 0 0 1-2.5-2.5v-3A2.5 2.5 0 0 1 5 7z"/>
     </svg>
   )
 }

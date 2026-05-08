@@ -69,7 +69,18 @@ export const messagesByContact = {
 
   // ── Jira agent ────────────────────────────────────────────────────────
   4: [
-    { id: 1, senderId: 4, text: 'JIRA-4521 has been assigned to you: "Implement notification preference API endpoints"', time: 'Mon 2:15 PM' },
+    {
+      id: 1,
+      senderId: 4,
+      text: 'JIRA-4521 has been assigned to you: "Implement notification preference API endpoints"',
+      link: {
+        source: 'jira',
+        title: 'JIRA-4521 — Implement notification preference API endpoints',
+        subtitle: 'In Progress · assigned to you · High · Sprint 14',
+        url: 'https://jira.example.com/browse/JIRA-4521',
+      },
+      time: 'Mon 2:15 PM',
+    },
     { id: 2, senderId: 'me', text: 'What\'s the current status of JIRA-4521?', time: 'Mon 2:20 PM' },
     { id: 3, senderId: 4, text: 'JIRA-4521 — In Progress, assigned to you. Priority: High. Sprint: Sprint 14. Due: April 18. 2 linked issues, 3 comments.', time: 'Mon 2:20 PM' },
     { id: 4, senderId: 'me', text: 'Show me all my open tickets in Sprint 14', time: 'Tue 8:30 AM' },
@@ -83,7 +94,19 @@ export const messagesByContact = {
     { id: 12, senderId: 'me', text: 'Show me the burndown for Sprint 14.', time: 'Today 8:22 AM' },
     { id: 13, senderId: 4, text: 'Sprint 14 burndown (as of 4/22):\n\n• Committed: 47 points\n• Completed: 38 points (81%)\n• In Progress: 6 points\n• Remaining: 3 points\n\nOn pace to close at ~96% completion by sprint end (4/25).', time: 'Today 8:22 AM' },
     { id: 14, senderId: 'me', text: 'Create a ticket: "Document cross-tenant handoff for partner readouts" — assign to David Nguyen, priority Medium, due May 2.', time: 'Today 11:00 AM' },
-    { id: 15, senderId: 4, text: 'Created JIRA-4595 — "Document cross-tenant handoff for partner readouts". Assigned to David Nguyen. Priority: Medium. Due: May 2, 2026.', time: 'Today 11:00 AM', reactions: [{ emoji: '👍', count: 1 }] },
+    {
+      id: 15,
+      senderId: 4,
+      text: 'Created JIRA-4595 — "Document cross-tenant handoff for partner readouts". Assigned to David Nguyen. Priority: Medium. Due: May 2, 2026.',
+      link: {
+        source: 'jira',
+        title: 'JIRA-4595 — Document cross-tenant handoff for partner readouts',
+        subtitle: 'New · David Nguyen · Medium · Due May 2',
+        url: 'https://jira.example.com/browse/JIRA-4595',
+      },
+      time: 'Today 11:00 AM',
+      reactions: [{ emoji: '👍', count: 1 }],
+    },
     { id: 16, senderId: 'me', text: 'What\'s the total number of open blockers for the April 25 milestone, across the team?', time: 'Today 3:10 PM' },
     { id: 17, senderId: 4, text: '3 open blockers for the April 25 milestone:\n\n• JIRA-4552 — Kevin Park — In Review\n• JIRA-4593 — Kevin Park — New\n• JIRA-4588 — Olivia Martinez — In Progress (webhook retry backoff)\n\nNo unassigned blockers.', time: 'Today 3:10 PM' },
   ],
@@ -98,7 +121,20 @@ export const messagesByContact = {
     { id: 6, senderId: 'me', text: 'Will do. Fly under the radar posture, got it.', time: 'Mon 11:17 AM', reactions: [{ emoji: '🤫', count: 1 }] },
     { id: 7, senderId: 5, text: 'Actually — one more ask. Can you review the first two sections if you get 20 min? I\'d rather hear "this is garbage" from you than from execs post-PTO.', time: 'Mon 11:30 AM' },
     { id: 8, senderId: 'me', text: 'Sure. Send the link and I\'ll carve time tomorrow.', time: 'Mon 11:32 AM' },
-    { id: 9, senderId: 5, text: 'Link in DM. Thanks Alex.', time: 'Mon 11:33 AM' },
+    {
+      id: 9,
+      senderId: 5,
+      text: 'Here you go. Thanks Alex.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Moderation tooling — PRD draft',
+          subtitle: 'Visible only to you and Emily',
+        },
+      ],
+      time: 'Mon 11:33 AM',
+    },
     { id: 10, senderId: 'me', text: 'Read sections 1-2. Framing is strong, problem statement is sharp. One push: the "who cares" paragraph in §1 talks about the internal user. I\'d add a paragraph about the external partner — they\'re the ones who\'ll scream first when moderation decisions look inconsistent.', time: 'Tue 9:45 AM' },
     { id: 11, senderId: 5, text: 'Fair. Partner angle is in my head but not on the page. Adding. Thanks for the read.', time: 'Tue 10:12 AM' },
     { id: 12, senderId: 'me', text: 'Np. Enjoy the break.', time: 'Tue 10:15 AM' },
@@ -109,7 +145,19 @@ export const messagesByContact = {
 
   // ── Design Sprint Team (group) ────────────────────────────────────────
   6: [
-    { id: 1, senderId: 7, text: 'Alright team, sprint review is Thursday at 2pm. Make sure your demos are ready.', time: 'Mon 9:00 AM' },
+    {
+      id: 1,
+      senderId: 7,
+      text: 'Alright team, sprint review is Thursday at 2pm. Make sure your demos are ready.',
+      time: 'Mon 9:00 AM',
+      replies: [
+        { id: 'g6-1-r1', senderId: 'me', text: 'Slide template — same one as last sprint? Starting on mine now.', time: 'Mon 9:08 AM' },
+        { id: 'g6-1-r2', senderId: 7, text: 'Yes, latest is in the team SharePoint under /sprint-review/template-v3.', time: 'Mon 9:11 AM' },
+        { id: 'g6-1-r3', senderId: 9, text: 'Demo data — should I use staging or local? Last time staging blipped mid-demo.', time: 'Mon 9:30 AM' },
+        { id: 'g6-1-r4', senderId: 7, text: 'Staging. James pinned a `demo-mode` flag last week — disables async tasks so it stays stable.', time: 'Mon 9:34 AM' },
+        { id: 'g6-1-r5', senderId: 9, text: 'Perfect. Will wire it before tomorrow.', time: 'Mon 9:36 AM', reactions: [{ emoji: '👍', count: 1 }] },
+      ],
+    },
     { id: 2, senderId: 3, text: 'I\'ll demo the new onboarding flow. Should take about 5 minutes.', time: 'Mon 9:05 AM' },
     { id: 3, senderId: 'me', text: 'I can show the notification preference panel. Still polishing but it\'ll be ready by then.', time: 'Mon 9:12 AM' },
     { id: 4, senderId: 9, text: 'I\'ll cover the API rate limiting changes. Quick walkthrough of the dashboard metrics.', time: 'Mon 9:18 AM' },
@@ -138,7 +186,20 @@ export const messagesByContact = {
     { id: 9, senderId: 'me', text: 'Perfect. Can you sanity-check that partner dashboards pick it up automatically? Last time we added a field, half the boards broke.', time: 'Tue 9:00 AM' },
     { id: 10, senderId: 7, text: 'Already did — ran the schema diff against the 4 partner dashboards. Two silently drop the field, two surface it. Both drops are non-critical; flagged for their owners.', time: 'Tue 9:15 AM' },
     { id: 11, senderId: 'me', text: 'Good. For the launch readout — can you get me handoff success rate by `reason` for the last 7 days on staging? Just need the numbers for the blog.', time: 'Today 10:30 AM' },
-    { id: 12, senderId: 7, text: 'Last 7 days, staging:\n• explicit → 98.2% success\n• timeout → 74.5% (expected, this is the retry path)\n• fallback → 92.1%\n\nOverall ~95.3%. Sample size ~42k handoffs.', time: 'Today 11:00 AM' },
+    {
+      id: 12,
+      senderId: 7,
+      text: 'Last 7 days, staging:\n• explicit → 98.2% success\n• timeout → 74.5% (expected, this is the retry path)\n• fallback → 92.1%\n\nOverall ~95.3%. Sample size ~42k handoffs. Full pivot in the sheet.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'excel',
+          name: 'Handoff success — staging, 7d',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: 'Today 11:00 AM',
+    },
     { id: 13, senderId: 'me', text: 'That\'s strong. Ok to cite the overall 95.3% in the blog? Want to check before I commit the text.', time: 'Today 11:05 AM' },
     { id: 14, senderId: 7, text: 'Go for it. Staging != prod but we\'re within the margin Rachel set for launch comms. I\'d say "above 95%" rather than the exact number — buys a little room.', time: 'Today 11:08 AM' },
     { id: 15, senderId: 'me', text: 'Good call. "Above 95%" it is.', time: 'Today 11:10 AM' },
@@ -238,7 +299,18 @@ export const messagesByContact = {
     { id: 10, senderId: 'me', text: 'Good. Context packet shape is finalized, two anonymized traces are ready, and the "did the user notice" instrumentation spec is drafted. Will post in the shared doc Wed EOD.', time: 'Mon 10:05 AM' },
     { id: 11, senderId: 1, text: 'On the design side — I can bring the three handoff disclosure variants. Want them walked through or just shared asynchronously?', time: 'Mon 10:12 AM' },
     { id: 12, senderId: 'me', text: 'Walk through briefly at the top of the session. Context matters — they need to see why we landed on passive disclosure.', time: 'Mon 10:15 AM' },
-    { id: 13, senderId: 15, text: 'Auth PR is in review. Should merge tomorrow. Also — found a secondary bug: guest tenant with expired token shows a blank page. Filed JIRA-4593.', time: 'Today 8:15 AM' },
+    {
+      id: 13,
+      senderId: 15,
+      text: 'Auth PR is in review. Should merge tomorrow. Also — found a secondary bug: guest tenant with expired token shows a blank page. Filed JIRA-4593.',
+      time: 'Today 8:15 AM',
+      replies: [
+        { id: 'g11-13-r1', senderId: 'me', text: 'Repro on guest tenant w/ expired token: blank page, no console error, no redirect to re-auth. Confirmed twice.', time: 'Today 8:30 AM' },
+        { id: 'g11-13-r2', senderId: 15, text: 'Yep — token-refresh path doesn\'t handle the guest claim format, falls through to a no-op. PR will hit it directly.', time: 'Today 8:34 AM' },
+        { id: 'g11-13-r3', senderId: 12, text: 'Test coverage for guest re-auth?', time: 'Today 8:40 AM' },
+        { id: 'g11-13-r4', senderId: 15, text: 'Adding a Cypress trace as part of the PR. Was a gap.', time: 'Today 8:42 AM', reactions: [{ emoji: '🙏', count: 2 }] },
+      ],
+    },
     { id: 14, senderId: 12, text: 'Ouch. Is that launch blocker for guest flow?', time: 'Today 8:18 AM' },
     { id: 15, senderId: 'me', text: 'Yes. Assigning to Kevin, targeting Friday freeze. Not derailing the date but tight.', time: 'Today 8:20 AM' },
     { id: 16, senderId: 15, text: 'On it. Fix is small — 30-line change to the token-refresh path. Will post the PR by EOD.', time: 'Today 8:22 AM', reactions: [{ emoji: '🙏', count: 3 }] },
@@ -253,11 +325,37 @@ export const messagesByContact = {
     { id: 2, senderId: 'me', text: 'Yeah here you go — in the shared PM folder under "Agent Platform / Design Docs"', time: '4/15 1:05 PM' },
     { id: 3, senderId: 12, text: 'Found it, thanks! Also — are we still aligned on the streaming response approach?', time: '4/15 1:10 PM' },
     { id: 4, senderId: 'me', text: 'Yes, SSE for the initial version. Can always upgrade to WebSockets later if we need bidirectional.', time: '4/15 1:15 PM' },
-    { id: 5, senderId: 12, text: 'Perfect. Switching gears — I need your read on the partner FAQ. 12 questions, 600 words. Circulating now.', time: 'Fri 11:00 AM' },
+    {
+      id: 5,
+      senderId: 12,
+      text: 'Perfect. Switching gears — I need your read on the partner FAQ. 12 questions, 600 words. Circulating now.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Northwind partner FAQ — v1',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: 'Fri 11:00 AM',
+    },
     { id: 6, senderId: 'me', text: 'Got it. Will read this weekend and send comments Monday.', time: 'Fri 11:05 AM' },
     { id: 7, senderId: 'me', text: 'Read the FAQ. Overall strong. Two pushes:\n\n1. Q4 ("What happens to my data during a handoff?") should be stronger upfront. Partners will ask this in the first 5 minutes.\n2. Q9 reads like it was pasted from a legal review. Rewrite in plain English.', time: 'Mon 9:00 AM' },
     { id: 8, senderId: 12, text: 'Both fair. Rewriting Q9 from scratch, promoting Q4 to the second slot. New draft by Tuesday.', time: 'Mon 9:10 AM', reactions: [{ emoji: '✍️', count: 1 }] },
-    { id: 9, senderId: 12, text: 'Draft v2 is up. Also added a question about cross-tenant handoff — felt like a gap.', time: 'Tue 11:00 AM' },
+    {
+      id: 9,
+      senderId: 12,
+      text: 'Draft v2 is up. Also added a question about cross-tenant handoff — felt like a gap.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Northwind partner FAQ — v2',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: 'Tue 11:00 AM',
+    },
     { id: 10, senderId: 'me', text: 'Good add. Cross-tenant was on my post-launch list but partners will ask day one. Read in a minute.', time: 'Tue 11:02 AM' },
     { id: 11, senderId: 'me', text: 'Read. Approved from my side. One tiny edit: Q11 uses "seamless" twice in the same paragraph. Swap one for "uninterrupted" or similar.', time: 'Tue 11:40 AM' },
     { id: 12, senderId: 12, text: 'Caught, fixed. Shipping today.', time: 'Tue 11:45 AM', reactions: [{ emoji: '✅', count: 1 }] },
@@ -277,7 +375,20 @@ export const messagesByContact = {
     { id: 3, senderId: 17, text: 'The current schema doesn\'t support parameter validation well. Developers have to handle all validation in their handler code.', time: '4/14 2:08 PM' },
     { id: 4, senderId: 'me', text: 'Good point. We could add a "parameters" array to the manifest with type/required/regex fields. Platform handles basic validation before the handler is called.', time: '4/14 2:15 PM' },
     { id: 5, senderId: 15, text: 'I like that. Let\'s draft it up and bring it to the API review next week.', time: '4/14 2:20 PM' },
-    { id: 6, senderId: 'me', text: 'Strawman is here — /docs/rfcs/slash-command-manifest-v2.md. Comments welcome.', time: 'Mon 4:00 PM' },
+    {
+      id: 6,
+      senderId: 'me',
+      text: 'Strawman is here. Comments welcome.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Slash-command manifest v2 — RFC',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: 'Mon 4:00 PM',
+    },
     { id: 7, senderId: 17, text: 'Read the RFC. Three comments:\n\n1. Nested param validation (objects within objects) is unclear — need an example.\n2. Why regex *and* type? Feels redundant for simple types.\n3. Love the `enum` shorthand.', time: 'Tue 10:15 AM' },
     { id: 8, senderId: 'me', text: 'All fair. Adding a nested example. Regex exists for free-form strings — type narrows to "string", regex narrows further (URLs, ticket IDs, etc.).', time: 'Tue 10:20 AM' },
     { id: 9, senderId: 15, text: 'On the nested question — can we just support one level of nesting for now? Two-level nesting is where schemas get really ugly and developers start making mistakes.', time: 'Tue 10:40 AM' },
@@ -381,7 +492,20 @@ export const messagesByContact = {
     { id: 5, senderId: 'me', text: 'Agreed. Each adapter owns its auth flow and hands the engine a short-lived session token. Long-term creds live in the secret store, behind the same interface we use for other connectors.', time: '4/9 2:24 PM' },
     { id: 6, senderId: 15, text: 'Maps cleanly onto how the Snowflake adapter already works, so migration cost is mostly the other three DWs. Sizing doc by EOD tomorrow.', time: '4/9 2:28 PM' },
     { id: 7, senderId: 10, text: 'Great. Let\'s pencil 30 min Thursday to lock the interface — invite coming.', time: '4/9 2:31 PM' },
-    { id: 8, senderId: 15, text: 'Sizing doc is up — /docs/dw-adapter-sizing.md. TL;DR: BigQuery ~3 weeks, Databricks ~4 weeks, Redshift ~2 weeks. All solo-engineer estimates.', time: '4/10 5:00 PM' },
+    {
+      id: 8,
+      senderId: 15,
+      text: 'Sizing doc is up. TL;DR: BigQuery ~3 weeks, Databricks ~4 weeks, Redshift ~2 weeks. All solo-engineer estimates.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'DW adapter — Sizing doc',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: '4/10 5:00 PM',
+    },
     { id: 9, senderId: 'me', text: 'Estimates look reasonable. Who\'s on point for each?', time: '4/11 9:00 AM' },
     { id: 10, senderId: 15, text: 'Unassigned for now. Scheduling a session post-launch to land ownership — probably one engineer per DW with me as DRI across.', time: '4/11 9:10 AM' },
     { id: 11, senderId: 10, text: 'Docs side — I can lead the partner-facing reference for each DW. They\'ll be mostly templated once the first one\'s written.', time: '4/11 9:15 AM' },
@@ -390,7 +514,20 @@ export const messagesByContact = {
 
   // ── Targeted Messages (group) ─────────────────────────────────────────
   19: [
-    { id: 1, senderId: 12, text: 'Sharing the latest targeted messages framework proposal. Please review and leave comments by Wednesday.', time: '4/8 4:00 PM' },
+    {
+      id: 1,
+      senderId: 12,
+      text: 'Sharing the latest targeted messages framework proposal. Please review and leave comments by Wednesday.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Targeted Messages — Framework proposal',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: '4/8 4:00 PM',
+    },
     { id: 2, senderId: 'me', text: 'Read through it. The targeting rules engine looks solid. One suggestion — add a dry-run mode so PMs can preview who would receive a message before sending.', time: '4/9 10:00 AM' },
     { id: 3, senderId: 12, text: 'Love that idea. Adding it to the spec now.', time: '4/9 10:15 AM' },
     { id: 4, senderId: 5, text: 'Other comment — the audience-rules grammar needs a schema. Right now it\'s free-form JSON and it\'s going to produce ugly validation errors for PMs.', time: '4/9 2:00 PM' },
@@ -415,7 +552,18 @@ export const messagesByContact = {
     { id: 8, senderId: 9, text: 'Thanks — reading now.', time: 'Mon 11:22 AM' },
     { id: 9, senderId: 9, text: 'Readme was the missing piece. Settings page is done.', time: 'Tue 4:00 PM', reactions: [{ emoji: '🎨', count: 2 }] },
     { id: 10, senderId: 'me', text: 'Nice. That\'s 2 of the 5 high-traffic component groups migrated. Pattern feels solid.', time: 'Tue 4:05 PM' },
-    { id: 11, senderId: 7, text: 'Post-launch I want to socialize the migration patterns across the other teams. Would be a good 30-min guild talk.', time: 'Today 2:00 PM' },
+    {
+      id: 11,
+      senderId: 7,
+      text: 'Post-launch I want to socialize the migration patterns across the other teams. Would be a good 30-min guild talk.',
+      time: 'Today 2:00 PM',
+      replies: [
+        { id: 'g20-11-r1', senderId: 9, text: 'Frontend Guild has a 30-min Friday slot if we want it. Otherwise it\'s biweekly cadence after that.', time: 'Today 2:08 PM' },
+        { id: 'g20-11-r2', senderId: 'me', text: 'Aim for early May then? Lets us tell the dust-settled story rather than launch-day claims.', time: 'Today 2:11 PM' },
+        { id: 'g20-11-r3', senderId: 7, text: 'Works. Tentatively booking May 8.', time: 'Today 2:13 PM' },
+        { id: 'g20-11-r4', senderId: 'me', text: 'I\'ll prep the worked example — notification migration end-to-end. Ping me if you want a dry-run beforehand.', time: 'Today 2:15 PM', reactions: [{ emoji: '🎤', count: 1 }] },
+      ],
+    },
     { id: 12, senderId: 'me', text: 'Happy to co-present — I can walk through notification migration as the worked example.', time: 'Today 2:03 PM', reactions: [{ emoji: '🎤', count: 1 }] },
   ],
 
@@ -427,8 +575,30 @@ export const messagesByContact = {
     { id: 4, senderId: 1, text: 'Latest empty-state and error mocks are in the PR. Copy is still placeholder — Alex, can you take a pass when you get a sec?', time: 'Mon 9:30 AM' },
     { id: 5, senderId: 'me', text: 'On it — draft copy by EOD.', time: 'Mon 9:32 AM' },
     { id: 6, senderId: 12, text: 'Great. Holding a 30-min readiness check Thursday at 10 — calendar invite coming.', time: 'Mon 9:35 AM', reactions: [{ emoji: '👍', count: 3 }] },
-    { id: 7, senderId: 1, text: 'Design specs with the final copy merged. Variant C empty state + 4 error states.', time: 'Mon 2:45 PM' },
-    { id: 8, senderId: 'me', text: 'Perfect. One more ask — can the toast for "session expired" be less alarming? Currently uses the red error treatment; should be more neutral since it\'s expected flow.', time: 'Mon 2:48 PM' },
+    {
+      id: 7,
+      senderId: 1,
+      text: 'Design specs with the final copy merged. Variant C empty state + 4 error states.',
+      link: {
+        source: 'figma',
+        title: 'Northwind / Onboarding — Variant C + errors',
+        subtitle: 'figma.com · last edited 12 min ago',
+        url: 'https://figma.com/file/nw-onboarding/variant-c',
+      },
+      time: 'Mon 2:45 PM',
+    },
+    {
+      id: 8,
+      senderId: 'me',
+      text: 'Perfect. One more ask — can the toast for "session expired" be less alarming? Currently uses the red error treatment; should be more neutral since it\'s expected flow.',
+      time: 'Mon 2:48 PM',
+      replies: [
+        { id: 'g21-8-r1', senderId: 1, text: 'Yes — neutral info treatment. Matches how Stripe does it. I\'ll wire the same component for the re-auth toast too.', time: 'Mon 2:52 PM' },
+        { id: 'g21-8-r2', senderId: 'me', text: 'Color tokens or named treatment?', time: 'Mon 2:54 PM' },
+        { id: 'g21-8-r3', senderId: 1, text: 'Named — `toast/info`. Already in the lib, just wasn\'t wired here.', time: 'Mon 2:56 PM' },
+        { id: 'g21-8-r4', senderId: 1, text: 'Swap is a one-liner. Picking it up after the empty-state work.', time: 'Mon 3:10 PM', reactions: [{ emoji: '👍', count: 1 }] },
+      ],
+    },
     { id: 9, senderId: 1, text: 'Yes — switching to the neutral info treatment. Matches how Stripe does it.', time: 'Mon 2:50 PM' },
     { id: 10, senderId: 12, text: 'Readiness sync outcome: we\'re green-green-yellow across PM / design / eng. Yellow on eng is the auth PR path.', time: 'Tue 10:45 AM' },
     { id: 11, senderId: 15, text: 'Auth PR merged overnight, clean on staging so far. Yellow → green.', time: 'Tue 10:50 AM', reactions: [{ emoji: '✅', count: 4 }] },
@@ -464,7 +634,18 @@ export const messagesByContact = {
     { id: 5, senderId: 12, text: 'What about the launch blog post — do we have a draft?', time: 'Mon 8:58 AM' },
     { id: 6, senderId: 'me', text: 'Drafting this week. Something circulatable by Friday EOD.', time: 'Mon 9:00 AM' },
     { id: 7, senderId: 12, text: 'Rollout plan — 10% of tenants Monday 9am PT, monitor for 24 hours, expand to 50% Tuesday morning if clean, 100% Wednesday EOD. Everyone good with this?', time: 'Mon 2:00 PM' },
-    { id: 8, senderId: 15, text: 'Good with staged rollout. Adding: define "clean" explicitly so we don\'t have the 50%/100% expansion debates mid-rollout. Proposal: <0.5% error rate, no P1s open, smoke tests green.', time: 'Mon 2:10 PM' },
+    {
+      id: 8,
+      senderId: 15,
+      text: 'Good with staged rollout. Adding: define "clean" explicitly so we don\'t have the 50%/100% expansion debates mid-rollout. Proposal: <0.5% error rate, no P1s open, smoke tests green.',
+      time: 'Mon 2:10 PM',
+      replies: [
+        { id: 'g23-8-r1', senderId: 7, text: '+1 to <0.5%. Last sprint baseline was 0.31% — 0.5% gives breathing room without false-greens.', time: 'Mon 2:18 PM' },
+        { id: 'g23-8-r2', senderId: 'me', text: 'P1 definition stays per the runbook? Want to make sure "no P1s open" is testable.', time: 'Mon 2:22 PM' },
+        { id: 'g23-8-r3', senderId: 15, text: 'Yes — runbook P1 definition. James and oncall agree.', time: 'Mon 2:25 PM' },
+        { id: 'g23-8-r4', senderId: 12, text: 'Codifying in the rollout doc now. Will share for sign-off before EOD.', time: 'Mon 2:30 PM', reactions: [{ emoji: '✅', count: 3 }] },
+      ],
+    },
     { id: 9, senderId: 'me', text: '+1 to explicit definition. Also — if we pause at 50%, who\'s the call-maker? Rachel?', time: 'Mon 2:15 PM' },
     { id: 10, senderId: 12, text: 'Me. Decision owner. James is DRI on the telemetry and flags the numbers; I make the go/no-go call.', time: 'Mon 2:18 PM', reactions: [{ emoji: '👍', count: 5 }] },
     { id: 11, senderId: 10, text: 'Auth PR merged. Writing the migration note now. Will share for review EOD.', time: 'Tue 11:15 AM' },
@@ -477,6 +658,365 @@ export const messagesByContact = {
     { id: 18, senderId: 'me', text: 'Cut. Also rebalanced the demo callout sizes — felt like the second one was getting too much visual weight.', time: 'Today 3:50 PM', reactions: [{ emoji: '📝', count: 2 }] },
   ],
 
+  // ── Figma agent ───────────────────────────────────────────────────────
+  31: [
+    { id: 1, senderId: 31, text: 'Hi Alex — I\'m the Figma agent. Ask me about files, frames, components, or recent edits in your team library.', time: 'Mon 9:00 AM' },
+    { id: 2, senderId: 'me', text: 'What changed in the Northwind launch file in the last 24 hours?', time: 'Mon 9:02 AM' },
+    { id: 3, senderId: 31, text: 'Northwind / Agents Platform v2 — Launch — 6 edits in the last 24h:\n\n• Sarah Chen — updated Variant C empty state copy\n• Sarah Chen — swapped 4px → 8px corner radius on prompt cards\n• Sarah Chen — added 4 error-state variants (auth, rate-limit, expired, offline)\n• Auto-layout fix on the partner onboarding frame\n• 2 component instances detached (now reattached)', time: 'Mon 9:02 AM' },
+    { id: 4, senderId: 'me', text: 'Pull the variant C empty state — share the frame link?', time: 'Mon 9:05 AM' },
+    {
+      id: 5,
+      senderId: 31,
+      text: 'Last edited by Sarah Chen 47m ago. 1 unresolved comment from Emma Larsen on the body copy.',
+      link: {
+        source: 'figma',
+        title: 'Northwind launch / Variant C — Empty state',
+        subtitle: 'figma.com · last edited 47 min ago',
+        url: 'https://figma.com/file/nw-launch/variant-c-empty-state',
+      },
+      time: 'Mon 9:05 AM',
+    },
+    { id: 6, senderId: 'me', text: 'Any detached instances still floating in the file?', time: 'Tue 11:20 AM' },
+    { id: 7, senderId: 31, text: '3 detached component instances in the Northwind launch file:\n\n• Button / Primary — partner onboarding step 2\n• Toast / Info — session expired flow\n• Avatar / 32 — agents rail header\n\nWant me to flag them for Sarah?', time: 'Tue 11:20 AM' },
+    { id: 8, senderId: 'me', text: 'Yes — comment on each with @Sarah and a one-line note.', time: 'Tue 11:22 AM' },
+    { id: 9, senderId: 31, text: 'Done. 3 comments left on the file, all assigned to Sarah Chen.', time: 'Tue 11:22 AM', reactions: [{ emoji: '👍', count: 1 }] },
+    { id: 10, senderId: 'me', text: 'What\'s the latest version of the prompt-suggestion card component? Need to make sure I\'m referencing the right one in the PRD.', time: 'Today 10:15 AM' },
+    {
+      id: 11,
+      senderId: 31,
+      text: 'Component: Card / Prompt Suggestion — v2.4 (published 4/21 by Sarah Chen).\n\nv2.4 changelog:\n• 8px corner radius (was 4px)\n• Hover lift reduced 4px → 2px\n• Title size 15 → 14\n\nUsed in 3 files, 18 instances.',
+      link: {
+        source: 'figma',
+        title: 'Northwind UI Library / Card / Prompt Suggestion',
+        subtitle: 'figma.com · v2.4 · published 4/21',
+        url: 'https://figma.com/file/nw-ui-lib/card-prompt-suggestion',
+      },
+      time: 'Today 10:15 AM',
+    },
+    { id: 12, senderId: 'me', text: 'Export the variant C empty state at 2x for the launch blog.', time: 'Today 2:40 PM' },
+    { id: 13, senderId: 31, text: 'Exported variant-c-empty-state@2x.png (1840×1240). Dropped in the shared launch folder under /assets/blog/.', time: 'Today 2:40 PM', reactions: [{ emoji: '🎨', count: 1 }] },
+    { id: 14, senderId: 'me', text: 'Any frames in the file still using the old token system? Want a clean handoff before launch.', time: 'Today 4:10 PM' },
+    { id: 15, senderId: 31, text: '2 frames still reference deprecated tokens:\n\n• Settings / Notification preferences — uses color/legacy/surface-2\n• Onboarding / Step 4 — uses spacing/legacy/md\n\nBoth have one-token migrations available. Apply automatically?', time: 'Today 4:10 PM' },
+    { id: 16, senderId: 'me', text: 'Apply both and leave a comment so Sarah sees it next time she\'s in the file.', time: 'Today 4:12 PM' },
+    {
+      id: 17,
+      senderId: 31,
+      text: 'Migrations applied to both frames. Comment left on each tagging Sarah Chen with the diff.',
+      link: {
+        source: 'figma',
+        title: 'Northwind launch — file (2 frames updated)',
+        subtitle: 'figma.com · updated just now',
+        url: 'https://figma.com/file/nw-launch',
+      },
+      time: 'Today 4:12 PM',
+      reactions: [{ emoji: '✅', count: 1 }],
+    },
+  ],
+
+  // ── Cowork agent ──────────────────────────────────────────────────────
+  // Showcase chat for Copilot Cowork — agentic assistance that generates
+  // plans, runs them in the background across M365 apps (Outlook, Word,
+  // Excel, PowerPoint, Teams), stops for human checkpoints, and delivers
+  // artifacts. Conversation walks through the canonical Cowork loop:
+  // request → plan → approval → background execution → checkpoint → delivery.
+  32: [
+    { id: 1, senderId: 32, text: 'Hi Alex — I\'m Cowork. I take action, not just chat: I generate a plan, run it in the background across your apps (Outlook, Word, Excel, PowerPoint, Teams), and pause for your approval at the moments that matter. Try asking me to prep for a meeting, audit your calendar, or compile a research brief.', time: 'Mon 8:30 AM' },
+    { id: 2, senderId: 'me', text: 'Prep me for the Northwind partner readout on Thursday. I want a one-page brief, a draft follow-up email, and a quick competitive snapshot.', time: 'Mon 9:00 AM' },
+    {
+      id: 3,
+      senderId: 32,
+      text: 'Here\'s the plan I\'d run. Approve to execute, or tell me what to change.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Northwind partner readout prep',
+          subtitle: 'Cross-app run across Outlook, Word, and Excel.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          steps: [
+            { text: 'Aggregate context — Northwind launch channel, partner email threads, readiness tracker (last 30 days)', status: 'pending' },
+            { text: 'Pull external signals — partner press, competitor moves, public benchmarks with citations', status: 'pending' },
+            { text: 'Draft one-page brief in Word', status: 'pending' },
+            { text: 'Draft follow-up email in Outlook (saves to drafts, won\'t send)', status: 'pending' },
+            { text: 'Build competitive snapshot in Excel — 3 vendors × 5 dimensions', status: 'pending' },
+          ],
+          footer: 'Estimated runtime ~4–6 min · runs in the background',
+          actions: ['Approve & run', 'Edit plan'],
+        },
+      ],
+      time: 'Mon 9:00 AM',
+    },
+    { id: 4, senderId: 'me', text: 'Approved. Drop step 5 — Sarah is owning the competitive view.', time: 'Mon 9:02 AM' },
+    { id: 5, senderId: 32, text: 'Plan updated (4 steps, ~3–4 min). Running in the background — I\'ll surface checkpoints when I need a decision.', time: 'Mon 9:02 AM', reactions: [{ emoji: '👍', count: 1 }] },
+    { id: 6, senderId: 32, text: 'Checkpoint — I found two public benchmarks for handoff success rate that contradict each other (Vendor X reports 94%, Vendor Y reports 87%, methodology differs). Which should I treat as authoritative for the brief?', time: 'Mon 9:05 AM' },
+    { id: 7, senderId: 'me', text: 'Vendor X — closer to our methodology. Note the discrepancy in a footnote.', time: 'Mon 9:07 AM' },
+    { id: 8, senderId: 32, text: 'Got it. Resuming.', time: 'Mon 9:07 AM' },
+    {
+      id: 9,
+      senderId: 32,
+      text: 'Run complete. Brief is below; the follow-up email is in your Outlook drafts (won\'t send until you click Send).',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Northwind partner readout — Brief',
+          subtitle: 'Visible only to you',
+        },
+      ],
+      chainOfThought: [
+        'Pulled 14 messages from the Northwind launch channel (last 30 days)',
+        'Read 3 partner email threads from the last 14 days',
+        'Reviewed the readiness tracker and 2 open entries',
+        'Searched external sources — partner press, competitor moves, public benchmarks',
+        'Resolved Vendor X / Vendor Y benchmark disagreement per your decision (Vendor X authoritative, Y noted in footnote)',
+        'Drafted a one-page brief in Word with 8 inline citations',
+        'Drafted a follow-up email in Outlook and saved it to Drafts',
+      ],
+      time: 'Mon 9:11 AM',
+      reactions: [{ emoji: '🚀', count: 1 }],
+    },
+    { id: 10, senderId: 'me', text: 'What two open questions did you surface?', time: 'Mon 9:14 AM' },
+    { id: 11, senderId: 32, text: 'Flagged inline in the brief:\n\n1. Cross-tenant scope — partners are asking, but our PRD scope is single-tenant for v2. Is that a Q3 conversation?\n2. Vendor Y\'s 87% benchmark uses a different methodology (counts user-cancelled handoffs as failures). Worth disclosing alongside our number, or omit entirely?\n\nNo answer needed now — both are talking-points for Thursday.', time: 'Mon 9:14 AM' },
+    { id: 12, senderId: 'me', text: 'Audit my calendar for tomorrow. Decline anything where I\'m not the decision-maker; protect 2–4 PM as deep work.', time: 'Tue 7:50 AM' },
+    {
+      id: 13,
+      senderId: 32,
+      text: 'Calendar audit plan — review for approval before I apply changes.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Tuesday calendar audit',
+          subtitle: '11 meetings · 8h 15m booked · 1 conflict found.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Will reschedule (1)',
+              bullets: ['Eng/Design sync — overlaps Northwind launch sync; propose Wed 10 AM'],
+            },
+            {
+              heading: 'Will decline (2)',
+              bullets: [
+                'Brand refresh kickoff — FYI only; "follow up async" note',
+                'Tooling guild monthly — you\'re not on the agenda',
+              ],
+            },
+            {
+              heading: 'Will protect',
+              bullets: ['2:00–4:00 PM — focus block, notifications muted'],
+            },
+          ],
+          footer: 'No changes applied until you approve',
+          actions: ['Approve & apply', 'Edit'],
+        },
+      ],
+      time: 'Tue 7:50 AM',
+    },
+    { id: 14, senderId: 'me', text: 'Approved.', time: 'Tue 7:52 AM' },
+    { id: 15, senderId: 32, text: 'Running. 12 changes to process — I\'ll DM when done.', time: 'Tue 7:52 AM' },
+    {
+      id: 16,
+      senderId: 32,
+      text: 'Calendar audit complete:\n\n• Conflict resolved — Eng/Design sync moved to Wed 10 AM (all 4 attendees accepted)\n• 2 declines sent with "follow up async" notes\n• 2:00–4:00 PM blocked as Focus Time, notifications muted\n• Pre-meeting briefs queued for the 3 remaining 1:1s\n\nNet recovered time: 1h 45m.',
+      chainOfThought: [
+        'Reviewed Tuesday\'s 11 meetings against your decision-maker rules',
+        'Identified 1 conflict (Eng/Design sync overlapping Northwind launch sync)',
+        'Flagged 2 low-priority candidates (Brand refresh kickoff, Tooling guild monthly)',
+        'Rescheduled Eng/Design sync to Wed 10 AM and re-invited 4 attendees',
+        'Sent 2 polite "follow up async" decline notes',
+        'Applied 2:00–4:00 PM focus block and muted notifications for that window',
+        'Queued pre-meeting briefs for your 3 remaining 1:1s',
+      ],
+      time: 'Tue 7:58 AM',
+      reactions: [{ emoji: '🎯', count: 1 }],
+    },
+    { id: 17, senderId: 'me', text: 'Compile a quick research brief on agent handoff success benchmarks across the industry. Internal + public sources, with citations. Just need it for tomorrow\'s Conversational AI session.', time: 'Tue 11:30 AM' },
+    {
+      id: 18,
+      senderId: 32,
+      text: 'Plan ready. Lighter scope than the readout brief — a "research" run, not "publish-ready."',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: 'Handoff success benchmarks',
+          subtitle: 'Cited research — internal + public sources, packaged in Word.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Internal sources',
+              bullets: [
+                'James\'s Sprint 14 staging numbers',
+                'CA working-group thread',
+                'Partner readout prep brief',
+              ],
+            },
+            {
+              heading: 'External sources',
+              bullets: [
+                'Vendor X benchmark (Q1 2026)',
+                'Vendor Y whitepaper',
+                '2 Forrester analyst notes',
+                '1 Gartner mention',
+              ],
+            },
+            {
+              heading: 'Output',
+              text: 'One-page Word summary with inline citations + a 5-row comparison table.',
+            },
+          ],
+          footer: 'Estimated runtime ~2 min',
+          actions: ['Approve & run', 'Edit'],
+        },
+      ],
+      time: 'Tue 11:30 AM',
+    },
+    { id: 19, senderId: 'me', text: 'Run it.', time: 'Tue 11:31 AM' },
+    {
+      id: 20,
+      senderId: 32,
+      text: 'Done. One-page summary + 5-row table, 8 citations. Headline: Northwind staging at 95.3% sits at the top of the public band.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Handoff benchmarks — Research summary',
+          subtitle: 'Visible only to you',
+        },
+      ],
+      chainOfThought: [
+        'Pulled internal staging numbers from James\'s Sprint 14 report',
+        'Read the CA working-group thread for context',
+        'Searched the Vendor X benchmark (Q1 2026)',
+        'Read the Vendor Y whitepaper',
+        'Reviewed 2 Forrester analyst notes and 1 Gartner mention',
+        'Compiled a 5-row comparison table',
+        'Drafted a one-page Word summary with 8 inline citations',
+      ],
+      time: 'Tue 11:33 AM',
+    },
+    { id: 21, senderId: 'me', text: 'When Emma is back from PTO (May 5), can you generate a quick onboarding-back briefing — what she missed, what\'s pending her review?', time: 'Tue 4:50 PM' },
+    { id: 22, senderId: 32, text: 'Queued. I\'ll generate the briefing on Mon May 5 at 8:30 AM PT and DM her once it\'s ready. I\'ll cc you so you can adjust before she opens it.', time: 'Tue 4:50 PM', reactions: [{ emoji: '📅', count: 1 }] },
+    { id: 23, senderId: 'me', text: 'What background tasks do I have running with you right now?', time: 'Today 10:00 AM' },
+    { id: 24, senderId: 32, text: '3 active long-running tasks:\n\n• 72h channel watch — Northwind launch (closes Thu 9:08 AM, no matches yet)\n• Scheduled briefing — Emma\'s "back from PTO" digest (fires Mon May 5)\n• Recurring — Friday 9 AM partner-readout reminder (next: this Fri)\n\nAll silent unless something needs you.', time: 'Today 10:00 AM' },
+    { id: 25, senderId: 'me', text: 'Build me a 30-day reflection on focus time honored vs. booked. Drop it in my Reflect-on-Friday template.', time: 'Today 4:30 PM' },
+    {
+      id: 26,
+      senderId: 32,
+      text: 'Reflection plan — runs against your last 30 days of calendar + Teams activity.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          iconType: 'teams',
+          title: '30-day focus-time reflection',
+          subtitle: 'Aggregate analysis — no individual meeting names in output.',
+          badge: { text: 'Awaiting approval', tone: 'amber' },
+          sections: [
+            {
+              heading: 'Sources',
+              bullets: [
+                'Outlook calendar — focus blocks scheduled vs. honored',
+                'Teams status history — DND/quiet hours respected',
+                'Meeting overrides — count and pattern',
+              ],
+            },
+            {
+              heading: 'Output',
+              text: 'Filled section in your Reflect-on-Friday Word doc: focus hours honored, top breakers, weekday pattern, week-over-week trend.',
+            },
+          ],
+          footer: 'Privacy: aggregate only',
+          actions: ['Approve & run', 'Edit scope'],
+        },
+      ],
+      time: 'Today 4:30 PM',
+    },
+    { id: 27, senderId: 'me', text: 'Approved.', time: 'Today 4:31 PM' },
+    { id: 28, senderId: 32, text: 'Running in the background. Will land in your Reflect doc — I\'ll DM you when done so you can read it Friday morning.', time: 'Today 4:31 PM', reactions: [{ emoji: '🪞', count: 1 }] },
+  ],
+
+  // ── AC Test (group) ───────────────────────────────────────────────────
+  // Sandbox group for visual testing of adaptive cards / artifact rendering.
+  // Each message attaches a different artifact type so the renderer can be
+  // eyeballed across all supported elements.
+  33: [
+    {
+      id: 1,
+      senderId: 1,
+      text: 'Just finished the design system audit — flagged everything that needs attention this sprint. Take a look and let me know if I missed anything.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'word',
+          name: 'Design system audit — Sprint 14',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: 'Mon 11:20 AM',
+    },
+    {
+      id: 2,
+      senderId: 7,
+      text: 'Weekly metrics rollup is up. Engagement is up nicely week-over-week, but conversion ticked down a touch. Worth a look before Thursday.',
+      cards: [
+        {
+          type: 'file',
+          fileType: 'excel',
+          name: 'Weekly metrics rollup — Apr 21',
+          subtitle: 'Visible to people in your organization',
+        },
+      ],
+      time: 'Mon 4:05 PM',
+    },
+    {
+      id: 3,
+      senderId: 9,
+      text: 'Latest auth-flow mocks for the cross-tenant scope question — three variants. Variant B is my recommendation but happy to debate it.',
+      link: {
+        source: 'figma',
+        title: 'Cross-tenant auth flow — Variants A/B/C',
+        subtitle: 'figma.com · Northwind / Auth flow / v2',
+        url: 'https://figma.com/file/nw-auth/cross-tenant-v2',
+      },
+      time: 'Tue 9:30 AM',
+    },
+    {
+      id: 4,
+      senderId: 12,
+      text: 'Pulled the latest readiness numbers ahead of Thursday\'s sync. Most things green, but partner activation rate is the one to watch.',
+      cards: [
+        {
+          accentColor: '#5B5FC7',
+          title: 'Northwind launch — Readiness dashboard',
+          subtitle: 'Live snapshot · refreshes every 30 minutes.',
+          badge: { text: 'Live', tone: 'purple' },
+          metrics: [
+            { label: 'Sprint completion', value: '87%', delta: '+5pp WoW', deltaTone: 'positive' },
+            { label: 'P1 bugs open', value: '2', delta: '−3 WoW', deltaTone: 'positive' },
+            { label: 'Partner activation', value: '64%', delta: '−4pp', deltaTone: 'negative' },
+            { label: 'Staging error rate', value: '0.31%', delta: 'Within target', deltaTone: 'neutral' },
+          ],
+          sections: [
+            {
+              heading: 'Top features by adoption (last 7 days)',
+            },
+          ],
+          bars: [
+            { label: 'Agent handoffs', value: 8420, valueLabel: '8.4k' },
+            { label: 'Plugin sandbox', value: 6180, valueLabel: '6.2k' },
+            { label: 'Cross-tenant search', value: 4470, valueLabel: '4.5k' },
+            { label: 'Slash commands', value: 3120, valueLabel: '3.1k' },
+            { label: 'Outbox replay', value: 1860, valueLabel: '1.9k' },
+          ],
+          footer: 'Source: telemetry / launch-readiness · last refreshed 2 min ago',
+          actions: ['Open dashboard', 'Subscribe to weekly digest'],
+        },
+      ],
+      time: 'Tue 1:45 PM',
+      reactions: [{ emoji: '📊', count: 2 }, { emoji: '🚀', count: 1 }],
+    },
+  ],
+
   // ── Dogfood feedback (group) ──────────────────────────────────────────
   24: [
     { id: 1, senderId: 17, text: 'Tried the Northwind agent this morning — the prompt suggestions on a new session are really helpful when you don\'t know what to ask.', time: 'Mon 10:05 AM', reactions: [{ emoji: '🔥', count: 4 }, { emoji: '❤️', count: 2 }] },
@@ -484,7 +1024,17 @@ export const messagesByContact = {
     { id: 3, senderId: 17, text: 'The "Release readiness" card is pretty specific to how we do eng launches — might not land for external customers.', time: 'Mon 10:10 AM' },
     { id: 4, senderId: 5, text: 'Also — found a bug where the handoff loses context if I switch chats mid-conversation. Filed JIRA-4591.', time: 'Mon 10:20 AM' },
     { id: 5, senderId: 'me', text: 'Saw that one. Kevin\'s owning the auth side. Tracking for the ship-train fix.', time: 'Mon 10:22 AM' },
-    { id: 6, senderId: 7, text: 'One more small thing — when the agent types for a while, the indicator occasionally sticks around after the reply shows. Repro\'d twice today.', time: 'Mon 10:35 AM' },
+    {
+      id: 6,
+      senderId: 7,
+      text: 'One more small thing — when the agent types for a while, the indicator occasionally sticks around after the reply shows. Repro\'d twice today.',
+      time: 'Mon 10:35 AM',
+      replies: [
+        { id: 'g24-6-r1', senderId: 17, text: 'Repro: open Jira agent, send "check sprint 14", wait for reply, immediately send another. First indicator stays visible briefly after the reply lands.', time: 'Mon 10:50 AM' },
+        { id: 'g24-6-r2', senderId: 9, text: 'Confirmed locally. Stale timeout ref — fix is a one-liner, clearTimeout on unmount.', time: 'Mon 11:05 AM' },
+        { id: 'g24-6-r3', senderId: 9, text: 'Picking it up since I\'m in that file already. Should ship with the auth PR.', time: 'Mon 11:08 AM', reactions: [{ emoji: '🙏', count: 2 }] },
+      ],
+    },
     { id: 7, senderId: 17, text: 'Confirming the typing indicator sticks. Saw it twice myself this morning. Filed JIRA-4594.', time: 'Tue 9:10 AM' },
     { id: 8, senderId: 'me', text: 'Minor but visible. Who wants to own 4594? Should be a quick fix.', time: 'Tue 9:12 AM' },
     { id: 9, senderId: 9, text: 'I\'ll take it. Token-refresh work is in review waiting for eyes anyway.', time: 'Tue 9:15 AM' },

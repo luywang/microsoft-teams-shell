@@ -105,6 +105,10 @@
   color: #242424;
 }
 
+.meet-now-label {
+  font-weight: 600;
+}
+
 .meet-chevron {
   margin-left: -2px;
 }
